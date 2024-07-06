@@ -2,7 +2,7 @@
 name: User story
 about: Custom template for project user stories
 title: 'USER STORY: '
-labels: ''
+labels: Frontend, User story
 assignees: Felteng
 
 ---
