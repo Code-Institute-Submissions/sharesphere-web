@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import css from "./styles/css/App.module.css";
 import NavBar from "./components/NavBar";
 import SignUp from "./pages/authentication/SignUp.js"
+import "./axios/axiosDefaults";
 
 
 function App() {

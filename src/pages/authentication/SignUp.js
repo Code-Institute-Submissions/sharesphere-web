@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import css from "../../styles/css/SignUp.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
@@ -12,6 +13,7 @@ const SignUp = () => {
     password2: "",
   });
 const {username, password1, password2} = signUpData
+const navigate = useNavigate()
 
   const handleChange = (e) => {
     setSignUpData({
@@ -23,9 +25,10 @@ const {username, password1, password2} = signUpData
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-    await axios.post("https://sharesphere-8737cda00b1a.herokuapp.com/dj-rest-auth/registration/", signUpData)
+    await axios.post("/dj-rest-auth/registration/", signUpData)
+    navigate(-1)
     } catch (error) {
-      e = error?.response.data
+      e = error.response?.data
       console.log(e)
     }
   }
