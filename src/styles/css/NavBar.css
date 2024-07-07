@@ -1,0 +1,4 @@
+/* Utilises the active class applied by the NavLink component */
+.NavLinks .active {
+  color: #888888;
+}

@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+import css from "./styles/css/App.module.css";
 import NavBar from "./components/NavBar";
 
 
 function App() {
   return (
-    <div className="App">
+    <div className={css.App}>
       <NavBar />
       <Routes>
         <Route path="/" element={<p>ShareSphere home</p>} />
