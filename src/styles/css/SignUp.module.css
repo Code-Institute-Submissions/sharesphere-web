@@ -1,0 +1,22 @@
+.Form {
+  max-width: 80%;
+  margin: auto;
+}
+
+.FormWrapper {
+  display: flex;
+  align-items: center;
+  height: 90vh;
+}
+
+@media (min-width: 768px) {
+  .Form {
+    max-width: 65%;
+  }
+}
+
+@media (min-width: 992px) {
+  .Form {
+    max-width: 55%;
+  }
+}

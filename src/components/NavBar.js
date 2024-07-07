@@ -23,6 +23,9 @@ const NavBar = () => {
               <NavLink to="/signin" className={css.NavLink}>
                 Sign in
               </NavLink>
+              <NavLink to="/signup" className={css.NavLink}>
+                Sign up
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>
