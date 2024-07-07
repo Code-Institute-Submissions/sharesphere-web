@@ -10,8 +10,16 @@ const SignUp = () => {
     password1: "",
     password2: "",
   });
+const {username, password1, password2} = signUpData
 
-  const {username, password1, password2} = signUpData
+  const handleChange = (e) => {
+    setSignUpData({
+      ...signUpData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  
 
   return (
     <Container className={css.FormWrapper}>
@@ -20,17 +28,17 @@ const SignUp = () => {
           <Form className={css.Form}>
             <Form.Group className="mb-4" controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
-              <Form.Control type="text" placeholder="Username" value={username} />
+              <Form.Control type="text" placeholder="Username" value={username} onChange={handleChange} name="username" />
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password1">
               <Form.Label className="d-none">Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" value={password1} />
+              <Form.Control type="password" placeholder="Password" value={password1} onChange={handleChange} name="password1" />
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password2">
               <Form.Label className="d-none">Confirm password</Form.Label>
-              <Form.Control type="password" placeholder="Confirm password" value={password2} />
+              <Form.Control type="password" placeholder="Confirm password" value={password2} onChange={handleChange} name="password2" />
             </Form.Group>
 
             <Button variant="success" type="submit">
