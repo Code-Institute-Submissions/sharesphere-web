@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import css from "../../styles/css/SignUp.module.css";
+import axios from "axios";
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
@@ -19,13 +20,21 @@ const {username, password1, password2} = signUpData
     })
   }
 
-  
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+    await axios.post("https://sharesphere-8737cda00b1a.herokuapp.com/dj-rest-auth/registration/", signUpData)
+    } catch (error) {
+      e = error?.response.data
+      console.log(e)
+    }
+  }
 
   return (
     <Container className={css.FormWrapper}>
       <Row className="flex-grow-1">
         <Col md="6">
-          <Form className={css.Form}>
+          <Form className={css.Form} onSubmit={handleSubmit}>
             <Form.Group className="mb-4" controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
               <Form.Control type="text" placeholder="Username" value={username} onChange={handleChange} name="username" />
