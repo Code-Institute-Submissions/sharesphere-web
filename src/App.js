@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<p>ShareSphere home</p>} />
         <Route path="/signin" element={<p>ShareSphere sign in</p>} />
+        <Route path="*" element={<p>Nothing on this page, 404</p>} />
       </Routes>
     </div>
   );
