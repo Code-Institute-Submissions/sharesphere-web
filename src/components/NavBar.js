@@ -5,8 +5,11 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link, NavLink } from "react-router-dom";
 import css from "../styles/css/NavBar.module.css"
 import "../styles/css/NavBar.css"
+import { useAuth } from "../context/AuthContext";
 
 const NavBar = () => {
+  const { loggedInUser } = useAuth();
+
   return (
     <div>
       <Navbar expand="lg" className={css.NavBar} variant="dark"> 
@@ -26,6 +29,9 @@ const NavBar = () => {
               <NavLink to="/signup" className={css.NavLink}>
                 Sign up
               </NavLink>
+            {loggedInUser ? (<p>You are authenticated, { loggedInUser.username }</p>) : (
+              <p>You are not authenticated</p>
+            )}
             </Nav>
           </Navbar.Collapse>
         </Container>

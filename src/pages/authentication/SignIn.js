@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import css from "../../styles/css/SignUp.module.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const SignIn = () => {
   const [signInData, setSignInData] = useState({
@@ -14,6 +15,7 @@ const SignIn = () => {
   const [fieldErrors, setFieldErrors] = useState([]);
   const { username, password } = signInData;
   const navigate = useNavigate();
+  const { setLoggedInUser } = useAuth()
 
   const handleChange = (e) => {
     setSignInData({
@@ -25,7 +27,8 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/login/", signInData);
+      const data = await axios.post("/dj-rest-auth/login/", signInData);
+      setLoggedInUser(data.data.user)
       navigate("/");
     } catch (error) {
       setFieldErrors(error.response?.data);
@@ -96,8 +99,8 @@ const SignIn = () => {
               </Alert>
             ))}
 
-            <Button variant="success" type="submit" className="mt-3">
-              Sign up!
+            <Button variant="primary" type="submit" className="mt-3">
+              Sign in!
             </Button>
           </Form>
         </Col>
