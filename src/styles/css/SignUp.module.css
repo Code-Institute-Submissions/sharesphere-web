@@ -9,6 +9,12 @@
   height: 90vh;
 }
 
+.FieldAlert {
+  padding: 4px;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
 @media (min-width: 768px) {
   .Form {
     max-width: 65%;
