@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import css from "../../styles/css/SignUp.module.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
@@ -27,7 +27,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      navigate(-1);
+      navigate("/signin");
     } catch (error) {
       setFieldErrors(error.response?.data);
     }
@@ -36,6 +36,10 @@ const SignUp = () => {
   return (
     <Container className={css.FormWrapper}>
       <Row className="flex-grow-1">
+        <Col xs="12" className={css.PageHeader}>
+          <h1>Create an account</h1>
+          <p>If you already have an account, please <Link to={"/signin"} className="text-decoration-none">sign in</Link> instead.</p>
+        </Col>
         <Col md="6">
           <Form className={css.Form} onSubmit={handleSubmit}>
             <Form.Group className="mb-4" controlId="username">

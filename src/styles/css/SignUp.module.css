@@ -1,3 +1,7 @@
+.PageHeader {
+  margin-top: 0.5rem;
+}
+
 .Form {
   max-width: 80%;
   margin: auto;
@@ -5,7 +9,6 @@
 
 .FormWrapper {
   display: flex;
-  align-items: center;
   height: 90vh;
 }
 
