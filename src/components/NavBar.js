@@ -9,7 +9,7 @@ import "../styles/css/NavBar.css"
 const NavBar = () => {
   return (
     <div>
-      <Navbar expand="lg" className={css.NavBar}>
+      <Navbar expand="lg" className={css.NavBar} variant="dark"> 
         <Container>
           <Link to="/" className={css.NavBarBrand}>
             ShareSphere
