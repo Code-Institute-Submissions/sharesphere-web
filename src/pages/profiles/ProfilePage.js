@@ -50,7 +50,7 @@ const ProfilePage = () => {
                     ></i>
                   </Link>
                 ) : (
-                  <Link to={`/profile/${id}/message`}>
+                  <Link to={`/profile/${id}/message`} aria-labelledby="Message user">
                     <i
                       className={`fa-regular fa-envelope-open ${css.Action}`}
                     ></i>
