@@ -6,9 +6,7 @@ import { Link, NavLink } from "react-router-dom";
 import css from "../styles/css/NavBar.module.css";
 import "../styles/css/NavBar.css";
 import { useAuth } from "../context/AuthContext";
-import avatarCss from "../styles/css/Avatar.module.css"
 import Avatar from "./Avatar";
-import { Image } from "react-bootstrap";
 
 const NavBar = () => {
   const { loggedInUser } = useAuth();
@@ -32,12 +30,10 @@ const NavBar = () => {
               <NavLink to="/signup" className={css.NavLink}>
                 Sign up
               </NavLink>
-              {console.log(loggedInUser)}
-
             </Nav>
             {loggedInUser ? (
                 <div className="d-flex">
-                  <Link to="/profile"><Avatar src={loggedInUser.profile_image} height={45}/></Link>
+                  <Link to={`/profile/${loggedInUser.pk}`}><Avatar src={loggedInUser.profile_image} height={45} alt="Your profile" /></Link>
                 </div>
               ) : (null)
               }
