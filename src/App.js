@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import SignUp from "./pages/authentication/SignUp.js"
 import "./axios/axiosDefaults";
 import SignIn from "./pages/authentication/SignIn.js";
+import ProfilePage from "./pages/profiles/ProfilePage.js";
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Route path="/" element={<p>ShareSphere home</p>} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/profile" element={<p>Your profile page</p>} />
+        <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="*" element={<p>Nothing on this page, 404</p>} />
       </Routes>
     </div>
