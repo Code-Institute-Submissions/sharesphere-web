@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 
 .Stats {
@@ -14,4 +13,22 @@
 .Info {
   display: flex;
   opacity: 0.6;
+}
+
+.Action {
+  margin-left: 0.55rem;
+  font-size: 300;
+  color: #737777;
+  transition: .3s;
+}
+
+.Action:hover {
+  color: #a7a7a7;
+  transition: .3s;
+}
+
+.ActionWrapper {
+  font-size: calc(1.375rem + 1.5vw);
+  line-height: 1.2;
+  margin: 0.5rem 0;
 }

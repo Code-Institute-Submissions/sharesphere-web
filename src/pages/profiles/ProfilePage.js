@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import { Col, Container, Row } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
@@ -39,11 +39,41 @@ const ProfilePage = () => {
         <Row>
           <Col xs="12" className={css.Header}>
             {console.log(profileData)}
-            <Avatar src={image} height={200} alt={`${owner}'s profile image`} />
-            <h1 className="mt-2">{owner}</h1>
+            <Avatar src={image} height={240} alt={`${owner}'s avatar`} />
+            <div className="d-flex align-items-end">
+              <h1 className="mt-2">{owner}</h1>
+              <div className={css.ActionWrapper}>
+                {is_owner ? (
+                  <Link to="/profile/edit" aria-labelledby="Edit profile">
+                    <i
+                      className={`fa-regular fa-pen-to-square ${css.Action}`}
+                    ></i>
+                  </Link>
+                ) : (
+                  <Link to={`/profile/${id}/message`}>
+                    <i
+                      className={`fa-regular fa-envelope-open ${css.Action}`}
+                    ></i>
+                  </Link>
+                )}
+              </div>
+            </div>
             <p>{bio} </p>
             <div className={css.Info}>
-              <p>{name ? (name): ""}  Joined: {created_at}</p>
+              <p>
+                {name ? (
+                  <span>
+                    <i className="fa-regular fa-user"></i> {name}
+                  </span>
+                ) : (
+                  ""
+                )}
+                {"  "}
+                <span>
+                  <i className="fa-regular fa-calendar"></i> Joined:{" "}
+                  {created_at}
+                </span>
+              </p>
             </div>
           </Col>
           <div className={css.Stats}>
