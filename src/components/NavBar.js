@@ -11,6 +11,23 @@ import Avatar from "./Avatar";
 const NavBar = () => {
   const { loggedInUser } = useAuth();
 
+  const loggedInNav = (
+    <NavLink to={`/profile/${loggedInUser?.pk}`} className={`${css.NavLink} d-lg-none`}>
+      Profile
+    </NavLink>
+  );
+
+  const loggedOutNav = (
+    <>
+      <NavLink to="/signin" className={css.NavLink}>
+        Sign in
+      </NavLink>
+      <NavLink to="/signup" className={css.NavLink}>
+        Sign up
+      </NavLink>
+    </>
+  );
+
   return (
     <div>
       <Navbar expand="lg" className={css.NavBar} variant="dark">
@@ -24,19 +41,19 @@ const NavBar = () => {
               <NavLink to="/" className={css.NavLink}>
                 Home
               </NavLink>
-              <NavLink to="/signin" className={css.NavLink}>
-                Sign in
-              </NavLink>
-              <NavLink to="/signup" className={css.NavLink}>
-                Sign up
-              </NavLink>
+              {loggedInUser ? (loggedInNav) : (loggedOutNav)}
             </Nav>
             {loggedInUser ? (
-                <div className="d-flex">
-                  <Link to={`/profile/${loggedInUser.pk}`}><Avatar src={loggedInUser.profile_image} height={45} alt="Your profile" /></Link>
-                </div>
-              ) : (null)
-              }
+              <div className="d-lg-flex d-none">
+                <Link to={`/profile/${loggedInUser.pk}`}>
+                  <Avatar
+                    src={loggedInUser.profile_image}
+                    height={50}
+                    alt="Your avatar"
+                  />
+                </Link>
+              </div>
+            ) : null}
           </Navbar.Collapse>
         </Container>
       </Navbar>
