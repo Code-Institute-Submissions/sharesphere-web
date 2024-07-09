@@ -4,6 +4,7 @@ import { axiosInstance } from "../../axios/axiosDefaults";
 import { Col, Container, Row } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import css from "../../styles/css/ProfilePage.module.css";
+import Loader from "../../components/Loader";
 
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState({});
@@ -92,7 +93,7 @@ const ProfilePage = () => {
           </div>
         </Row>
       ) : (
-        <p>loading...</p>
+        <Loader />
       )}
     </Container>
   );
