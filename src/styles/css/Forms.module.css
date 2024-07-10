@@ -22,3 +22,13 @@
   align-items: center;
   margin: .5rem 0 2rem;
 }
+
+.FormImage {
+  color: #ffffffad;
+  transition-duration: .2s;
+}
+
+.FormImage:hover {
+  color: #EEEBE8;
+  transition-duration: .2s;
+}

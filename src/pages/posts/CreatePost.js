@@ -11,10 +11,10 @@ import {
   Row,
 } from "react-bootstrap";
 import formCSS from "../../styles/css/Forms.module.css";
-import css from "../../styles/css/CreatePost.module.css"
+import css from "../../styles/css/CreatePost.module.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Upload from "../../assets/upload-image-icon.png"
+import Upload from "../../assets/upload-image-icon.png";
 
 const CreatePost = () => {
   const [postData, setPostData] = useState({
@@ -30,24 +30,24 @@ const CreatePost = () => {
   const handleImageChange = async (e) => {
     setPostData({
       ...postData,
-      image: e.target.files[0]
-    })
+      image: e.target.files[0],
+    });
   };
 
   const handleChange = async (e) => {
     setPostData({
       ...postData,
-    [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      axiosInstance.post("/posts/", postData)
+      axiosInstance.post("/posts/", postData);
     } catch (error) {
-      console.log(error)
-      setErrors(error.response?.data)
+      console.log(error);
+      setErrors(error.response?.data);
     }
   };
 
@@ -59,9 +59,26 @@ const CreatePost = () => {
           <div>
             <div className="mb-2 mt-2">
               <FormGroup controlId="postImage" className="text-center">
-                <FormLabel>
-                  <Image className={css.UploadIcon} src={Upload} alt="Tap to upload image" />
-                  <p>Tap to upload an image</p>
+                <FormLabel className={formCSS.FormImage}>
+                  {imageUpload.current?.files[0] ? (
+                    <>
+                      <Image
+                        className={css.UploadPreview}
+                        src={URL.createObjectURL(imageUpload.current?.files[0])}
+                        alt="Chosen post image"
+                      />
+                      <p>Tap to change image</p>
+                    </>
+                  ) : (
+                    <>
+                      <Image
+                        className={css.UploadIcon}
+                        src={Upload}
+                        alt="Upload"
+                      />
+                      <p>Tap to upload an image</p>
+                    </>
+                  )}
                 </FormLabel>
                 <FormControl
                   className="d-none"
