@@ -11,7 +11,7 @@ import {
   Row,
 } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
-import css from "../../styles/css/EditProfile.module.css";
+import formCSS from "../../styles/css/Forms.module.css";
 import { useAuth } from "../../context/AuthContext";
 import Loader from "../../components/Loader";
 import Button from "react-bootstrap/Button";
@@ -111,7 +111,7 @@ const EditProfile = () => {
                 <Form.Group className="mb-3" controlId="name">
                   <Form.Label className="">Name</Form.Label>
                   <Form.Control
-                    className={css.FormInput}
+                    className={formCSS.FormInput}
                     type="text"
                     placeholder="Name"
                     value={name}
@@ -123,7 +123,7 @@ const EditProfile = () => {
                 <Form.Group className="mb-3" controlId="bio">
                   <Form.Label className="">Profile bio</Form.Label>
                   <Form.Control
-                    className={css.FormInput}
+                    className={formCSS.FormInput}
                     as="textarea"
                     rows={8}
                     placeholder="Bio"
@@ -152,7 +152,7 @@ const EditProfile = () => {
                   ></FormControl>
                 </FormGroup>
               </Col>
-              <Col className={css.SubmitWrapper}>
+              <Col className={formCSS.SubmitWrapper}>
                 <Form.Group className="mb-4" controlId="receiveMessages">
                   <Form.Check
                     type="checkbox"

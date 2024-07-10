@@ -1,0 +1,24 @@
+.FormInput {
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #4a4e53;
+}
+
+.FormInput::placeholder {
+  color: #ffffff9f;
+}
+
+.FormInput:focus {
+  color: #fff;
+  border: 1px solid #4a4e53;
+  background-color: #1b1b1b;
+  border-bottom: 2px solid #4a4e53;
+  box-shadow: 0px 0px 5px 3px #747177;
+}
+
+.SubmitWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: .5rem 0 2rem;
+}
