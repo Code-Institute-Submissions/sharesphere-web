@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import {
+  Alert,
   Col,
   Container,
   FormControl,
@@ -20,6 +21,7 @@ const EditProfile = () => {
   const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
+  const [errors, setErrors] = useState([]);
   const { loggedInUser, setLoggedInUser } = useAuth();
   const { bio, image, name, receive_messages } = profileData;
   const imageUpload = useRef();
@@ -76,7 +78,7 @@ const EditProfile = () => {
       });
       navigate(`/profile/${loggedInUser.pk}`);
     } catch (error) {
-      console.log(error.response.data);
+      setErrors(error.response.data);
     }
   };
 
@@ -160,6 +162,11 @@ const EditProfile = () => {
                     onChange={handleChange}
                   />
                 </Form.Group>
+                {errors?.image?.map((e) => (
+                  <Alert key={e} variant="warning">
+                    {e}
+                  </Alert>
+                ))}
                 <Button variant="primary" type="submit">
                   Update profile
                 </Button>
