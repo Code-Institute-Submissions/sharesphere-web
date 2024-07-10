@@ -13,7 +13,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const checkLoginStatus = async () => {
     try {
@@ -55,15 +55,15 @@ export const AuthProvider = ({ children }) => {
         if (err.response.status === 401) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
-          } catch (error) {
-            console.log(error);
-            navigate("/signin")
+          } catch (refreshError) {
+            console.log(refreshError);
+            navigate("/signin");
           }
-          return err;
+          return Promise.reject(err);
+        } else {
+          console.log(err.response.data);
+          return Promise.reject(err);
         }
-      },
-      (error) => {
-        return Promise.reject(error);
       }
     );
   }, [navigate]);
