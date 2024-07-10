@@ -174,9 +174,9 @@ const EditProfile = () => {
                     onChange={handleChange}
                   />
                 </Form.Group>
-                {errors?.image?.map((e) => (
-                  <Alert key={e} variant="warning">
-                    {e}
+                {errors?.image?.map((err) => (
+                  <Alert key={err} variant="warning">
+                    {err}
                   </Alert>
                 ))}
                 <Button variant="primary" type="submit">

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import {
@@ -8,7 +8,6 @@ import {
   FormGroup,
   FormLabel,
   Image,
-  Row,
 } from "react-bootstrap";
 import formCSS from "../../styles/css/Forms.module.css";
 import css from "../../styles/css/CreatePost.module.css";
@@ -26,6 +25,7 @@ const CreatePost = () => {
 
   const { title, content, image } = postData;
   const imageUpload = useRef();
+  const navigate = useNavigate();
 
   const handleImageChange = async (e) => {
     setPostData({
@@ -44,9 +44,9 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      axiosInstance.post("/posts/", postData);
+      const { data } = await axiosInstance.post("/posts/", postData);
+      navigate(`/post/${data.id}`);
     } catch (error) {
-      console.log(error);
       setErrors(error.response?.data);
     }
   };
@@ -64,10 +64,10 @@ const CreatePost = () => {
                     <>
                       <Image
                         className={css.UploadPreview}
-                        src={URL.createObjectURL(imageUpload.current?.files[0])}
+                        src={URL.createObjectURL(image)}
                         alt="Chosen post image"
                       />
-                      <p>Tap to change image</p>
+                      <div>Tap to change image</div>
                     </>
                   ) : (
                     <>
@@ -76,7 +76,7 @@ const CreatePost = () => {
                         src={Upload}
                         alt="Upload"
                       />
-                      <p>Tap to upload an image</p>
+                      <div>Tap to upload an image</div>
                     </>
                   )}
                 </FormLabel>
@@ -87,6 +87,11 @@ const CreatePost = () => {
                   onChange={handleImageChange}
                   ref={imageUpload}
                 ></FormControl>
+                {errors?.image?.map((err) => (
+                  <Alert key={err} variant="warning">
+                    {err}
+                  </Alert>
+                ))}
               </FormGroup>
             </div>
             <div>
@@ -100,6 +105,11 @@ const CreatePost = () => {
                   name={"title"}
                   onChange={handleChange}
                 />
+                {errors?.title?.map((err) => (
+                  <Alert key={err} variant="warning" className="mt-2">
+                    {err}
+                  </Alert>
+                ))}
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="postContent">
@@ -117,11 +127,6 @@ const CreatePost = () => {
             </div>
 
             <div className={formCSS.SubmitWrapper}>
-              {errors?.image?.map((e) => (
-                <Alert key={e} variant="warning">
-                  {e}
-                </Alert>
-              ))}
               <Button variant="success" type="submit">
                 Create post
               </Button>
