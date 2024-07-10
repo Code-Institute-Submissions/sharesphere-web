@@ -12,9 +12,20 @@ const NavBar = () => {
   const { loggedInUser } = useAuth();
 
   const loggedInNav = (
-    <NavLink to={`/profile/${loggedInUser?.pk}`} className={`${css.NavLink} d-lg-none`}>
-      Profile
-    </NavLink>
+    <>
+      <NavLink
+        to={`/profile/${loggedInUser?.pk}`}
+        className={`${css.NavLink} d-lg-none`}
+      >
+        Profile
+      </NavLink>
+      <NavLink
+        to={"/post/create"}
+        className={css.NavLink}
+      >
+        Create post
+      </NavLink>
+    </>
   );
 
   const loggedOutNav = (
@@ -41,7 +52,7 @@ const NavBar = () => {
               <NavLink to="/" className={css.NavLink}>
                 Home
               </NavLink>
-              {loggedInUser ? (loggedInNav) : (loggedOutNav)}
+              {loggedInUser ? loggedInNav : loggedOutNav}
             </Nav>
             {loggedInUser ? (
               <div className="d-lg-flex d-none">
