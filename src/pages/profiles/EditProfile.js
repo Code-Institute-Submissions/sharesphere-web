@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import {
   Col,
@@ -21,17 +21,21 @@ const EditProfile = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
   const { loggedInUser, setLoggedInUser } = useAuth();
-  const { owner, bio, image, is_owner, name, receive_messages } = profileData;
+  const { bio, image, name, receive_messages } = profileData;
   const imageUpload = useRef();
+  const receiveMessagesCheckBox = useRef();
   const navigate = useNavigate();
 
+  // Handles updating the state of the profile data when fields are modified
   const handleChange = (e) => {
     setProfileData({
       ...profileData,
       [e.target.name]: e.target.value,
+      receive_messages: receiveMessagesCheckBox.current.checked,
     });
   };
 
+  // Handles updating the preview image in case of choosing a new one
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -42,24 +46,38 @@ const EditProfile = () => {
   };
 
   const handleSubmit = async (e) => {
+    /**
+     * Creates a FormData object with the data of the fields for the put request
+     * An image is only added to the payload if a file is actually chosen
+     *
+     * On successful put request updates the loggedInUser context to contain the
+     * updated profile image and redirects user to their updated profile
+     *
+     * If the form submission isn't valid save the response and diplay an error field
+     */
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
     formData.append("bio", bio);
+    formData.append("receive_messages", receive_messages);
 
     if (previewImage) {
       formData.append("image", imageUpload.current.files[0]);
     }
 
-    const { data } = await axiosInstance.put(
-      `/profiles/${loggedInUser?.pk}/`,
-      formData
-    );
-    setLoggedInUser({
-      ...loggedInUser,
-      profile_image: data.image,
-    });
-    navigate(`/profile/${loggedInUser.pk}`);
+    try {
+      const { data } = await axiosInstance.put(
+        `/profiles/${loggedInUser?.pk}/`,
+        formData
+      );
+      setLoggedInUser({
+        ...loggedInUser,
+        profile_image: data.image,
+      });
+      navigate(`/profile/${loggedInUser.pk}`);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   useEffect(() => {
@@ -84,7 +102,7 @@ const EditProfile = () => {
     <Container>
       {hasLoaded ? (
         <div>
-          <h1 className="text-center">Edit profile</h1>
+          <h1 className="text-center mt-1">Edit profile</h1>
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col md="6">
@@ -113,9 +131,10 @@ const EditProfile = () => {
                   />
                 </Form.Group>
               </Col>
-              <Col md="6">
-                <FormGroup controlId="profile_image">
+              <Col md="6" className="mb-3">
+                <FormGroup controlId="profile_image" className="text-center">
                   <FormLabel>
+                    <p className="mb-2">Tap to upload a new image!</p>
                     <Avatar
                       src={previewImage ? previewImage : image}
                       height={300}
@@ -123,7 +142,7 @@ const EditProfile = () => {
                     />
                   </FormLabel>
                   <FormControl
-                    className=""
+                    className="d-none"
                     type="file"
                     accept="image/*"
                     onChange={handleImageChange}
@@ -131,20 +150,21 @@ const EditProfile = () => {
                   ></FormControl>
                 </FormGroup>
               </Col>
+              <Col className={css.SubmitWrapper}>
+                <Form.Group className="mb-4" controlId="receiveMessages">
+                  <Form.Check
+                    type="checkbox"
+                    label="Receive messages from other users"
+                    ref={receiveMessagesCheckBox}
+                    defaultChecked={receive_messages}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                  Update profile
+                </Button>
+              </Col>
             </Row>
-
-            <Form.Group className="mb-3" controlId="receiveMessages">
-              <Form.Check
-                type="checkbox"
-                label="Receive messages from other users"
-                value={receive_messages}
-                name="receive_messages"
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Update profile
-            </Button>
           </Form>
         </div>
       ) : (
