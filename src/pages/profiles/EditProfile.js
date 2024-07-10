@@ -28,7 +28,7 @@ const EditProfile = () => {
   const receiveMessagesCheckBox = useRef();
   const navigate = useNavigate();
 
-  // Handles updating the state of the profile data when fields are modified
+  // Handles updating the state of the profile data when fields are modified.
   const handleChange = (e) => {
     setProfileData({
       ...profileData,
@@ -37,7 +37,17 @@ const EditProfile = () => {
     });
   };
 
-  // Handles updating the preview image in case of choosing a new one
+  /**
+   * Handles updating the preview image in case of choosing a new one.
+   * 
+   * Saves the chosen file in previewImage instead since if a user
+   * decides they don't want to change the picture, simply pressing
+   * cancel in the file explorer window will reset it to null and instead
+   * display the users current profile image in the preview again.
+   * 
+   * On submission we can also use previewImage to check if the file input
+   * has a file stored in it by checking whether or not previewImage is true.
+   */ 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -51,6 +61,8 @@ const EditProfile = () => {
     /**
      * Creates a FormData object with the data of the fields for the put request
      * An image is only added to the payload if a file is actually chosen
+     * 
+     * Only if previewImage is true will formData have the image field appended to it.
      *
      * On successful put request updates the loggedInUser context to contain the
      * updated profile image and redirects user to their updated profile
