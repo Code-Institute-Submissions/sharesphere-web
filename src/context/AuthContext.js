@@ -57,7 +57,13 @@ export const AuthProvider = ({ children }) => {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (refreshError) {
             console.log(refreshError);
-            navigate("/signin");
+            // https://github.com/Felteng/moments-wt/blob/32487da6ddeed417f582334ce05c0401ca115912/src/contexts/CurrentUserContext.js#L37-L43
+            setLoggedInUser((prevLoggedInUser) => {
+              if (prevLoggedInUser) {
+                navigate("/signin");
+              }
+              return null;
+            });
           }
           return Promise.reject(err);
         } else {
