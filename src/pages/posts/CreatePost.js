@@ -27,11 +27,29 @@ const CreatePost = () => {
   const { title, content, image } = postData;
   const imageUpload = useRef();
 
-  const handleImageChange = async () => {};
+  const handleImageChange = async (e) => {
+    setPostData({
+      ...postData,
+      image: e.target.files[0]
+    })
+  };
 
-  const handleChange = async () => {};
+  const handleChange = async (e) => {
+    setPostData({
+      ...postData,
+    [e.target.name]: e.target.value
+    })
+  };
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      axiosInstance.post("/posts/", postData)
+    } catch (error) {
+      console.log(error)
+      setErrors(error.response?.data)
+    }
+  };
 
   return (
     <Container className={css.PostForm}>
