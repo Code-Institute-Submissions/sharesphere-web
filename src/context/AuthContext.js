@@ -39,7 +39,6 @@ export const AuthProvider = ({ children }) => {
           await axios.post("/dj-rest-auth/token/refresh/");
         } catch (error) {
           console.log("axios interceptor", error);
-          navigate("/signin")
           return config;
         }
         return config;
