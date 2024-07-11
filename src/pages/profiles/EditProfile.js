@@ -147,7 +147,7 @@ const EditProfile = () => {
               </Col>
               <Col md="6" className="mb-3">
                 <FormGroup controlId="profile_image" className="text-center">
-                  <FormLabel>
+                  <FormLabel className={formCSS.FormImage}>
                     <p className="mb-2">Tap to upload a new image!</p>
                     <Avatar
                       src={previewImage ? previewImage : image}
