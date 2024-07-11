@@ -15,7 +15,7 @@ function App() {
     <div className={css.App}>
       <NavBar />
       <Routes>
-        <Route path="/" element={<RenderPosts filter={"/posts/"} />} />
+        <Route path="/" element={<RenderPosts filter={"/posts"} />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
