@@ -93,7 +93,7 @@ const ProfilePage = () => {
           </div>
         </Row>
       ) : (
-        <Loader />
+        <Loader center />
       )}
     </Container>
   );

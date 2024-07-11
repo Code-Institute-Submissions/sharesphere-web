@@ -187,7 +187,7 @@ const EditProfile = () => {
           </Form>
         </div>
       ) : (
-        <Loader />
+        <Loader center />
       )}
     </Container>
   );
