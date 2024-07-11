@@ -1,0 +1,48 @@
+.PostsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.PostCard {
+  width: 85vw;
+  margin-bottom: 2rem;
+  background-color: rgb(13 15 16);
+  color: #eeebe8;
+  border: 1px solid #ffffff1a;
+  padding: .25rem;
+}
+
+.PostImg {
+  border-radius: .5rem;
+}
+
+.ContentSeparator {
+  color: #ffffff1a;
+  opacity: 1;
+}
+
+@media (min-width: 576px) {
+  .PostCard {
+    width: 65vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .PostCard {
+    width: 60vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .PostCard {
+    width: 45vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .PostCard {
+    width: 33vw;
+  }
+}
