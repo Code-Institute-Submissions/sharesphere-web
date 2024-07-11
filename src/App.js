@@ -20,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<RenderPosts filter={"/posts"} />} />
         <Route path="/following" element={<RenderPosts filter={`/posts/?owner__followed__owner__profile=${loggedInUser?.pk}`} />} />
+        <Route path="/likes" element={<RenderPosts filter={`/posts/?likes__owner__profile=${loggedInUser?.pk}`} />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile/:id" element={<ProfilePage />} />

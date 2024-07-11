@@ -39,7 +39,7 @@ const RenderPosts = (props) => {
       {hasLoaded ? (
         <InfiniteScroll
           className={css.PostsWrapper}
-          dataLength={results.length} //This is important field to render the next data
+          dataLength={results.length}
           next={() => FetchNext(posts, setPosts)}
           hasMore={!!next}
           loader={<Spinner animation="border" variant="secondary" />}

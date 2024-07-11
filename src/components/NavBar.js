@@ -16,6 +16,9 @@ const NavBar = () => {
       <NavLink to={"/following"} className={css.NavLink}>
         Following
       </NavLink>
+      <NavLink to={"/likes"} className={css.NavLink}>
+        Likes
+      </NavLink>
       <NavLink to={"/post/create"} className={css.NavLink}>
         Create post
       </NavLink>
