@@ -8,14 +8,18 @@ import ProfilePage from "./pages/profiles/ProfilePage.js";
 import EditProfile from "./pages/profiles/EditProfile.js";
 import CreatePost from "./pages/posts/CreatePost.js";
 import RenderPosts from "./pages/posts/RenderPosts.js";
+import { useAuth } from "./context/AuthContext.js";
 
 
 function App() {
+  const {loggedInUser} = useAuth()
+
   return (
     <div className={css.App}>
       <NavBar />
       <Routes>
         <Route path="/" element={<RenderPosts filter={"/posts"} />} />
+        <Route path="/following" element={<RenderPosts filter={`/posts/?owner__followed__owner__profile=${loggedInUser?.pk}`} />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile/:id" element={<ProfilePage />} />

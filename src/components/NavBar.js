@@ -13,17 +13,17 @@ const NavBar = () => {
 
   const loggedInNav = (
     <>
+      <NavLink to={"/following"} className={css.NavLink}>
+        Following
+      </NavLink>
+      <NavLink to={"/post/create"} className={css.NavLink}>
+        Create post
+      </NavLink>
       <NavLink
         to={`/profile/${loggedInUser?.pk}`}
         className={`${css.NavLink} d-lg-none`}
       >
         Profile
-      </NavLink>
-      <NavLink
-        to={"/post/create"}
-        className={css.NavLink}
-      >
-        Create post
       </NavLink>
     </>
   );
