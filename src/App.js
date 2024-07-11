@@ -7,6 +7,7 @@ import SignIn from "./pages/authentication/SignIn.js";
 import ProfilePage from "./pages/profiles/ProfilePage.js";
 import EditProfile from "./pages/profiles/EditProfile.js";
 import CreatePost from "./pages/posts/CreatePost.js";
+import RenderPosts from "./pages/posts/RenderPosts.js";
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     <div className={css.App}>
       <NavBar />
       <Routes>
-        <Route path="/" element={<p>ShareSphere home</p>} />
+        <Route path="/" element={<RenderPosts filter={"/posts/"} />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
