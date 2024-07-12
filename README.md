@@ -37,8 +37,51 @@
       verifyLogin();
     }, []);
     ```
+  - A request will still be made on mount to ensure that the user should still have access and if they don't then the localStorage object is managed accordingly.    
 
-    A request will still be made on mount to ensure that the user should still have access and if they don't then the localStorage object is managed accordingly.
+
+- Repeatedly clicking the like button on a post leads to faulty duplicate requests and error spam in console.
+
+  ![Console logs after spamming the like button](readme-assets/like-spam.png)
+
+  - This is because clicking the button will keep triggering the function that handles the API request even if a request is alreadt being made.
+
+  - The solution to the problem is simply to disable the functions from trying API requests if one is in progress.
+
+    - This was done by adding a new useState hook and and using it's condition for the like and unlike functions:
+    ```js
+      * const [loading, setLoading] = useState(false);
+
+      const handleLike = async () => {
+        * if (loading) return; *
+        * setLoading(true); *
+        try {
+          const { data } = await axiosInstance.post("/likes/", { post: id });
+          setLikeCount(likeCount + 1);
+          setLike(data.id);
+        } catch (error) {
+          console.log("Error when liking", error);
+        } finally {
+          * setLoading(false); *
+        }
+      };
+
+      const handleUnlike = async () => {
+        * if (loading) return; *
+        * setLoading(true); *
+        try {
+          await axiosInstance.delete(`likes/${like}`);
+          setLikeCount(likeCount - 1);
+          setLike(null);
+        } catch (error) {
+          console.log("Error when unliking", error);
+        } finally {
+          * setLoading(false); *
+        }
+      };
+    ```
+
+
 
 ### Credits
 
