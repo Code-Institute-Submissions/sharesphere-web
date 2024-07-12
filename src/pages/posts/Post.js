@@ -22,25 +22,34 @@ const Post = (props) => {
   } = props;
 
   const [like, setLike] = useState(like_id);
-  const [likeCount, setLikeCount] = useState(likes_count)
+  const [likeCount, setLikeCount] = useState(likes_count);
+  const [loading, setLoading] = useState(false);
 
   const handleLike = async () => {
+    if (loading) return;
+    setLoading(true);
     try {
       const { data } = await axiosInstance.post("/likes/", { post: id });
-      setLikeCount(likeCount + 1)
+      setLikeCount(likeCount + 1);
       setLike(data.id);
     } catch (error) {
       console.log("Error when liking", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleUnlike = async () => {
+    if (loading) return;
+    setLoading(true);
     try {
       await axiosInstance.delete(`likes/${like}`);
-      setLikeCount(likeCount - 1)
+      setLikeCount(likeCount - 1);
       setLike(null);
     } catch (error) {
       console.log("Error when unliking", error);
+    } finally {
+      setLoading(false);
     }
   };
 
