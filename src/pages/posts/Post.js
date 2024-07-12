@@ -19,7 +19,8 @@ const Post = (props) => {
     likes_count,
     like_id,
     comments_count,
-    updated_at,
+    created_at,
+    comments,
   } = props;
 
   const [like, setLike] = useState(like_id);
@@ -68,7 +69,7 @@ const Post = (props) => {
         </div>
         <div className={css.PostTime}>
           <span className="ms-1 me-1">·</span>
-          <span>{updated_at}</span>
+          <span>{created_at}</span>
         </div>
       </Link>
       <hr className={css.ContentSeparator} />

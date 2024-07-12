@@ -9,6 +9,7 @@ import EditProfile from "./pages/profiles/EditProfile.js";
 import CreatePost from "./pages/posts/CreatePost.js";
 import RenderPosts from "./pages/posts/RenderPosts.js";
 import { useAuth } from "./context/AuthContext.js";
+import PostPage from "./pages/posts/PostPage.js";
 
 function App() {
   const { loggedInUser } = useAuth();
@@ -34,6 +35,7 @@ function App() {
             />
           }
         />
+        <Route path="/post/:id" element={<PostPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile/:id" element={<ProfilePage />} />

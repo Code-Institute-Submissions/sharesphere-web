@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../axios/axiosDefaults";
-import { Container, Spinner } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchNext } from "../../utils/FetchNext";
 import Loader from "../../components/Loader";
@@ -42,7 +42,7 @@ const RenderPosts = (props) => {
           dataLength={results.length}
           next={() => FetchNext(posts, setPosts)}
           hasMore={!!next}
-          loader={<Spinner animation="border" variant="secondary" />}
+          loader={<Loader />}
           endMessage={
             <p style={{ textAlign: "center" }}>
               <b>No more posts to display!</b>

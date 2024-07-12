@@ -30,19 +30,16 @@
 
 .PostTime {
   font-weight: 300;
-  opacity: .6;
+  opacity: 0.6;
 }
-
-
 
 .PostStats {
   display: flex;
   justify-content: space-evenly;
-
 }
 
 .Likes {
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .Likes:hover {
@@ -54,7 +51,7 @@
 }
 
 .Comments {
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .Comments:hover {
