@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import { useAuth } from "../../context/AuthContext";
+import Comment from "../comments/Comment";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { FetchNext } from "../../utils/FetchNext";
+import Loader from "../../components/Loader";
 
 const Post = (props) => {
   const {
@@ -21,6 +25,7 @@ const Post = (props) => {
     comments_count,
     created_at,
     comments,
+    setComments,
   } = props;
 
   const [like, setLike] = useState(like_id);
@@ -118,6 +123,22 @@ const Post = (props) => {
           {comments_count}
         </span>
       </div>
+      {/* Only render comments on a post card if the comments prop has been passed */}
+      {comments && (
+        <div className="comments">
+          {console.log(comments)}
+          <InfiniteScroll
+            dataLength={comments.results.length}
+            next={() => FetchNext(comments, setComments)}
+            hasMore={!!comments.next}
+            loader={<Loader />}
+          >
+            {comments.results.map((comment) => (
+              <Comment {...comment} />
+            ))}
+          </InfiniteScroll>
+        </div>
+      )}
     </Card>
   );
 };
