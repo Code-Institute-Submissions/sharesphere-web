@@ -33,6 +33,34 @@
   opacity: .6;
 }
 
+
+
+.PostStats {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.Likes {
+  transition-duration: .3s;
+}
+
+.Likes:hover {
+  color: #dd4e4e;
+}
+
+.Liked {
+  color: #df4444;
+}
+
+.Comments {
+  transition-duration: .3s;
+}
+
+.Comments:hover {
+  color: #888888;
+}
+
 .ContentSeparator {
   color: #ffffff1a;
   opacity: 1;

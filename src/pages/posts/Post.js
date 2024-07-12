@@ -33,13 +33,25 @@ const Post = (props) => {
           <span className="ms-1 me-1">·</span>
           <span>{updated_at}</span>
         </div>
-        
       </Link>
       <hr className={css.ContentSeparator} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{content}</Card.Text>
       </Card.Body>
+      <div className={css.PostStats}>
+        <span>
+          <i
+            className={`${like_id ? `fa-solid ${css.Liked}` : "fa-regular"}
+              fa-heart me-1 ${css.Likes}`}
+          ></i>
+          {likes_count}
+        </span>
+        <span>
+          <i className={`fa-regular fa-comments me-1 ${css.Comments}`}></i>
+          {comments_count}
+        </span>
+      </div>
     </Card>
   );
 };

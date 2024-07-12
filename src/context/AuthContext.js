@@ -100,7 +100,8 @@ export const AuthProvider = ({ children }) => {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (refreshError) {
             console.log(refreshError);
-            // https://github.com/Felteng/moments-wt/blob/32487da6ddeed417f582334ce05c0401ca115912/src/contexts/CurrentUserContext.js#L37-L43
+            // https://github.com/mr-fibonacci/moments/blob/bb6657e265fb18360b841e10d9d633dad06f4e5c/src/contexts/CurrentUserContext.js#L61-L66
+            // Redirect user to sign in if session expired while using the site
             setLoggedInUser((prevLoggedInUser) => {
               if (prevLoggedInUser) {
                 navigate("/signin");
@@ -110,7 +111,7 @@ export const AuthProvider = ({ children }) => {
           }
           return Promise.reject(err);
         } else {
-          console.log(err.response.data);
+          console.log(err.response);
           return Promise.reject(err);
         }
       }
