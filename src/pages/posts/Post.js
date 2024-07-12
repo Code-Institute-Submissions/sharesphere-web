@@ -64,6 +64,43 @@ const Post = (props) => {
     }
   };
 
+  const likeIcon = (
+    <>
+      <i
+        onClick={() => {
+          /**
+           * Show a tooltip for post owner or logged out users.
+           * The tooltip closes automatically after 3 seconds or
+           * the next time the icon is clicked.
+           *
+           * For other users handles liking and unliking.
+           */
+          if (is_owner || !loggedInUser) {
+            setShow(!show);
+            !show && setTimeout(() => setShow(false), 3000);
+          } else {
+            !like ? handleLike() : handleUnlike();
+          }
+        }}
+        className={`${like ? `fa-solid ${css.Liked}` : "fa-regular"}
+      fa-heart me-1 ${css.Likes}`}
+        ref={target}
+      ></i>
+
+      <Overlay target={target.current} show={show} placement="top">
+        {(props) => (
+          <Tooltip {...props}>
+            {is_owner ? (
+              <div>You can't like your own post</div>
+            ) : (
+              <div>You must be logged in to like a post</div>
+            )}
+          </Tooltip>
+        )}
+      </Overlay>
+    </>
+  );
+
   return (
     <Card className={css.PostCard}>
       <Card.Img className={css.PostImg} variant="top" src={image} alt={title} />
@@ -84,38 +121,7 @@ const Post = (props) => {
       </Card.Body>
       <div className={css.PostStats}>
         <span>
-          <i
-            onClick={() => {
-              /**
-               * Show a tooltip for post owner or logged out users.
-               * The tooltip closes automatically after 3 seconds or
-               * the next time the icon is clicked.
-               *
-               * For other users handles liking and unliking.
-               */
-              if (is_owner || !loggedInUser) {
-                setShow(!show);
-                !show && setTimeout(() => setShow(false), 3000);
-              } else {
-                !like ? handleLike() : handleUnlike();
-              }
-            }}
-            className={`${like ? `fa-solid ${css.Liked}` : "fa-regular"}
-              fa-heart me-1 ${css.Likes}`}
-            ref={target}
-          ></i>
-
-          <Overlay target={target.current} show={show} placement="top">
-            {(props) => (
-              <Tooltip {...props}>
-                {is_owner ? (
-                  <div>You can't like your own post</div>
-                ) : (
-                  <div>You must be logged in to like a post</div>
-                )}
-              </Tooltip>
-            )}
-          </Overlay>
+          {likeIcon}
           {likeCount}
         </span>
         <span>
@@ -126,7 +132,7 @@ const Post = (props) => {
       {/* Only render comments on a post card if the comments prop has been passed */}
       {comments && (
         <InfiniteScroll
-          style={{overflow: "hidden"}}
+          style={{ overflow: "hidden" }}
           dataLength={comments.results.length}
           next={() => FetchNext(comments, setComments)}
           hasMore={!!comments.next}
