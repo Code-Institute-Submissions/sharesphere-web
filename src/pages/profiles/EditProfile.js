@@ -158,7 +158,7 @@ const EditProfile = () => {
                   <FormControl
                     className="d-none"
                     type="file"
-                    accept="image/*"
+                    accept="image/jpeg,image/png,image/bmp"
                     onChange={handleImageChange}
                     ref={imageUpload}
                   ></FormControl>
