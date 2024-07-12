@@ -9,6 +9,7 @@ import Comment from "../comments/Comment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchNext } from "../../utils/FetchNext";
 import Loader from "../../components/Loader";
+import CreateComment from "../comments/CreateComment";
 
 const Post = (props) => {
   const {
@@ -137,11 +138,12 @@ const Post = (props) => {
           next={() => FetchNext(comments, setComments)}
           hasMore={!!comments.next}
           loader={
-            <div className="d-flex mb-2">
-              <Loader className="align-self-center" />
+            <div className="d-flex mb-2 justify-content-center">
+              <Loader />
             </div>
           }
         >
+          <CreateComment />
           <hr className={css.ContentSeparator} />
           {comments.results.map((comment) => (
             <Comment key={comment.id} {...comment} />

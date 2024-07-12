@@ -96,7 +96,7 @@ const CreatePost = () => {
             </div>
             <div>
               <Form.Group className="mb-3" controlId="postTitle">
-                <Form.Label className="">Title</Form.Label>
+                <Form.Label>Title</Form.Label>
                 <Form.Control
                   className={formCSS.FormInput}
                   type="text"
