@@ -78,7 +78,7 @@ const Post = (props) => {
         </div>
       </Link>
       <hr className={css.ContentSeparator} />
-      <Card.Body>
+      <Card.Body className="text-center">
         <Card.Title>{title}</Card.Title>
         <Card.Text>{content}</Card.Text>
       </Card.Body>
@@ -125,20 +125,22 @@ const Post = (props) => {
       </div>
       {/* Only render comments on a post card if the comments prop has been passed */}
       {comments && (
-        <div className="comments">
+        <InfiniteScroll
+          style={{overflow: "hidden"}}
+          dataLength={comments.results.length}
+          next={() => FetchNext(comments, setComments)}
+          hasMore={!!comments.next}
+          loader={
+            <div className="d-flex mb-2">
+              <Loader className="align-self-center" />
+            </div>
+          }
+        >
           <hr className={css.ContentSeparator} />
-          {console.log(comments)}
-          <InfiniteScroll
-            dataLength={comments.results.length}
-            next={() => FetchNext(comments, setComments)}
-            hasMore={!!comments.next}
-            loader={<Loader />}
-          >
-            {comments.results.map((comment) => (
-              <Comment key={comment.id} {...comment} />
-            ))}
-          </InfiniteScroll>
-        </div>
+          {comments.results.map((comment) => (
+            <Comment key={comment.id} {...comment} />
+          ))}
+        </InfiniteScroll>
       )}
     </Card>
   );

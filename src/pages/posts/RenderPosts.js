@@ -39,10 +39,15 @@ const RenderPosts = (props) => {
       {hasLoaded ? (
         <InfiniteScroll
           className={css.PostsWrapper}
+          style={{ overflow: "hidden" }}
           dataLength={results.length}
           next={() => FetchNext(posts, setPosts)}
           hasMore={!!next}
-          loader={<Loader />}
+          loader={
+            <div className="mb-2">
+              <Loader />
+            </div>
+          }
           endMessage={
             <p style={{ textAlign: "center" }}>
               <b>No more posts to display!</b>
