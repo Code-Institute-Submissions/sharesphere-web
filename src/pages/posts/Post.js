@@ -143,7 +143,7 @@ const Post = (props) => {
             </div>
           }
         >
-          <CreateComment />
+          <CreateComment post={id} />
           <hr className={css.ContentSeparator} />
           {comments.results.map((comment) => (
             <Comment key={comment.id} {...comment} />
