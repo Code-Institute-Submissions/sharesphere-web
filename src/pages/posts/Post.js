@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { Card } from "react-bootstrap";
+import React, { useRef, useState } from "react";
+import { Card, Overlay, Tooltip } from "react-bootstrap";
 import css from "../../styles/css/Posts.module.css";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosInstance } from "../../axios/axiosDefaults";
+import { useAuth } from "../../context/AuthContext";
 
 const Post = (props) => {
   const {
@@ -24,6 +25,10 @@ const Post = (props) => {
   const [like, setLike] = useState(like_id);
   const [likeCount, setLikeCount] = useState(likes_count);
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const target = useRef(null);
+  const { loggedInUser } = useAuth();
 
   const handleLike = async () => {
     if (loading) return;
@@ -74,10 +79,37 @@ const Post = (props) => {
       <div className={css.PostStats}>
         <span>
           <i
-            onClick={like ? handleUnlike : handleLike}
+            onClick={() => {
+              /**
+               * Show a tooltip for post owner or logged out users.
+               * The tooltip closes automatically after 3 seconds or
+               * the next time the icon is clicked.
+               *
+               * For other users handles liking and unliking.
+               */
+              if (is_owner || !loggedInUser) {
+                setShow(!show);
+                !show && setTimeout(() => setShow(false), 3000);
+              } else {
+                !like ? handleLike() : handleUnlike();
+              }
+            }}
             className={`${like ? `fa-solid ${css.Liked}` : "fa-regular"}
               fa-heart me-1 ${css.Likes}`}
+            ref={target}
           ></i>
+
+          <Overlay target={target.current} show={show} placement="top">
+            {(props) => (
+              <Tooltip {...props}>
+                {is_owner ? (
+                  <div>You can't like your own post</div>
+                ) : (
+                  <div>You must be logged in to like a post</div>
+                )}
+              </Tooltip>
+            )}
+          </Overlay>
           {likeCount}
         </span>
         <span>
