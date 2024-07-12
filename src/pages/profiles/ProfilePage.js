@@ -40,7 +40,7 @@ const ProfilePage = () => {
         <Row>
           <Col xs="12" className={css.Header}>
             {console.log(profileData)}
-            <Avatar src={image} height={240} alt={`${owner}'s avatar`} />
+            <Avatar src={image} size={240} alt={`${owner}'s avatar`} />
             <div className="d-flex align-items-end">
               <h1 className="mt-2">{owner}</h1>
               <div className={css.ActionWrapper}>

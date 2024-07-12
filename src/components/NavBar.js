@@ -62,7 +62,7 @@ const NavBar = () => {
                 <Link to={`/profile/${loggedInUser.pk}`}>
                   <Avatar
                     src={loggedInUser.profile_image}
-                    height={50}
+                    size={50}
                     alt="Your avatar"
                   />
                 </Link>

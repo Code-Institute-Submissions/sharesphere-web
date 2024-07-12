@@ -151,7 +151,7 @@ const EditProfile = () => {
                     <p className="mb-2">Tap to upload a new image!</p>
                     <Avatar
                       src={previewImage ? previewImage : image}
-                      height={300}
+                      size={300}
                       alt="Change profile avatar"
                     />
                   </FormLabel>
