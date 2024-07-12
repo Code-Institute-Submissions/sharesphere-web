@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import css from "../../styles/css/Posts.module.css";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import { axiosInstance } from "../../axios/axiosDefaults";
 
 const Post = (props) => {
   const {
@@ -20,9 +21,31 @@ const Post = (props) => {
     updated_at,
   } = props;
 
+  const [like, setLike] = useState(like_id);
+  const [likeCount, setLikeCount] = useState(likes_count)
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosInstance.post("/likes/", { post: id });
+      setLikeCount(likeCount + 1)
+      setLike(data.id);
+    } catch (error) {
+      console.log("Error when liking", error);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      await axiosInstance.delete(`likes/${like}`);
+      setLikeCount(likeCount - 1)
+      setLike(null);
+    } catch (error) {
+      console.log("Error when unliking", error);
+    }
+  };
+
   return (
     <Card className={css.PostCard} key={id}>
-      {console.log(props)}
       <Card.Img className={css.PostImg} variant="top" src={image} alt={title} />
       <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
         <Avatar src={profile_image} size={30} alt="Post owner" />
@@ -42,10 +65,11 @@ const Post = (props) => {
       <div className={css.PostStats}>
         <span>
           <i
-            className={`${like_id ? `fa-solid ${css.Liked}` : "fa-regular"}
+            onClick={like ? handleUnlike : handleLike}
+            className={`${like ? `fa-solid ${css.Liked}` : "fa-regular"}
               fa-heart me-1 ${css.Likes}`}
           ></i>
-          {likes_count}
+          {likeCount}
         </span>
         <span>
           <i className={`fa-regular fa-comments me-1 ${css.Comments}`}></i>
