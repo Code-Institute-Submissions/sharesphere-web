@@ -65,7 +65,7 @@ const Post = (props) => {
   };
 
   return (
-    <Card className={css.PostCard} key={id}>
+    <Card className={css.PostCard}>
       <Card.Img className={css.PostImg} variant="top" src={image} alt={title} />
       <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
         <Avatar src={profile_image} size={30} alt="Post owner" />
@@ -126,6 +126,7 @@ const Post = (props) => {
       {/* Only render comments on a post card if the comments prop has been passed */}
       {comments && (
         <div className="comments">
+          <hr className={css.ContentSeparator} />
           {console.log(comments)}
           <InfiniteScroll
             dataLength={comments.results.length}
@@ -134,7 +135,7 @@ const Post = (props) => {
             loader={<Loader />}
           >
             {comments.results.map((comment) => (
-              <Comment {...comment} />
+              <Comment key={comment.id} {...comment} />
             ))}
           </InfiniteScroll>
         </div>
