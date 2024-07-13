@@ -1,0 +1,17 @@
+.ToggleIcon {
+  background-color: transparent;
+  border: none;
+  margin-top: .5rem;
+  font-size: 120%;
+  margin-right: .35rem;
+  width: 25px;
+  text-align: center;
+}
+
+.ToggleIcon:hover {
+  background-color: #1b1b1b;
+}
+
+.Menu {
+  min-width: fit-content;
+}
