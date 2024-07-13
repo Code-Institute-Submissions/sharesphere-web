@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, FormLabel } from "react-bootstrap";
 import { axiosInstance } from "../../axios/axiosDefaults";
+import formCSS from "../../styles/css/Forms.module.css";
 
 const CreateComment = (props) => {
   const { post, setComments, setCommentCount } = props;
@@ -27,11 +28,12 @@ const CreateComment = (props) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormGroup controlId="comment">
-        <FormLabel>
+      <FormGroup controlId="comment" className="d-flex">
+        <FormLabel className="flex-grow-1 mb-0 mt-2 ms-1">
           <Form.Control
-            className=""
+            className={formCSS.FormInput}
             type="text"
+            rows={2}
             placeholder="Leave a comment!"
             value={content}
             onChange={(e) => {
@@ -42,10 +44,10 @@ const CreateComment = (props) => {
             }}
           ></Form.Control>
         </FormLabel>
+        <button className={formCSS.SubmitIconBtn} type="submit">
+          <i className="fa-regular fa-paper-plane"></i>
+        </button>
       </FormGroup>
-      <Button type="submit" variant="success">
-        Comment!
-      </Button>
     </Form>
   );
 };
