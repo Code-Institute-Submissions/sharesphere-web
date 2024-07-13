@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
       } else if (savedLogin && !data) {
         setLoggedInUser(null);
         localStorage.removeItem("loggedInUser");
-      } else if (savedLogin && data && savedLogin != data) {
+      } else if (savedLogin && data && savedLogin !== data) {
         setLoggedInUser(data);
         localStorage.setItem("loggedInUser", JSON.stringify(data));
       }

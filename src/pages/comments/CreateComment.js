@@ -7,9 +7,7 @@ import css from "../../styles/css/Comments.module.css";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
-const CreateComment = (props) => {
-  const { post, setComments, setCommentCount } = props;
-
+const CreateComment = ({ post, setComments, setCommentCount }) => {
   const [commentData, setCommentData] = useState({
     post: post,
     content: "",
@@ -22,7 +20,7 @@ const CreateComment = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (content != "") {
+    if (content !== "") {
       /**
        * Logic to avoid making post requests if the field is empty
        * and instead shows a tooltip overlay.
