@@ -3,6 +3,12 @@ import { Form, FormGroup, FormLabel } from "react-bootstrap";
 import formCSS from "../../styles/css/Forms.module.css";
 
 const EditComment = ({ commentData, setCommentData, handleEdit }) => {
+  const target = useRef(null);
+
+  useEffect(() => {
+    // Focus the form input field automatically
+    target.current.focus();
+  }, []);
 
   return (
     <Form onSubmit={handleEdit}>
