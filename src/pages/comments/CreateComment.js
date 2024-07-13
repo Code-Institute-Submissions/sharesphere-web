@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, FormGroup, FormLabel, Overlay, Tooltip } from "react-bootstrap";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import formCSS from "../../styles/css/Forms.module.css";
-import appCSS from "../../styles/css/App.module.css"
+import appCSS from "../../styles/css/App.module.css";
 import css from "../../styles/css/Comments.module.css";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
@@ -47,8 +47,11 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
 
   return loggedInUser ? (
     <Form onSubmit={handleSubmit}>
-      <FormGroup controlId="comment" className="d-flex">
-        <FormLabel className="flex-grow-1 mb-0 mt-2 ms-1" ref={target}>
+      <FormGroup controlId="comment">
+        <div className="d-flex mb-0 mt-2 ms-1">
+          <FormLabel className="sr-only" ref={target}>
+            Leave a comment
+          </FormLabel>
           <Form.Control
             className={formCSS.FormInput}
             type="text"
@@ -61,10 +64,14 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
               });
             }}
           ></Form.Control>
-        </FormLabel>
-        <button className={formCSS.SubmitIconBtn} type="submit" title="Post comment">
-          <i className="fa-regular fa-paper-plane"></i>
-        </button>
+          <button
+            className={formCSS.SubmitIconBtn}
+            type="submit"
+            title="Post comment"
+          >
+            <i className="fa-regular fa-paper-plane"></i>
+          </button>
+        </div>
       </FormGroup>
       <Overlay target={target.current} show={show} placement="top">
         {(props) => (
@@ -76,7 +83,13 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
     </Form>
   ) : (
     <div className={css.LoggedOutField}>
-      <span>Please <Link className={appCSS.SignInPrompt} to={"/signin/"}>sign in</Link> to leave a comment!</span>
+      <span>
+        Please{" "}
+        <Link className={appCSS.SignInPrompt} to={"/signin/"}>
+          sign in
+        </Link>{" "}
+        to leave a comment!
+      </span>
     </div>
   );
 };

@@ -96,7 +96,7 @@ const CreatePost = () => {
             </div>
             <div>
               <Form.Group className="mb-3" controlId="postTitle">
-                <Form.Label>Title</Form.Label>
+                <Form.Label className="sr-only">Title</Form.Label>
                 <Form.Control
                   className={formCSS.FormInput}
                   type="text"
@@ -113,7 +113,7 @@ const CreatePost = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="postContent">
-                <Form.Label className="">Post content</Form.Label>
+                <Form.Label className="sr-only">Post content</Form.Label>
                 <Form.Control
                   className={formCSS.FormInput}
                   as="textarea"

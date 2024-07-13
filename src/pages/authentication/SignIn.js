@@ -51,7 +51,7 @@ const SignIn = () => {
         <Col md="6">
           <Form className={css.Form} onSubmit={handleSubmit}>
             <Form.Group className="mb-4" controlId="username">
-              <Form.Label className="d-none">Username</Form.Label>
+              <Form.Label className="sr-only">Username</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Username"
@@ -71,7 +71,7 @@ const SignIn = () => {
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password">
-              <Form.Label className="d-none">Password</Form.Label>
+              <Form.Label className="sr-only">Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"

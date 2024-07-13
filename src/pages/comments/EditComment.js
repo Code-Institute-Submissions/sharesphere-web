@@ -12,13 +12,17 @@ const EditComment = ({ commentData, setCommentData, handleEdit }) => {
 
   return (
     <Form onSubmit={handleEdit}>
-      <FormGroup controlId="comment" className="d-flex">
-        <FormLabel className="flex-grow-1 mb-0 mt-2 ms-1">
+      {console.log(commentData)}
+      <FormGroup controlId={`comment${commentData.id}`}>
+        <div className="d-flex mb-0 mt-2 ms-1">
+          <FormLabel className="sr-only">
+            Edit comment {commentData.id}
+          </FormLabel>
           <Form.Control
             ref={target}
             className={formCSS.FormInput}
             type="text"
-            placeholder="Leave a comment!"
+            placeholder="Edit comment!"
             value={commentData.content}
             onChange={(e) => {
               setCommentData({
@@ -27,14 +31,14 @@ const EditComment = ({ commentData, setCommentData, handleEdit }) => {
               });
             }}
           ></Form.Control>
-        </FormLabel>
-        <button
-          className={formCSS.SubmitIconBtn}
-          type="submit"
-          title="Edit comment"
-        >
-          <i className="fa-solid fa-pencil"></i>
-        </button>
+          <button
+            className={formCSS.SubmitIconBtn}
+            type="submit"
+            title="Edit comment"
+          >
+            <i className="fa-solid fa-pencil"></i>
+          </button>
+        </div>
       </FormGroup>
     </Form>
   );

@@ -43,7 +43,7 @@ const SignUp = () => {
         <Col md="6">
           <Form className={css.Form} onSubmit={handleSubmit}>
             <Form.Group className="mb-4" controlId="username">
-              <Form.Label className="d-none">Username</Form.Label>
+              <Form.Label className="sr-only">Username</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Username"
@@ -63,7 +63,7 @@ const SignUp = () => {
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password1">
-              <Form.Label className="d-none">Password</Form.Label>
+              <Form.Label className="sr-only">Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
@@ -83,7 +83,7 @@ const SignUp = () => {
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password2">
-              <Form.Label className="d-none">Confirm password</Form.Label>
+              <Form.Label className="sr-only">Confirm password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Confirm password"

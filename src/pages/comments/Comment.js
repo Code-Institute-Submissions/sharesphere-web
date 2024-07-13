@@ -28,6 +28,7 @@ const Comment = (props) => {
   const [modalShow, setModalShow] = useState(false);
   const [originalCommentData, setOriginalCommentData] = useState(null);
   const [commentData, setCommentData] = useState({
+    id: id,
     content: content,
   });
 
@@ -37,6 +38,7 @@ const Comment = (props) => {
       setEditToggled(true);
     } else {
       setCommentData({
+        ...commentData,
         content: originalCommentData,
       });
       setEditToggled(false);
