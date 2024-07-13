@@ -21,8 +21,6 @@
 .OwnerLink {
   margin-top: 0.5rem;
   align-self: flex-start;
-  text-decoration: none;
-  color: inherit;
   font-weight: bold;
   display: flex;
   align-items: center;

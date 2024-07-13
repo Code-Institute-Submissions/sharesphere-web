@@ -102,9 +102,55 @@ const Post = (props) => {
     </>
   );
 
+  const commentsIcon = (
+    /**
+     * Conditonally renders a link for the comments icon on a post
+     * if the comments prop has not been passed which, it only is
+     * for an individual post page where we don't want to link to
+     * the post the user is already on.
+     */
+    <>
+      {!comments ? (
+        <Link to={`/post/${id}`}>
+          <i className={`fa-regular fa-comments me-1 ${css.Comments}`}></i>
+        </Link>
+      ) : (
+        <i className={`fa-regular fa-comments me-1 ${css.Comments}`}></i>
+      )}
+    </>
+  );
+
+  const postImage = (
+    /**
+     * Conditonally renders a link for the for the image on a post
+     * if the comments prop has not been passed, which it only is
+     * for an individual post page where we don't want to link to
+     * the post the user is already on.
+     */
+    <>
+      {!comments ? (
+        <Link to={`/post/${id}`}>
+          <Card.Img
+            className={css.PostImg}
+            variant="top"
+            src={image}
+            alt={title}
+          />
+        </Link>
+      ) : (
+        <Card.Img
+          className={css.PostImg}
+          variant="top"
+          src={image}
+          alt={title}
+        />
+      )}
+    </>
+  );
+
   return (
     <Card className={css.PostCard}>
-      <Card.Img className={css.PostImg} variant="top" src={image} alt={title} />
+      {postImage}
       <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
         <Avatar src={profile_image} size={30} alt="Post owner" />
         <div className="ms-1">
@@ -126,7 +172,7 @@ const Post = (props) => {
           {likeCount}
         </span>
         <span>
-          <i className={`fa-regular fa-comments me-1 ${css.Comments}`}></i>
+          {commentsIcon}
           {comments_count}
         </span>
       </div>
