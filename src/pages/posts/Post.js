@@ -31,6 +31,7 @@ const Post = (props) => {
 
   const [like, setLike] = useState(like_id);
   const [likeCount, setLikeCount] = useState(likes_count);
+  const [commentCount, setCommentCount] = useState(comments_count);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -173,7 +174,7 @@ const Post = (props) => {
         </span>
         <span>
           {commentsIcon}
-          {comments_count}
+          {commentCount}
         </span>
       </div>
       {/* Only render comments on a post card if the comments prop has been passed */}
@@ -189,7 +190,11 @@ const Post = (props) => {
             </div>
           }
         >
-          <CreateComment post={id} />
+          <CreateComment
+            post={id}
+            setComments={setComments}
+            setCommentCount={setCommentCount}
+          />
           <hr className={css.ContentSeparator} />
           {comments.results.map((comment) => (
             <Comment key={comment.id} {...comment} />

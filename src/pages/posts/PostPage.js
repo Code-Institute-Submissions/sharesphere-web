@@ -34,7 +34,6 @@ const PostPage = () => {
 
   return (
     <Container className={css.PostsWrapper}>
-      {console.log(comments)}
       {hasLoaded ? <Post {...post} comments={{...comments}} setComments={setComments} /> : <Loader center />}
     </Container>
   );

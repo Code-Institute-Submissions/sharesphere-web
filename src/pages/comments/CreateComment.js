@@ -3,16 +3,23 @@ import { Button, Form, FormGroup, FormLabel } from "react-bootstrap";
 import { axiosInstance } from "../../axios/axiosDefaults";
 
 const CreateComment = (props) => {
-  const [comment, setComment] = useState({
-    post: props.post,
+  const { post, setComments, setCommentCount } = props;
+
+  const [commentData, setCommentData] = useState({
+    post: post,
     content: "",
   });
-  const { content } = comment;
+  const { content } = commentData;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosInstance.post("/comments/", comment);
+      const { data } = await axiosInstance.post("/comments/", commentData);
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: [data, ...prevComments.results],
+      }));
+      setCommentCount((prevCount) => prevCount + 1);
     } catch (error) {
       console.log(error);
     }
@@ -28,8 +35,8 @@ const CreateComment = (props) => {
             placeholder="Leave a comment!"
             value={content}
             onChange={(e) => {
-              setComment({
-                ...comment,
+              setCommentData({
+                ...commentData,
                 content: e.target.value,
               });
             }}
