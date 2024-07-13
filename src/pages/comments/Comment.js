@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import postCSS from "../../styles/css/Posts.module.css";
 import css from "../../styles/css/Comments.module.css";
-import { Card } from "react-bootstrap";
+import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
@@ -14,7 +14,6 @@ const Comment = (props) => {
     id,
     is_owner,
     owner,
-    post,
     profile_id,
     profile_image,
     updated_at,
@@ -31,11 +30,11 @@ const Comment = (props) => {
 
   const toggleEdit = () => {
     if (!editToggled) {
-      setOriginalCommentData(commentData.content)
+      setOriginalCommentData(commentData.content);
       setEditToggled(true);
     } else {
       setCommentData({
-        content: originalCommentData
+        content: originalCommentData,
       });
       setEditToggled(false);
     }
@@ -65,7 +64,15 @@ const Comment = (props) => {
           </div>
           <div className={postCSS.PostTime}>
             <span className="ms-1 me-1">·</span>
-            <span>{created_at}</span>
+            <OverlayTrigger
+              overlay={
+                <Tooltip id="tooltip-disabled">Updated: {updated_at}</Tooltip>
+              }
+            >
+              <span className="d-inline-block">
+                <span>{created_at}</span>
+              </span>
+            </OverlayTrigger>
           </div>
         </Link>
         {is_owner && (

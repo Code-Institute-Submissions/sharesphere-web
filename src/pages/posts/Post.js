@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-import { Card, Overlay, Tooltip } from "react-bootstrap";
+import { Card, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import css from "../../styles/css/Posts.module.css";
-import appCSS from "../../styles/css/App.module.css"
+import appCSS from "../../styles/css/App.module.css";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosInstance } from "../../axios/axiosDefaults";
@@ -27,6 +27,7 @@ const Post = (props) => {
     like_id,
     comments_count,
     created_at,
+    updated_at,
     comments,
     setComments,
   } = props;
@@ -155,17 +156,25 @@ const Post = (props) => {
     <Card className={css.PostCard}>
       {postImage}
       <div className={css.CardHeader}>
-              <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
-        <Avatar src={profile_image} size={30} alt="Post owner" />
-        <div className="ms-1">
-          <span>{owner}</span>
-        </div>
-        <div className={css.PostTime}>
-          <span className="ms-1 me-1">·</span>
-          <span>{created_at}</span>
-        </div>
-      </Link>
-      {is_owner && <EditDropdown />}
+        <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
+          <Avatar src={profile_image} size={30} alt="Post owner" />
+          <div className="ms-1">
+            <span>{owner}</span>
+          </div>
+          <div className={css.PostTime}>
+            <span className="ms-1 me-1">·</span>
+            <OverlayTrigger
+              overlay={
+                <Tooltip id="tooltip-disabled">Updated: {updated_at}</Tooltip>
+              }
+            >
+              <span className="d-inline-block">
+                <span>{created_at}</span>
+              </span>
+            </OverlayTrigger>
+          </div>
+        </Link>
+        {is_owner && <EditDropdown />}
       </div>
 
       <hr className={css.ContentSeparator} />
@@ -203,7 +212,12 @@ const Post = (props) => {
           />
           <hr className={css.ContentSeparator} />
           {comments.results.map((comment) => (
-            <Comment key={comment.id} {...comment} setComments={setComments} setCommentCount={setCommentCount} />
+            <Comment
+              key={comment.id}
+              {...comment}
+              setComments={setComments}
+              setCommentCount={setCommentCount}
+            />
           ))}
         </InfiniteScroll>
       )}
