@@ -21,6 +21,10 @@ const CreateComment = (props) => {
         results: [data, ...prevComments.results],
       }));
       setCommentCount((prevCount) => prevCount + 1);
+      setCommentData({
+        ...commentData,
+        content: ""
+      })
     } catch (error) {
       console.log(error);
     }
