@@ -47,7 +47,7 @@ const CreateComment = (props) => {
     }
   };
 
-  return !loggedInUser ? (
+  return loggedInUser ? (
     <Form onSubmit={handleSubmit}>
       <FormGroup controlId="comment" className="d-flex">
         <FormLabel className="flex-grow-1 mb-0 mt-2 ms-1" ref={target}>

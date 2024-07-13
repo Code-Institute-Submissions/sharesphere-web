@@ -18,6 +18,12 @@
   border-radius: 0.5rem;
 }
 
+.CardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .OwnerLink {
   margin-top: 0.5rem;
   align-self: flex-start;

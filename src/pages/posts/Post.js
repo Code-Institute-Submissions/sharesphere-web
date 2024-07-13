@@ -11,6 +11,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchNext } from "../../utils/FetchNext";
 import Loader from "../../components/Loader";
 import CreateComment from "../comments/CreateComment";
+import { EditDropdown } from "../../components/EditDropdown";
 
 const Post = (props) => {
   const {
@@ -153,7 +154,8 @@ const Post = (props) => {
   return (
     <Card className={css.PostCard}>
       {postImage}
-      <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
+      <div className={css.CardHeader}>
+              <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
         <Avatar src={profile_image} size={30} alt="Post owner" />
         <div className="ms-1">
           <span>{owner}</span>
@@ -163,6 +165,9 @@ const Post = (props) => {
           <span>{created_at}</span>
         </div>
       </Link>
+      {is_owner && <EditDropdown />}
+      </div>
+
       <hr className={css.ContentSeparator} />
       <Card.Body className="text-center">
         <Card.Title>{title}</Card.Title>
