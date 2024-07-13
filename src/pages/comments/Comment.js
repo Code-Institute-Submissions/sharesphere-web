@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import css from "../../styles/css/Comments.module.css";
 import postCSS from "../../styles/css/Posts.module.css";
 import dropdownCSS from "../../styles/css/EditDropdown.module.css";
-import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, Card, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
 import EditComment from "./EditComment";
 import { axiosInstance } from "../../axios/axiosDefaults";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 const Comment = (props) => {
   const {
@@ -24,6 +25,7 @@ const Comment = (props) => {
   } = props;
 
   const [editToggled, setEditToggled] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const [originalCommentData, setOriginalCommentData] = useState(null);
   const [commentData, setCommentData] = useState({
     content: content,
@@ -52,7 +54,16 @@ const Comment = (props) => {
   };
 
   const handleDelete = async () => {
-    console.log("delete comment");
+    try {
+      await axiosInstance.delete(`/comments/${id}`);
+      setModalShow(false);
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.filter((comment) => comment.id !== id),
+      }));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -77,10 +88,16 @@ const Comment = (props) => {
           </div>
         </Link>
         {is_owner && !editToggled && (
-          <EditDropdown confirmDelete={handleDelete} toggleEdit={toggleEdit} />
+          <EditDropdown
+            confirmDelete={() => setModalShow(true)}
+            toggleEdit={toggleEdit}
+          />
         )}
         {is_owner && editToggled && (
-          <i className={`fa-solid fa-xmark ${dropdownCSS.ToggleIcon}`} onClick={toggleEdit}></i>
+          <i
+            className={`fa-solid fa-xmark ${dropdownCSS.ToggleIcon}`}
+            onClick={toggleEdit}
+          ></i>
         )}
       </div>
       <hr className={postCSS.ContentSeparator} />
@@ -95,6 +112,12 @@ const Comment = (props) => {
           />
         )}
       </Card.Body>
+      <ConfirmationModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        object={"comment"}
+        handleDelete={handleDelete}
+      />
     </Card>
   );
 };
