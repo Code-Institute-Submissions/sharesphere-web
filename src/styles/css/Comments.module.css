@@ -10,3 +10,25 @@
 .CommentBody {
   padding: 0 1rem .5rem 1rem;
 }
+
+.LoggedOutField {
+  color: #fff;
+  border: 1px solid #4a4e53;
+  background-color: #1b1b1b;
+  border-radius: 4px;
+  margin-top: .75rem;
+  padding: .5rem;
+  font-size: calc(.75rem + 1vw);
+}
+
+@media (min-width: 576px) {
+  .LoggedOutField {
+    font-size: calc(.75rem + .5vw)
+  }
+}
+
+@media (min-width: 1200px) {
+  .LoggedOutField {
+    font-size: calc(.55rem + .5vw)
+  }
+}

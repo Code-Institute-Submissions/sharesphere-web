@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Card, Overlay, Tooltip } from "react-bootstrap";
 import css from "../../styles/css/Posts.module.css";
+import appCSS from "../../styles/css/App.module.css"
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosInstance } from "../../axios/axiosDefaults";
@@ -112,7 +113,7 @@ const Post = (props) => {
      */
     <>
       {!comments ? (
-        <Link to={`/post/${id}`}>
+        <Link className={appCSS.Link} to={`/post/${id}`}>
           <i className={`fa-regular fa-comments me-1 ${css.Comments}`}></i>
         </Link>
       ) : (

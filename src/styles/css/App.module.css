@@ -1,4 +1,14 @@
-.App a {
+.Link {
   text-decoration: none;
   color: inherit;
+}
+
+.SignInPrompt {
+  text-decoration: none;
+  color: #105deb;
+  transition-duration: .2s;
+}
+
+.SignInPrompt:hover {
+  color: #4787ff;
 }

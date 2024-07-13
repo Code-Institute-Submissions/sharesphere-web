@@ -2,6 +2,10 @@ import React, { useRef, useState } from "react";
 import { Form, FormGroup, FormLabel, Overlay, Tooltip } from "react-bootstrap";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import formCSS from "../../styles/css/Forms.module.css";
+import appCSS from "../../styles/css/App.module.css"
+import css from "../../styles/css/Comments.module.css";
+import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const CreateComment = (props) => {
   const { post, setComments, setCommentCount } = props;
@@ -13,6 +17,7 @@ const CreateComment = (props) => {
   const [show, setShow] = useState(false);
   const target = useRef(null);
 
+  const { loggedInUser } = useAuth();
   const { content } = commentData;
 
   const handleSubmit = async (e) => {
@@ -42,7 +47,7 @@ const CreateComment = (props) => {
     }
   };
 
-  return (
+  return !loggedInUser ? (
     <Form onSubmit={handleSubmit}>
       <FormGroup controlId="comment" className="d-flex">
         <FormLabel className="flex-grow-1 mb-0 mt-2 ms-1" ref={target}>
@@ -72,6 +77,10 @@ const CreateComment = (props) => {
         )}
       </Overlay>
     </Form>
+  ) : (
+    <div className={css.LoggedOutField}>
+      <span>Please <Link className={appCSS.SignInPrompt} to={"/signin/"}>sign in</Link> to leave a comment!</span>
+    </div>
   );
 };
 
