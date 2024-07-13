@@ -14,15 +14,15 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
-export const EditDropdown = () => {
+export const EditDropdown = ({confirmDelete, toggleEdit}) => {
   return (
     <Dropdown>
       <Dropdown.Toggle as={ThreeDots}></Dropdown.Toggle>
       <Dropdown.Menu className={css.Menu}>
-        <Dropdown.Item aria-label="edit" onClick={() => {}}>
+        <Dropdown.Item aria-label="edit" onClick={toggleEdit}>
           Edit
         </Dropdown.Item>
-        <Dropdown.Item aria-label="delete" onClick={() => {}}>
+        <Dropdown.Item aria-label="delete" onClick={confirmDelete}>
           Delete
         </Dropdown.Item>
       </Dropdown.Menu>

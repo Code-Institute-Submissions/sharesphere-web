@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import postCSS from "../../styles/css/Posts.module.css";
 import css from "../../styles/css/Comments.module.css";
 import { Card } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
+import EditComment from "./EditComment";
+import { axiosInstance } from "../../axios/axiosDefaults";
 
 const Comment = (props) => {
   const {
@@ -17,7 +19,42 @@ const Comment = (props) => {
     profile_image,
     updated_at,
     created_at,
+    setComments,
+    setCommentCount,
   } = props;
+
+  const [editToggled, setEditToggled] = useState(false);
+  const [originalCommentData, setOriginalCommentData] = useState(null);
+  const [commentData, setCommentData] = useState({
+    content: content,
+  });
+
+  const toggleEdit = () => {
+    if (!editToggled) {
+      setOriginalCommentData(commentData.content)
+      setEditToggled(true);
+    } else {
+      setCommentData({
+        content: originalCommentData
+      });
+      setEditToggled(false);
+    }
+  };
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    try {
+      await axiosInstance.put(`/comments/${id}`, commentData);
+      setEditToggled(false);
+    } catch (error) {
+      console.log("Error when updating comment:", error);
+    }
+  };
+
+  const handleDelete = async () => {
+    console.log("delete comment");
+  };
+
   return (
     <Card className={css.CommentCard}>
       <div className={postCSS.CardHeader}>
@@ -31,11 +68,21 @@ const Comment = (props) => {
             <span>{created_at}</span>
           </div>
         </Link>
-        {is_owner && <EditDropdown />}
+        {is_owner && (
+          <EditDropdown confirmDelete={handleDelete} toggleEdit={toggleEdit} />
+        )}
       </div>
       <hr className={postCSS.ContentSeparator} />
       <Card.Body className={css.CommentBody}>
-        <Card.Text>{content}</Card.Text>
+        {!editToggled ? (
+          <Card.Text>{commentData.content}</Card.Text>
+        ) : (
+          <EditComment
+            handleEdit={handleEdit}
+            commentData={commentData}
+            setCommentData={setCommentData}
+          />
+        )}
       </Card.Body>
     </Card>
   );

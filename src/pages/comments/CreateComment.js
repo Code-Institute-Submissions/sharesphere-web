@@ -52,7 +52,6 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
           <Form.Control
             className={formCSS.FormInput}
             type="text"
-            rows={2}
             placeholder="Leave a comment!"
             value={content}
             onChange={(e) => {
@@ -63,7 +62,7 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
             }}
           ></Form.Control>
         </FormLabel>
-        <button className={formCSS.SubmitIconBtn} type="submit">
+        <button className={formCSS.SubmitIconBtn} type="submit" title="Post comment">
           <i className="fa-regular fa-paper-plane"></i>
         </button>
       </FormGroup>
