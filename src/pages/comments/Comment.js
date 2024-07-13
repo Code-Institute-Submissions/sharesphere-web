@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import postCSS from "../../styles/css/Posts.module.css";
 import css from "../../styles/css/Comments.module.css";
+import postCSS from "../../styles/css/Posts.module.css";
+import dropdownCSS from "../../styles/css/EditDropdown.module.css";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
@@ -75,8 +76,11 @@ const Comment = (props) => {
             </OverlayTrigger>
           </div>
         </Link>
-        {is_owner && (
+        {is_owner && !editToggled && (
           <EditDropdown confirmDelete={handleDelete} toggleEdit={toggleEdit} />
+        )}
+        {is_owner && editToggled && (
+          <i className={`fa-solid fa-xmark ${dropdownCSS.ToggleIcon}`} onClick={toggleEdit}></i>
         )}
       </div>
       <hr className={postCSS.ContentSeparator} />
