@@ -39,19 +39,22 @@ const ProfilePage = () => {
       {hasLoaded ? (
         <Row>
           <Col xs="12" className={css.Header}>
-            {console.log(profileData)}
             <Avatar src={image} size={240} alt={`${owner}'s avatar`} />
             <div className="d-flex align-items-end">
               <h1 className="mt-2">{owner}</h1>
               <div className={css.ActionWrapper}>
-                {is_owner ? (
+                {is_owner && (
                   <Link to="/profile/edit" aria-labelledby="Edit profile">
                     <i
                       className={`fa-regular fa-pen-to-square ${css.Action}`}
                     ></i>
                   </Link>
-                ) : (
-                  <Link to={`/profile/${id}/message`} aria-labelledby="Message user">
+                )}
+                {!is_owner && receive_messages && (
+                  <Link
+                    to={`/profile/${id}/message`}
+                    aria-labelledby="Message user"
+                  >
                     <i
                       className={`fa-regular fa-envelope-open ${css.Action}`}
                     ></i>
