@@ -1,8 +1,7 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
 
-const Avatar = (props) => {
-  const { src, size, alt } = props;
+const Avatar = ({ src, size, alt }) => {
   return (
     <Image
       className="border border-secondary"
