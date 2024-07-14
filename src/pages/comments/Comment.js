@@ -30,6 +30,7 @@ const Comment = (props) => {
   const [commentData, setCommentData] = useState({
     id: id,
     content: content,
+    updated_at: updated_at,
   });
 
   const toggleEdit = () => {
@@ -49,6 +50,10 @@ const Comment = (props) => {
     e.preventDefault();
     try {
       await axiosInstance.put(`/comments/${id}`, commentData);
+      setCommentData({
+        ...commentData,
+        updated_at: "now"
+      })
       setEditToggled(false);
     } catch (error) {
       console.log("Error when updating comment:", error);
@@ -80,7 +85,7 @@ const Comment = (props) => {
             <span className="ms-1 me-1">·</span>
             <OverlayTrigger
               overlay={
-                <Tooltip id="tooltip-disabled">Updated: {updated_at}</Tooltip>
+                <Tooltip id="tooltip-disabled">Updated: {commentData.updated_at}</Tooltip>
               }
             >
               <span className="d-inline-block">
