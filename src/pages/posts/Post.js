@@ -12,6 +12,7 @@ import { FetchNext } from "../../utils/FetchNext";
 import Loader from "../../components/Loader";
 import CreateComment from "../comments/CreateComment";
 import { EditDropdown } from "../../components/EditDropdown";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 const Post = (props) => {
   const {
@@ -30,6 +31,7 @@ const Post = (props) => {
     updated_at,
     comments,
     setComments,
+    setPosts,
   } = props;
 
   const [like, setLike] = useState(like_id);
@@ -37,6 +39,7 @@ const Post = (props) => {
   const [commentCount, setCommentCount] = useState(comments_count);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   const target = useRef(null);
   const { loggedInUser } = useAuth();
@@ -68,6 +71,21 @@ const Post = (props) => {
       setLoading(false);
     }
   };
+
+  const handleDelete = async () => {
+    /**
+     * Handles deleting a post and removing it from the posts state
+     */
+    try {
+      await axiosInstance.delete(`/posts/${id}`)
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: [...prevPosts.results.filter((post) => post.id !== id)]
+      }))
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const likeIcon = (
     <>
@@ -174,9 +192,14 @@ const Post = (props) => {
             </OverlayTrigger>
           </div>
         </Link>
-        {is_owner && <EditDropdown />}
+        {/* Methods for deleting and editing posts for the post owner */}
+        {is_owner && (
+          <EditDropdown
+            toggleEdit={() => {}}
+            confirmDelete={() => setModalShow(true)}
+          />
+        )}
       </div>
-
       <hr className={css.ContentSeparator} />
       <Card.Body className="text-center">
         <Card.Title>{title}</Card.Title>
@@ -221,6 +244,12 @@ const Post = (props) => {
           ))}
         </InfiniteScroll>
       )}
+      <ConfirmationModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        object={"post"}
+        handleDelete={handleDelete}
+      />
     </Card>
   );
 };
