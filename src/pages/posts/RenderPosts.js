@@ -12,30 +12,47 @@ const RenderPosts = (props) => {
     results: [],
     next: true,
   });
+  const [popularProfiles, setPopularProfiles] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
 
   const { filter } = props;
   const { results, next } = posts;
 
+  // /profiles/?ordering=-post_count
+  const fetchPosts = async () => {
+    try {
+      const { data } = await axiosInstance.get(`${filter}`);
+      setPosts({
+        results: data.results,
+        next: data.next,
+      });
+      setHasLoaded(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchProfiles = async () => {
+    try {
+      const { data } = await axiosInstance.get(`/profiles/?ordering=-post_count`);
+      setPopularProfiles(data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     setHasLoaded(false);
-    const fetchPosts = async () => {
-      try {
-        const { data } = await axiosInstance.get(`${filter}`);
-        setPosts({
-          results: data.results,
-          next: data.next,
-        });
-        setHasLoaded(true);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchPosts();
   }, [filter]);
 
+  useEffect(() => {
+    fetchProfiles();
+  }, []);
+
   return (
     <Container className="text-center">
+      {console.log(popularProfiles)}
       {hasLoaded ? (
         <InfiniteScroll
           className={css.PostsWrapper}
@@ -55,7 +72,9 @@ const RenderPosts = (props) => {
           }
         >
           {results.map((post) => {
-            return <Post key={post.id} post={{...post}} setPosts={setPosts} />;
+            return (
+              <Post key={post.id} post={{ ...post }} setPosts={setPosts} />
+            );
           })}
         </InfiniteScroll>
       ) : (
