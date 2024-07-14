@@ -39,3 +39,31 @@
   font-size: 125%;
   margin-right: .25rem;
 }
+
+.UploadIcon {
+  max-width: 30%;
+}
+
+.UploadPreview {
+  max-width: 100%;
+  border-radius: .5rem;
+}
+
+@media (min-width: 768px) {
+  .PostForm {
+    max-width: 70vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .PostForm {
+    max-width: 50vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .PostForm {
+    max-width: 40vw;
+  }
+}
+

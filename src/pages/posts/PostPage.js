@@ -34,7 +34,7 @@ const PostPage = () => {
 
   return (
     <Container className={css.PostsWrapper}>
-      {hasLoaded ? <Post {...post} comments={{...comments}} setComments={setComments} /> : <Loader center />}
+      {hasLoaded ? <Post post={{...post}} comments={comments} setComments={setComments} /> : <Loader center />}
     </Container>
   );
 };

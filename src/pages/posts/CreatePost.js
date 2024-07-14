@@ -9,8 +9,7 @@ import {
   FormLabel,
   Image,
 } from "react-bootstrap";
-import formCSS from "../../styles/css/Forms.module.css";
-import css from "../../styles/css/CreatePost.module.css";
+import css from "../../styles/css/Forms.module.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Upload from "../../assets/upload-image-icon.png";
@@ -59,8 +58,12 @@ const CreatePost = () => {
           <div>
             <div className="mb-2 mt-2">
               <FormGroup controlId="postImage" className="text-center">
-                <FormLabel className={formCSS.FormImage}>
+                <FormLabel className={css.FormImage}>
                   {imageUpload.current?.files[0] ? (
+                   /**
+                   * Updates preview image based on if an image file
+                   * has been chosen or not.
+                   */
                     <>
                       <Image
                         className={css.UploadPreview}
@@ -98,7 +101,7 @@ const CreatePost = () => {
               <Form.Group className="mb-3" controlId="postTitle">
                 <Form.Label className="sr-only">Title</Form.Label>
                 <Form.Control
-                  className={formCSS.FormInput}
+                  className={css.FormInput}
                   type="text"
                   placeholder="Post title"
                   value={title}
@@ -115,7 +118,7 @@ const CreatePost = () => {
               <Form.Group className="mb-3" controlId="postContent">
                 <Form.Label className="sr-only">Post content</Form.Label>
                 <Form.Control
-                  className={formCSS.FormInput}
+                  className={css.FormInput}
                   as="textarea"
                   rows={5}
                   placeholder="Post content"
@@ -126,7 +129,7 @@ const CreatePost = () => {
               </Form.Group>
             </div>
 
-            <div className={formCSS.SubmitWrapper}>
+            <div className={css.SubmitWrapper}>
               <Button variant="success" type="submit">
                 Create post
               </Button>

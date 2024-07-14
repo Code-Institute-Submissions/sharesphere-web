@@ -55,7 +55,7 @@ const RenderPosts = (props) => {
           }
         >
           {results.map((post) => {
-            return <Post key={post.id} {...post} setPosts={setPosts} />;
+            return <Post key={post.id} post={{...post}} setPosts={setPosts} />;
           })}
         </InfiniteScroll>
       ) : (

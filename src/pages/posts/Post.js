@@ -13,8 +13,15 @@ import Loader from "../../components/Loader";
 import CreateComment from "../comments/CreateComment";
 import { EditDropdown } from "../../components/EditDropdown";
 import ConfirmationModal from "../../components/ConfirmationModal";
+import EditPostForm from "./EditPostForm";
 
-const Post = (props) => {
+const Post = ({ post, setPosts, comments, setComments }) => {
+  const [postData, setPostData] = useState(post);
+  const [newPostData, setNewPostData] = useState({
+    title: post.title,
+    content: post.content,
+    image: null,
+  });
   const {
     title,
     content,
@@ -29,17 +36,15 @@ const Post = (props) => {
     comments_count,
     created_at,
     updated_at,
-    comments,
-    setComments,
-    setPosts,
-  } = props;
+  } = postData;
 
   const [like, setLike] = useState(like_id);
   const [likeCount, setLikeCount] = useState(likes_count);
   const [commentCount, setCommentCount] = useState(comments_count);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [editToggled, setEditToggled] = useState(false);
 
   const target = useRef(null);
   const { loggedInUser } = useAuth();
@@ -72,20 +77,74 @@ const Post = (props) => {
     }
   };
 
+  const toggleEdit = () => {
+    /**
+     * Reverts the post back to it's original state
+     * if user chooses to stop editing.
+     */
+    if (!editToggled) {
+      setEditToggled(true);
+    } else {
+      setNewPostData({
+        title: post.title,
+        content: post.content,
+        image: null,
+      });
+      setEditToggled(false);
+    }
+  };
+
+  const handleEdit = async (e) => {
+    /**
+     * Handles edit submission.
+     * Image is only added if one has been submitted,
+     * otherwise it's omitted in the payload.
+     *
+     * Updates the newPostData state to set image to null again,
+     * so that it isn't uploaded again without actually changing.
+     */
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", newPostData.title);
+    formData.append("content", newPostData.content);
+    if (newPostData.image) {
+      formData.append("image", newPostData.image);
+    }
+    try {
+      const { data } = await axiosInstance.put(`/posts/${id}/`, formData);
+      setPostData({
+        ...postData,
+        title: data.title,
+        content: data.content,
+        image: data.image,
+      });
+
+      setNewPostData({
+        ...newPostData,
+        image: null,
+      });
+
+      setEditToggled(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleDelete = async () => {
     /**
      * Handles deleting a post and removing it from the posts state
      */
     try {
-      await axiosInstance.delete(`/posts/${id}`)
+      await axiosInstance.delete(`/posts/${id}`);
       setPosts((prevPosts) => ({
         ...prevPosts,
-        results: [...prevPosts.results.filter((post) => post.id !== id)]
-      }))
+        results: [...prevPosts.results.filter((post) => post.id !== id)],
+      }));
+
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const likeIcon = (
     <>
@@ -172,49 +231,66 @@ const Post = (props) => {
 
   return (
     <Card className={css.PostCard}>
-      {postImage}
-      <div className={css.CardHeader}>
-        <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
-          <Avatar src={profile_image} size={30} alt="Post owner" />
-          <div className="ms-1">
-            <span>{owner}</span>
+      {/* Quick ternary to check whether to render the post editing form
+      or the post normal post card */}
+      {editToggled ? (
+        <EditPostForm
+          handleEdit={handleEdit}
+          postData={postData}
+          toggleEdit={toggleEdit}
+          newPostData={newPostData}
+          setNewPostData={setNewPostData}
+        />
+      ) : (
+        <>
+          {postImage}
+          <div className={css.CardHeader}>
+            <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
+              <Avatar src={profile_image} size={30} alt="Post owner" />
+              <div className="ms-1">
+                <span>{owner}</span>
+              </div>
+              <div className={css.PostTime}>
+                <span className="ms-1 me-1">·</span>
+                <OverlayTrigger
+                  overlay={
+                    <Tooltip id="tooltip-disabled">
+                      Updated: {updated_at}
+                    </Tooltip>
+                  }
+                >
+                  <span className="d-inline-block">
+                    <span>{created_at}</span>
+                  </span>
+                </OverlayTrigger>
+              </div>
+            </Link>
+            {/* Methods for deleting and editing posts for the post owner */}
+            {is_owner && (
+              <EditDropdown
+                toggleEdit={toggleEdit}
+                confirmDelete={() => setModalShow(true)}
+              />
+            )}
           </div>
-          <div className={css.PostTime}>
-            <span className="ms-1 me-1">·</span>
-            <OverlayTrigger
-              overlay={
-                <Tooltip id="tooltip-disabled">Updated: {updated_at}</Tooltip>
-              }
-            >
-              <span className="d-inline-block">
-                <span>{created_at}</span>
-              </span>
-            </OverlayTrigger>
+          <hr className={css.ContentSeparator} />
+          <Card.Body className="text-center">
+            <Card.Title>{title}</Card.Title>
+            <Card.Text>{content}</Card.Text>
+          </Card.Body>
+          <div className={css.PostStats}>
+            <span>
+              {likeIcon}
+              {likeCount}
+            </span>
+            <span>
+              {commentsIcon}
+              {commentCount}
+            </span>
           </div>
-        </Link>
-        {/* Methods for deleting and editing posts for the post owner */}
-        {is_owner && (
-          <EditDropdown
-            toggleEdit={() => {}}
-            confirmDelete={() => setModalShow(true)}
-          />
-        )}
-      </div>
-      <hr className={css.ContentSeparator} />
-      <Card.Body className="text-center">
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{content}</Card.Text>
-      </Card.Body>
-      <div className={css.PostStats}>
-        <span>
-          {likeIcon}
-          {likeCount}
-        </span>
-        <span>
-          {commentsIcon}
-          {commentCount}
-        </span>
-      </div>
+        </>
+      )}
+
       {/* Only render comments on a post card if the comments prop has been passed */}
       {comments && (
         <InfiniteScroll
@@ -234,6 +310,7 @@ const Post = (props) => {
             setCommentCount={setCommentCount}
           />
           <hr className={css.ContentSeparator} />
+          {/* Map over all the post comments */}
           {comments.results.map((comment) => (
             <Comment
               key={comment.id}
@@ -245,8 +322,8 @@ const Post = (props) => {
         </InfiniteScroll>
       )}
       <ConfirmationModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
+        show={showDeleteModal}
+        onHide={() => setShowDeleteModal(false)}
         object={"post"}
         handleDelete={handleDelete}
       />
