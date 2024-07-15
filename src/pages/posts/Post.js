@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Card, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import css from "../../styles/css/Posts.module.css";
 import appCSS from "../../styles/css/App.module.css";
+import btnCSS from "../../styles/css/Buttons.module.css";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosInstance } from "../../axios/axiosDefaults";
@@ -140,7 +141,6 @@ const Post = ({ post, setPosts, comments, setComments }) => {
         ...prevPosts,
         results: [...prevPosts.results.filter((post) => post.id !== id)],
       }));
-
     } catch (error) {
       console.log(error);
     }
@@ -148,7 +148,10 @@ const Post = ({ post, setPosts, comments, setComments }) => {
 
   const likeIcon = (
     <>
-      <i
+      <button
+        className={btnCSS.LikeBtn}
+        type="button"
+        title="Like post"
         onClick={() => {
           /**
            * Show a tooltip for post owner or logged out users.
@@ -164,10 +167,14 @@ const Post = ({ post, setPosts, comments, setComments }) => {
             !like ? handleLike() : handleUnlike();
           }
         }}
-        className={`${like ? `fa-solid ${css.Liked}` : "fa-regular"}
-      fa-heart me-1 ${css.Likes}`}
         ref={target}
-      ></i>
+      >
+        <i
+          className={`${like ? `fa-solid ${css.Liked}` : "fa-regular"}
+      fa-heart me-1 ${css.Likes}`}
+          aria-hidden="true"
+        ></i>
+      </button>
 
       <Overlay target={target.current} show={show} placement="top">
         {(props) => (
@@ -193,7 +200,13 @@ const Post = ({ post, setPosts, comments, setComments }) => {
     <>
       {!comments ? (
         <Link className={appCSS.Link} to={`/post/${id}`}>
-          <i className={`fa-regular fa-comments me-1 ${css.Comments}`}></i>
+          <i
+            className={`fa-regular fa-comments me-1 ${css.Comments}`}
+            aria-hidden="true"
+          ></i>
+          <span className="sr-only">
+            Go to page for post {id} to read comments
+          </span>
         </Link>
       ) : (
         <i className={`fa-regular fa-comments me-1 ${css.Comments}`}></i>
@@ -245,8 +258,12 @@ const Post = ({ post, setPosts, comments, setComments }) => {
         <>
           {postImage}
           <div className={css.CardHeader}>
-            <Link className={css.OwnerLink} to={`/profile/${profile_id}`}>
-              <Avatar src={profile_image} size={30} alt="Post owner" />
+            <Link
+              className={css.OwnerLink}
+              to={`/profile/${profile_id}`}
+              aria-label={`${owner}'s profile`}
+            >
+              <Avatar src={profile_image} size={30} alt={`${owner}'s avatar`} />
               <div className="ms-1">
                 <span>{owner}</span>
               </div>
@@ -279,14 +296,14 @@ const Post = ({ post, setPosts, comments, setComments }) => {
             <Card.Text>{content}</Card.Text>
           </Card.Body>
           <div className={css.PostStats}>
-            <span>
+            <div>
               {likeIcon}
               {likeCount}
-            </span>
-            <span>
+            </div>
+            <div>
               {commentsIcon}
               {commentCount}
-            </span>
+            </div>
           </div>
         </>
       )}

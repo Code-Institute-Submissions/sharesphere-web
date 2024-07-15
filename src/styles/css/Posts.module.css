@@ -49,11 +49,16 @@
 }
 
 .Likes:hover {
-  color: #dd4e4e;
+  color: #df4444;
 }
 
 .Liked {
   color: #df4444;
+  transition-duration: .3s;
+}
+
+.Liked:hover {
+  color: #6d1d1d;
 }
 
 .Comments {

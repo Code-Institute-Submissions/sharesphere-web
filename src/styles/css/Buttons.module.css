@@ -23,3 +23,10 @@
 .UnfollowBtn:hover {
   color: #eeebe888;
 }
+
+.LikeBtn {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  color: inherit;
+}
