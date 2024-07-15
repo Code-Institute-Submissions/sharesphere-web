@@ -68,6 +68,7 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
+      setCommentCount((prevCount) => prevCount - 1)
     } catch (error) {
       console.log(error);
     }
