@@ -149,7 +149,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
   const likeIcon = (
     <>
       <button
-        className={btnCSS.LikeBtn}
+        className={btnCSS.Btn}
         type="button"
         title="Like post"
         onClick={() => {
@@ -286,7 +286,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
             {is_owner && (
               <EditDropdown
                 toggleEdit={toggleEdit}
-                confirmDelete={() => setModalShow(true)}
+                confirmDelete={() => setShowDeleteModal(true)}
               />
             )}
           </div>
