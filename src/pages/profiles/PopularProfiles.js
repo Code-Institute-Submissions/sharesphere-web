@@ -5,6 +5,7 @@ import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import css from "../../styles/css/PopularProfiles.module.css";
 import { Link } from "react-router-dom";
+import { followHelper, unfollowHelper } from "../../utils/FollowHelper";
 
 const PopularProfiles = () => {
   const [popularProfiles, setPopularProfiles] = useState({});
@@ -54,7 +55,7 @@ const PopularProfiles = () => {
                   <button
                     className={`${css.FollowBtn}`}
                     type="button"
-                    onClick={() => console.log("follow user")}
+                    onClick={() => followHelper(profile.id)}
                   >
                     Follow
                   </button>
@@ -62,7 +63,7 @@ const PopularProfiles = () => {
                   <button
                     className={`${css.UnfollowBtn}`}
                     type="button"
-                    onClick={() => console.log("unfollow user")}
+                    onClick={() => unfollowHelper(profile.id)}
                   >
                     Unfollow
                   </button>
