@@ -7,10 +7,12 @@ import css from "../../styles/css/ProfilePage.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";
 import Loader from "../../components/Loader";
 import { followHelper, unfollowHelper } from "../../utils/FollowHelper";
+import CreateConversationForm from "../conversations/CreateConversationForm";
 
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [modalShow, setModalShow] = useState(false)
   const { id } = useParams();
   const {
     owner,
@@ -29,8 +31,8 @@ const ProfilePage = () => {
   useEffect(() => {
     setHasLoaded(false);
     const fetchProfile = async () => {
-      const profile = await axiosInstance.get(`/profiles/${id}`);
-      setProfileData(profile.data);
+      const {data} = await axiosInstance.get(`/profiles/${id}`);
+      setProfileData(data);
       setHasLoaded(true);
     };
     fetchProfile();
@@ -90,14 +92,16 @@ const ProfilePage = () => {
                   </Link>
                 )}
                 {!is_owner && receive_messages && (
-                  <Link
-                    to={`/profile/${id}/message`}
-                    aria-labelledby="Message user"
+                  <button
+                  className={btnCSS.Btn}
+                    type="button"
+                    aria-label="Message user"
+                    onClick={() => setModalShow(true)}
                   >
                     <i
                       className={`fa-regular fa-envelope-open ${css.Action}`}
                     ></i>
-                  </Link>
+                  </button>
                 )}
               </div>
             </div>
@@ -156,6 +160,7 @@ const ProfilePage = () => {
       ) : (
         <Loader center />
       )}
+      <CreateConversationForm show={modalShow} onHide={() => setModalShow(false)} owner={owner} id={id} />
     </Container>
   );
 };
