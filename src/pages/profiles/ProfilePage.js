@@ -101,7 +101,7 @@ const ProfilePage = () => {
                 )}
               </div>
             </div>
-            {!following_id ? (
+            {!following_id && !is_owner && (
               <button
                 className={`${btnCSS.FollowBtn}`}
                 type="button"
@@ -109,7 +109,8 @@ const ProfilePage = () => {
               >
                 Follow
               </button>
-            ) : (
+            )}
+            {following_id && !is_owner && (
               <button
                 className={`${btnCSS.UnfollowBtn}`}
                 type="button"

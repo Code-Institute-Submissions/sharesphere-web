@@ -91,7 +91,7 @@ const PopularProfiles = () => {
                     </div>
                   </div>
                 </OverlayTrigger>
-                {!profile.following_id ? (
+                {!profile.following_id && !profile.is_owner && (
                   <button
                     className={`${btnCSS.FollowBtn}`}
                     type="button"
@@ -99,7 +99,8 @@ const PopularProfiles = () => {
                   >
                     Follow
                   </button>
-                ) : (
+                )}
+                {profile.following_id && !profile.is_owner && (
                   <button
                     className={`${btnCSS.UnfollowBtn}`}
                     type="button"
