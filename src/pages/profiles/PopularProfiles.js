@@ -33,7 +33,7 @@ const PopularProfiles = () => {
         <h1>Most contributions!</h1>
         {hasLoaded ? (
           <>
-            {popularProfiles.results.map((profile) => (
+            {popularProfiles.results.slice(0, 10).map((profile) => (
               <div key={profile.id} className={css.ProfileCard}>
                 <OverlayTrigger overlay={<Tooltip>{profile.owner}</Tooltip>}>
                   <div className={css.ProfileInfo}>
