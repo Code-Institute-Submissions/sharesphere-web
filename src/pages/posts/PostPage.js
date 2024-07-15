@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import { Container } from "react-bootstrap";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { FetchNext } from "../../utils/FetchNext";
 import Loader from "../../components/Loader";
 import css from "../../styles/css/Posts.module.css";
 import Post from "./Post";

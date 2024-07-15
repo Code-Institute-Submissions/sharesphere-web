@@ -4,6 +4,7 @@ import Loader from "../../components/Loader";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import css from "../../styles/css/PopularProfiles.module.css";
+import btnCSS from "../../styles/css/Buttons.module.css";
 import { Link } from "react-router-dom";
 import { followHelper, unfollowHelper } from "../../utils/FollowHelper";
 
@@ -11,21 +12,60 @@ const PopularProfiles = () => {
   const [popularProfiles, setPopularProfiles] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  const fetchProfiles = async () => {
+  useEffect(() => {
+    const fetchProfiles = async () => {
+      try {
+        const { data } = await axiosInstance.get(
+          `/profiles/?ordering=-post_count`
+        );
+        setPopularProfiles(data.results.slice(0, 10));
+        setHasLoaded(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchProfiles();
+  }, []);
+
+  const handleFollow = async (id) => {
+    /**
+     * Makes a follow request using the imported
+     * followHelper function and loops through the
+     * popularProfiles state to update corresponding
+     * profile following_id.
+     */
     try {
-      const { data } = await axiosInstance.get(
-        `/profiles/?ordering=-post_count`
+      const data = await followHelper(id);
+      setPopularProfiles((prevProfiles) =>
+        prevProfiles.map((profile) =>
+          profile.id === id ? { ...profile, following_id: data.id } : profile
+        )
       );
-      setPopularProfiles({ results: data.results });
-      setHasLoaded(true);
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    fetchProfiles();
-  }, []);
+  const handleUnfollow = async (following_id) => {
+    /**
+     * Makes an unfollow request using the imported
+     * unfollowHelper function and loops through the
+     * popularProfiles state to update corresponding
+     * profile following_id.
+     */
+    try {
+      await unfollowHelper(following_id);
+      setPopularProfiles((prevProfiles) =>
+        prevProfiles.map((profile) =>
+          profile.following_id === following_id
+            ? { ...profile, following_id: null }
+            : profile
+        )
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -33,7 +73,7 @@ const PopularProfiles = () => {
         <h1>Most contributions!</h1>
         {hasLoaded ? (
           <>
-            {popularProfiles.results.slice(0, 10).map((profile) => (
+            {popularProfiles.map((profile) => (
               <div key={profile.id} className={css.ProfileCard}>
                 <OverlayTrigger overlay={<Tooltip>{profile.owner}</Tooltip>}>
                   <div className={css.ProfileInfo}>
@@ -53,17 +93,17 @@ const PopularProfiles = () => {
                 </OverlayTrigger>
                 {!profile.following_id ? (
                   <button
-                    className={`${css.FollowBtn}`}
+                    className={`${btnCSS.FollowBtn}`}
                     type="button"
-                    onClick={() => followHelper(profile.id)}
+                    onClick={() => handleFollow(profile.id)}
                   >
                     Follow
                   </button>
                 ) : (
                   <button
-                    className={`${css.UnfollowBtn}`}
+                    className={`${btnCSS.UnfollowBtn}`}
                     type="button"
-                    onClick={() => unfollowHelper(profile.id)}
+                    onClick={() => handleUnfollow(profile.following_id)}
                   >
                     Unfollow
                   </button>

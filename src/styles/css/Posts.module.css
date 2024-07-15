@@ -87,6 +87,12 @@
   }
 }
 
+@media (min-width: 1018px) {
+  .PostCard {
+    width: 38vw;
+  }
+}
+
 @media (min-width: 1200px) {
   .PostCard {
     width: 33vw;

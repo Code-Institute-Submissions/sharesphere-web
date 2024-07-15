@@ -1,0 +1,25 @@
+.FollowBtn {
+  margin-right: .25rem;
+  border: 1px solid #2d3238;
+  border-radius: .4rem;
+  padding: 0 .5rem;
+  background-color: #1f2428;
+  transition-duration: .3s;
+  color: inherit;
+}
+
+.FollowBtn:hover {
+  background-color: #333a41;
+}
+
+.UnfollowBtn {
+  margin-right: .25rem;
+  transition-duration: .3s;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+}
+
+.UnfollowBtn:hover {
+  color: #eeebe888;
+}

@@ -4,7 +4,9 @@ import { axiosInstance } from "../../axios/axiosDefaults";
 import { Col, Container, Row } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import css from "../../styles/css/ProfilePage.module.css";
+import btnCSS from "../../styles/css/Buttons.module.css";
 import Loader from "../../components/Loader";
+import { followHelper, unfollowHelper } from "../../utils/FollowHelper";
 
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState({});
@@ -34,8 +36,45 @@ const ProfilePage = () => {
     fetchProfile();
   }, [id]);
 
+  const handleFollow = async () => {
+    /**
+     * Makes a follow request using the imported
+     * followHelper function and updates the profile
+     * state's following id and count if successful.
+     */
+    try {
+      const data = await followHelper(id);
+      setProfileData((prevProfile) => ({
+        ...prevProfile,
+        following_id: data.id,
+        followers_count: prevProfile.followers_count + 1,
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUnfollow = async () => {
+    /**
+     * Makes an unfollow request using the imported
+     * unfollowHelper function and updates the profile
+     * state's following id and count if successful.
+     */
+    try {
+      await unfollowHelper(following_id);
+      setProfileData((prevProfile) => ({
+        ...prevProfile,
+        following_id: null,
+        followers_count: prevProfile.followers_count - 1,
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container>
+      {console.log(profileData)}
       {hasLoaded ? (
         <Row>
           <Col xs="12" className={css.Header}>
@@ -62,6 +101,24 @@ const ProfilePage = () => {
                 )}
               </div>
             </div>
+            {!following_id ? (
+              <button
+                className={`${btnCSS.FollowBtn}`}
+                type="button"
+                onClick={() => handleFollow(id)}
+              >
+                Follow
+              </button>
+            ) : (
+              <button
+                className={`${btnCSS.UnfollowBtn}`}
+                type="button"
+                onClick={() => handleUnfollow(following_id)}
+              >
+                Unfollow
+              </button>
+            )}
+
             <p>{bio} </p>
             <div className={css.Info}>
               <p>

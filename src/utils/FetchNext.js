@@ -11,7 +11,6 @@ export const FetchNext = async (state, setState) => {
     return state;
   } catch (error) {
     console.log("Error when fetching more data:", error);
-    return "Something went wrong when loading more data"
+    return "Something went wrong when loading more data";
   }
-  
 };
