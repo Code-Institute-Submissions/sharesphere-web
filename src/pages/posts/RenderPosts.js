@@ -39,8 +39,8 @@ const RenderPosts = (props) => {
   return (
     <Container className="text-center">
       <Row>
-        <Col lg={2}></Col>
-        <Col lg={8} className="mx-auto">
+        <Col lg={3}></Col>
+        <Col lg={6} className="mx-auto">
           {hasLoaded ? (
             <InfiniteScroll
               className={css.PostsWrapper}
@@ -69,7 +69,7 @@ const RenderPosts = (props) => {
             <Loader center />
           )}
         </Col>
-        <Col lg={2}>
+        <Col lg={3}>
           <PopularProfiles />
         </Col>
       </Row>
