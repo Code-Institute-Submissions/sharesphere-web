@@ -22,3 +22,7 @@
   display: flex;
   align-items: center;
 }
+
+.PopularHeading {
+  font-size: 140%;
+}
