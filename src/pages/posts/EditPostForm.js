@@ -8,7 +8,6 @@ import {
   FormGroup,
   FormLabel,
   Image,
-  Modal,
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
@@ -26,7 +25,7 @@ const EditPostForm = ({
 }) => {
   const [originalImage] = useState(postData.image);
   const [previewImage, setPreviewImage] = useState(null);
-  const { title, content, image } = newPostData;
+  const { title, content } = newPostData;
   const {
     owner,
     profile_image,
@@ -41,11 +40,14 @@ const EditPostForm = ({
   const imageUpload = useRef();
 
   const handleImageChange = async (e) => {
+    const file = e.target.files[0];
     setNewPostData({
       ...newPostData,
-      image: e.target.files[0],
+      image: file,
     });
-    setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    if (file) {
+      setPreviewImage(URL.createObjectURL(file));
+    }
   };
 
   const handleChange = async (e) => {
