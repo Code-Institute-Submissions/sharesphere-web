@@ -68,6 +68,7 @@ const CreateConversationForm = ({ owner, id, ...props }) => {
                 value={topic}
                 name={"topic"}
                 onChange={handleChange}
+                maxLength={40}
               ></FormControl>
             </FormGroup>
             <FormGroup className="mt-3 mb-3" controlId="conversationContent">

@@ -28,6 +28,9 @@ const NavBar = () => {
       >
         Profile
       </NavLink>
+      <NavLink to={`/conversations`} className={css.NavLink}>
+        Conversations
+      </NavLink>
     </>
   );
 

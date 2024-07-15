@@ -1,0 +1,43 @@
+.ConvCard {
+  /* width: 85vw; */
+  margin: 1rem;
+  background-color: rgb(13 15 16);
+  color: #eeebe8;
+  border: 1px solid #ffffff1a;
+  padding: 0.25rem;
+  transition-duration: .4s;
+}
+
+.ConvCard:hover {
+  transform: scale(1.035);
+}
+
+/* @media (min-width: 576px) {
+  .ConvCard {
+    width: 65vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .ConvCard {
+    width: 60vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .ConvCard {
+    width: 45vw;
+  }
+}
+
+@media (min-width: 1018px) {
+  .ConvCard {
+    width: 38vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ConvCard {
+    width: 33vw;
+  }
+} */
