@@ -85,7 +85,7 @@ const ConversationPage = () => {
           <div className="d-flex flex-column">
             {replies.results.map((reply) => (
               <div key={reply.id}>
-                <Reply reply={reply} />
+                <Reply reply={reply} setReplies={setReplies} setRepliesCount={setRepliesCount} />
               </div>
             ))}
           </div>
