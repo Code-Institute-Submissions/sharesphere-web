@@ -12,7 +12,7 @@ import CreateConversationForm from "../conversations/CreateConversationForm";
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [modalShow, setModalShow] = useState(false)
+  const [modalShow, setModalShow] = useState(false);
   const { id } = useParams();
   const {
     owner,
@@ -31,7 +31,7 @@ const ProfilePage = () => {
   useEffect(() => {
     setHasLoaded(false);
     const fetchProfile = async () => {
-      const {data} = await axiosInstance.get(`/profiles/${id}`);
+      const { data } = await axiosInstance.get(`/profiles/${id}`);
       setProfileData(data);
       setHasLoaded(true);
     };
@@ -76,6 +76,15 @@ const ProfilePage = () => {
 
   return (
     <Container>
+      {/* Modal for creating a conversation */}
+      <CreateConversationForm
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        owner={owner}
+        id={id}
+        setModalShow={setModalShow}
+      />
+      {/* Visible content */}
       {console.log(profileData)}
       {hasLoaded ? (
         <Row>
@@ -93,7 +102,7 @@ const ProfilePage = () => {
                 )}
                 {!is_owner && receive_messages && (
                   <button
-                  className={btnCSS.Btn}
+                    className={btnCSS.Btn}
                     type="button"
                     aria-label="Message user"
                     onClick={() => setModalShow(true)}
@@ -160,7 +169,6 @@ const ProfilePage = () => {
       ) : (
         <Loader center />
       )}
-      <CreateConversationForm show={modalShow} onHide={() => setModalShow(false)} owner={owner} id={id} />
     </Container>
   );
 };

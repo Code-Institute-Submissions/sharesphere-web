@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Alert,
   Button,
   Form,
   FormControl,
@@ -8,16 +9,16 @@ import {
   Modal,
 } from "react-bootstrap";
 import css from "../../styles/css/Modals.module.css";
-import btnCSS from "../../styles/css/Buttons.module.css";
 import formCSS from "../../styles/css/Forms.module.css";
 import { axiosInstance } from "../../axios/axiosDefaults";
 
-const CreateConversationForm = ({ owner, id, ...props }) => {
+const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
   const [formData, setFormData] = useState({
     receiver: id,
     topic: "",
     content: "",
   });
+  const [errors, setErrors] = useState();
 
   const { topic, content } = formData;
 
@@ -29,17 +30,28 @@ const CreateConversationForm = ({ owner, id, ...props }) => {
   };
 
   const handleSubmit = async (e) => {
+    /**
+     * Posts a new conversation given topic and
+     * content input is provided.
+     * Nullifies any previous errors and closes the
+     * modal.
+     * 
+     * setErrors in case of a failed request to display
+     * in alert fields for each field.
+     */
     e.preventDefault();
     try {
-      const { data } = await axiosInstance.post(`/messages/`, formData);
+      await axiosInstance.post(`/messages/`, formData);
       setFormData({
         receiver: id,
         topic: "",
         content: "",
       });
-      console.log("message sent", data);
+      setErrors(null)
+      setModalShow(false);
     } catch (error) {
       console.log(error);
+      setErrors(error.response.data);
     }
   };
 
@@ -74,6 +86,11 @@ const CreateConversationForm = ({ owner, id, ...props }) => {
                 onChange={handleChange}
                 maxLength={40}
               ></FormControl>
+              {errors?.topic?.map((err) => (
+                <Alert key={err} className="mt-1" variant="warning">
+                  {err}
+                </Alert>
+              ))}
             </FormGroup>
             <FormGroup className="mt-3 mb-3" controlId="conversationContent">
               <FormLabel className="sr-only">Conversation content</FormLabel>
@@ -86,11 +103,16 @@ const CreateConversationForm = ({ owner, id, ...props }) => {
                 name={"content"}
                 onChange={handleChange}
               ></FormControl>
+              {errors?.content?.map((err) => (
+                <Alert key={err} className="mt-1" variant="warning">
+                  {err}
+                </Alert>
+              ))}
             </FormGroup>
           </Modal.Body>
           <Modal.Footer className={css.ModalFooter}>
-            <Button type="submit" variant="success" onClick={props.onHide}>
-              Send message
+            <Button type="submit" variant="success">
+              Start conversation
             </Button>
             <Button onClick={props.onHide}>Cancel</Button>
           </Modal.Footer>
