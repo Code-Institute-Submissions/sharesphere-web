@@ -39,7 +39,7 @@ const Conversations = () => {
                     <div className="d-flex">
                       <Link
                         to={`/profile/${
-                          !conv.is_owner ? conv.owner.id : conv.receiver
+                          !conv.is_owner ? conv.owner_id : conv.receiver
                         }`}
                         aria-label={`${
                           !conv.is_owner ? conv.owner : conv.receiver_name
@@ -62,7 +62,7 @@ const Conversations = () => {
                     </div>
                     <div className={css.ConvInfo}>
                       <span>
-                        @{!conv.is_owner ? conv.owner : conv.receiver_name}
+                        {!conv.is_owner ? "From @" + conv.owner : "To @" + conv.receiver_name}
                       </span>
                       <span className="ms-1 opacity-75">{conv.created_at}</span>
                     </div>
