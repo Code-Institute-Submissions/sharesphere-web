@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Alert,
   Button,
   Form,
   FormControl,
@@ -9,11 +10,12 @@ import {
 import formCSS from "../../styles/css/Forms.module.css";
 import { axiosInstance } from "../../axios/axiosDefaults";
 
-const CreateReplyForm = ({ topic, id }) => {
+const CreateReplyForm = ({ id, setReplies, setRepliesCount }) => {
   const [formData, setFormData] = useState({
     message: id,
     content: "",
   });
+  const [errors, setErrors] = useState();
 
   const { content } = formData;
 
@@ -25,15 +27,28 @@ const CreateReplyForm = ({ topic, id }) => {
   };
 
   const handleSubmit = async (e) => {
+    /**
+     * Posts a new reply given content input is provided.
+     * Updates reply count, removes any error fields and
+     * empties the form on sumbission.
+     *
+     * setErros to display alerts if form is bad.
+     */
     e.preventDefault();
     try {
       const { data } = await axiosInstance.post(`/replies/`, formData);
+      setReplies((prevReplies) => ({
+        results: [data, ...prevReplies.results],
+      }));
+      setRepliesCount((prevCount) => prevCount + 1);
+      setErrors(null);
       setFormData({
         message: id,
         content: "",
       });
       console.log("reply sent", data);
     } catch (error) {
+      setErrors(error.response.data);
       console.log(error);
     }
   };
@@ -57,6 +72,11 @@ const CreateReplyForm = ({ topic, id }) => {
           name={"content"}
           onChange={handleChange}
         ></FormControl>
+        {errors?.content?.map((err) => (
+          <Alert key={err} className="mt-1" variant="warning">
+            {err}
+          </Alert>
+        ))}
       </FormGroup>
       <Button type="submit" variant="success">
         Add reply <i className="fa-regular fa-paper-plane"></i>

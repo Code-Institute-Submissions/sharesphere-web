@@ -10,12 +10,9 @@ import Reply from "../replies/Reply";
 
 const ConversationPage = () => {
   const [hasLoaded, setHadLoaded] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
   const [conversation, setConversation] = useState({});
   const [replies, setReplies] = useState({});
-
-  {
-  }
+  const [repliesCount, setRepliesCount] = useState();
 
   const { id } = useParams();
 
@@ -29,6 +26,7 @@ const ConversationPage = () => {
         ]);
         setConversation(conversation);
         setReplies(replies);
+        setRepliesCount(conversation.replies_count)
         console.log("conversation", conversation);
         console.log("replies", replies);
         setHadLoaded(true);
@@ -75,14 +73,15 @@ const ConversationPage = () => {
               <div className={css.ConvReplies}>
                 <i className="fa-solid fa-comments me-1"></i>
                 <span>
-                  {conversation.replies_count}
+                  {repliesCount}
                   <span className="sr-only">replies</span>
                 </span>
               </div>
             </div>
           </Card.Body>
           <hr className={css.ConvSeparator} />
-          <CreateReplyForm id={id} topic={conversation.topic} />
+          {/* Replies section */}
+          <CreateReplyForm id={id} setReplies={setReplies} setRepliesCount={setRepliesCount} />
           <div className="d-flex flex-column">
             {replies.results.map((reply) => (
               <div key={reply.id}>
