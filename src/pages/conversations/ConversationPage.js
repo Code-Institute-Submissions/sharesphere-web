@@ -61,16 +61,20 @@ const ConversationPage = () => {
         <Card className={`${css.ConvCard} mt-3`}>
           {console.log(replies)}
           <Card className={`${css.ConvCard}`}>
-            {/* Dropdown and modal for deleting conversation */}
-            <div className="d-flex justify-content-end">
-              <EditDropdown confirmDelete={() => setModalShow(true)} />
-            </div>
-            <ConfirmationModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-              object={"conversation"}
-              handleDelete={handleDelete}
-            />
+            {/* Dropdown and modal for deleting conversation, visible to owner */}
+            {conversation.is_owner && (
+              <>
+                <div className="d-flex justify-content-end">
+                  <EditDropdown confirmDelete={() => setModalShow(true)} />
+                </div>
+                <ConfirmationModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                  object={"conversation"}
+                  handleDelete={handleDelete}
+                />
+              </>
+            )}
             {/* Conversation content */}
             <Card.Body className={css.ConvBody}>
               <div className="d-flex">

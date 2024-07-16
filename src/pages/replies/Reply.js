@@ -13,33 +13,39 @@ const Reply = ({ reply, setReplies, setRepliesCount }) => {
   const handleDelete = async () => {
     /**
      * Handles deleting a chosen reply.
-     * 
+     *
      * Updates the reply count and replies array on deletion.
      */
     try {
-      await axiosInstance.delete(`/replies/${reply.id}`)
-      setRepliesCount((prevCount) => prevCount - 1)
+      await axiosInstance.delete(`/replies/${reply.id}`);
+      setRepliesCount((prevCount) => prevCount - 1);
       setReplies((prevReplies) => ({
         ...prevReplies,
-        results: [...prevReplies.results.filter((rep) => rep.id !== reply.id)]
-      }))
-      setModalShow(false)
+        results: [...prevReplies.results.filter((rep) => rep.id !== reply.id)],
+      }));
+      setModalShow(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   return (
     <Card className={css.ConvCard}>
-      <div className="d-flex justify-content-end">
-        <EditDropdown confirmDelete={() => setModalShow(true)} />
-      </div>
-      <ConfirmationModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        object={"reply"}
-        handleDelete={handleDelete}
-      />
+      {/* Dropdown and modal for deleting reply, visible to owner */}
+      {reply.is_owner && (
+        <>
+          <div className="d-flex justify-content-end">
+            <EditDropdown confirmDelete={() => setModalShow(true)} />
+          </div>
+          <ConfirmationModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            object={"reply"}
+            handleDelete={handleDelete}
+          />
+        </>
+      )}
+
       <div className="d-flex align-items-center">
         <div>
           <Link
