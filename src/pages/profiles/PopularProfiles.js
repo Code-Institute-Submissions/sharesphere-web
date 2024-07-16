@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosReq } from "../../axios/axiosDefaults";
 import Loader from "../../components/Loader";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
@@ -7,15 +7,17 @@ import css from "../../styles/css/PopularProfiles.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";
 import { Link } from "react-router-dom";
 import { followHelper, unfollowHelper } from "../../utils/FollowHelper";
+import { useAuth } from "../../context/AuthContext";
 
 const PopularProfiles = () => {
   const [popularProfiles, setPopularProfiles] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
+  const { loggedInUser } = useAuth()
 
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const { data } = await axiosInstance.get(
+        const { data } = await axiosReq.get(
           `/profiles/?ordering=-post_count`
         );
         setPopularProfiles(data.results.slice(0, 10));
@@ -91,7 +93,7 @@ const PopularProfiles = () => {
                     </div>
                   </div>
                 </OverlayTrigger>
-                {!profile.following_id && !profile.is_owner && (
+                {!profile.following_id && !profile.is_owner && loggedInUser && (
                   <button
                     className={`${btnCSS.FollowBtn}`}
                     type="button"
@@ -100,7 +102,7 @@ const PopularProfiles = () => {
                     Follow
                   </button>
                 )}
-                {profile.following_id && !profile.is_owner && (
+                {profile.following_id && !profile.is_owner && loggedInUser && (
                   <button
                     className={`${btnCSS.UnfollowBtn}`}
                     type="button"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosReq } from "../../axios/axiosDefaults";
 import { Col, Container, Row } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import css from "../../styles/css/ProfilePage.module.css";
@@ -13,6 +13,7 @@ const ProfilePage = () => {
   const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  const { loggedInUser } = useAuth()
   const { id } = useParams();
   const {
     owner,
@@ -31,7 +32,7 @@ const ProfilePage = () => {
   useEffect(() => {
     setHasLoaded(false);
     const fetchProfile = async () => {
-      const { data } = await axiosInstance.get(`/profiles/${id}`);
+      const { data } = await axiosReq.get(`/profiles/${id}`);
       setProfileData(data);
       setHasLoaded(true);
     };
@@ -100,7 +101,7 @@ const ProfilePage = () => {
                     ></i>
                   </Link>
                 )}
-                {!is_owner && receive_messages && (
+                {!is_owner && receive_messages && loggedInUser && (
                   <button
                     className={btnCSS.Btn}
                     type="button"
@@ -114,7 +115,7 @@ const ProfilePage = () => {
                 )}
               </div>
             </div>
-            {!following_id && !is_owner && (
+            {!following_id && !is_owner && loggedInUser && (
               <button
                 className={`${btnCSS.FollowBtn}`}
                 type="button"
@@ -123,7 +124,7 @@ const ProfilePage = () => {
                 Follow
               </button>
             )}
-            {following_id && !is_owner && (
+            {following_id && !is_owner && loggedInUser && (
               <button
                 className={`${btnCSS.UnfollowBtn}`}
                 type="button"
