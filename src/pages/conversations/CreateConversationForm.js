@@ -11,6 +11,7 @@ import {
 import css from "../../styles/css/Modals.module.css";
 import formCSS from "../../styles/css/Forms.module.css";
 import { axiosInstance } from "../../axios/axiosDefaults";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
   const [formData, setFormData] = useState({
@@ -21,6 +22,8 @@ const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
   const [errors, setErrors] = useState();
 
   const { topic, content } = formData;
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     setFormData({
@@ -35,7 +38,7 @@ const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
      * content input is provided.
      * Nullifies any previous errors and closes the
      * modal.
-     * 
+     *
      * setErrors in case of a failed request to display
      * in alert fields for each field.
      */
@@ -47,8 +50,12 @@ const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
         topic: "",
         content: "",
       });
-      setErrors(null)
+      setErrors(null);
       setModalShow(false);
+      navigate(location.pathname, {
+        replace: true,
+        state: { success: "Conversation successfully started!" },
+      });
     } catch (error) {
       console.log(error);
       setErrors(error.response.data);
