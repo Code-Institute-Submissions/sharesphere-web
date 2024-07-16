@@ -12,6 +12,8 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
     post: post,
     content: "",
   });
+  const [posting, setPosting] = useState(false)
+
   const [show, setShow] = useState(false);
   const target = useRef(null);
 
@@ -20,12 +22,13 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (content !== "") {
+    if (content !== "" && !posting) {
       /**
        * Logic to avoid making post requests if the field is empty
        * and instead shows a tooltip overlay.
        */
       try {
+        setPosting(true)
         const { data } = await axiosInstance.post("/comments/", commentData);
         setComments((prevComments) => ({
           ...prevComments,
@@ -37,6 +40,7 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
           content: "",
         });
       } catch (error) {
+        setPosting(false)
         console.log(error);
       }
     } else if (!show) {
@@ -49,13 +53,14 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
     <Form onSubmit={handleSubmit}>
       <FormGroup controlId="comment">
         <div className="d-flex mb-0 mt-2 ms-1">
-          <FormLabel className="sr-only" ref={target}>
+          <FormLabel className="sr-only" >
             Leave a comment
           </FormLabel>
           <Form.Control
             className={formCSS.FormInput}
             type="text"
             placeholder="Leave a comment!"
+            ref={target}
             value={content}
             onChange={(e) => {
               setCommentData({
