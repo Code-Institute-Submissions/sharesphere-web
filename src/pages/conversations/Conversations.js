@@ -5,17 +5,19 @@ import Loader from "../../components/Loader";
 import css from "../../styles/css/Conversations.module.css";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { FetchNext } from "../../utils/FetchNext";
 
 const Conversations = () => {
-  const [conversationsList, setConversationsList] = useState({});
+  const [conversations, setConversations] = useState({});
   const [hasLoaded, setHadLoaded] = useState(false);
-
+  
   useEffect(() => {
     const fetchConversations = async () => {
       setHadLoaded(false);
       try {
         const { data } = await axiosInstance.get(`/messages/`);
-        setConversationsList(data);
+        setConversations(data);
         setHadLoaded(true);
       } catch (error) {
         console.log(error);
@@ -26,13 +28,24 @@ const Conversations = () => {
 
   return (
     <Container>
-      <Row>
-        <div className="text-center">
-          <h1>Your conversations</h1>
-        </div>
-        {hasLoaded ? (
-          <>
-            {conversationsList.results.map((conv) => (
+      <div className="text-center">
+        <h1>Your conversations</h1>
+      </div>
+      {hasLoaded ? (
+        <InfiniteScroll
+          style={{ overflow: "hidden" }}
+          dataLength={conversations.results.length}
+          next={() => FetchNext(conversations, setConversations)}
+          hasMore={!!conversations.next}
+          loader={
+            <div className="d-flex mb-2 justify-content-center">
+              <Loader />
+            </div>
+          }
+        >
+          <Row>
+            {/* Maps over every conversation retrieved once the api fetch is complete */}
+            {conversations.results.map((conv) => (
               <Col md={6} xl={4} key={conv.id}>
                 <Card className={`${css.ConvCard}`}>
                   <Card.Body className={css.ConvBody}>
@@ -62,7 +75,9 @@ const Conversations = () => {
                     </div>
                     <div className={css.ConvInfo}>
                       <span>
-                        {!conv.is_owner ? "From @" + conv.owner : "To @" + conv.receiver_name}
+                        {!conv.is_owner
+                          ? "From @" + conv.owner
+                          : "To @" + conv.receiver_name}
                       </span>
                       <span className="ms-1 opacity-75">{conv.created_at}</span>
                     </div>
@@ -87,13 +102,13 @@ const Conversations = () => {
                 </Card>
               </Col>
             ))}
-          </>
-        ) : (
-          <Loader center />
-        )}
+          </Row>
+        </InfiniteScroll>
+      ) : (
+        <Loader center />
+      )}
 
-        {console.log(conversationsList)}
-      </Row>
+      {console.log(conversations)}
     </Container>
   );
 };
