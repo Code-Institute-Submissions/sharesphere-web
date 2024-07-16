@@ -52,8 +52,8 @@ const Comment = (props) => {
       await axiosInstance.put(`/comments/${id}`, commentData);
       setCommentData({
         ...commentData,
-        updated_at: "now"
-      })
+        updated_at: "now",
+      });
       setEditToggled(false);
     } catch (error) {
       console.log("Error when updating comment:", error);
@@ -68,7 +68,7 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
-      setCommentCount((prevCount) => prevCount - 1)
+      setCommentCount((prevCount) => prevCount - 1);
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +86,9 @@ const Comment = (props) => {
             <span className="ms-1 me-1">·</span>
             <OverlayTrigger
               overlay={
-                <Tooltip id="tooltip-disabled">Updated: {commentData.updated_at}</Tooltip>
+                <Tooltip id="tooltip-disabled">
+                  Updated: {commentData.updated_at}
+                </Tooltip>
               }
             >
               <span className="d-inline-block">
@@ -107,6 +109,14 @@ const Comment = (props) => {
             onClick={toggleEdit}
           ></i>
         )}
+        {is_owner && (
+          <ConfirmationModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            object={"comment"}
+            handleDelete={handleDelete}
+          />
+        )}
       </div>
       <hr className={postCSS.ContentSeparator} />
       <Card.Body className={css.CommentBody}>
@@ -120,12 +130,6 @@ const Comment = (props) => {
           />
         )}
       </Card.Body>
-      <ConfirmationModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        object={"comment"}
-        handleDelete={handleDelete}
-      />
     </Card>
   );
 };

@@ -284,10 +284,18 @@ const Post = ({ post, setPosts, comments, setComments }) => {
             </Link>
             {/* Methods for deleting and editing posts for the post owner */}
             {is_owner && (
-              <EditDropdown
-                toggleEdit={toggleEdit}
-                confirmDelete={() => setShowDeleteModal(true)}
-              />
+              <>
+                <EditDropdown
+                  toggleEdit={toggleEdit}
+                  confirmDelete={() => setShowDeleteModal(true)}
+                />
+                <ConfirmationModal
+                  show={showDeleteModal}
+                  onHide={() => setShowDeleteModal(false)}
+                  object={"post"}
+                  handleDelete={handleDelete}
+                />
+              </>
             )}
           </div>
           <hr className={css.ContentSeparator} />
@@ -338,12 +346,6 @@ const Post = ({ post, setPosts, comments, setComments }) => {
           ))}
         </InfiniteScroll>
       )}
-      <ConfirmationModal
-        show={showDeleteModal}
-        onHide={() => setShowDeleteModal(false)}
-        object={"post"}
-        handleDelete={handleDelete}
-      />
     </Card>
   );
 };
