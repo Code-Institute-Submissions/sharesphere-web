@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import css from "./styles/css/App.module.css";
 import NavBar from "./components/NavBar";
-import SignUp from "./pages/authentication/SignUp.js";
+import SignUpForm from "./pages/authentication/SignUpForm.js";
 import "./axios/axiosDefaults";
-import SignIn from "./pages/authentication/SignIn.js";
+import SignInForm from "./pages/authentication/SignInForm.js";
 import ProfilePage from "./pages/profiles/ProfilePage.js";
-import EditProfile from "./pages/profiles/EditProfile.js";
-import CreatePost from "./pages/posts/CreatePost.js";
+import EditProfileForm from "./pages/profiles/EditProfileForm.js";
+import CreatePostForm from "./pages/posts/CreatePostForm.js";
 import RenderPosts from "./pages/posts/RenderPosts.js";
 import { useAuth } from "./context/AuthContext.js";
 import PostPage from "./pages/posts/PostPage.js";
@@ -89,13 +89,13 @@ function App() {
           }
         />
         <Route path="/post/:id" element={<PostPage />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignInForm />} />
+        <Route path="/signup" element={<SignUpForm />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/conversations" element={<Conversations />} />
         <Route path="/conversation/:id" element={<ConversationPage />} />
-        <Route path="/profile/edit" element={<EditProfile />} />
-        <Route path="/post/create" element={<CreatePost />} />
+        <Route path="/profile/edit" element={<EditProfileForm />} />
+        <Route path="/post/create" element={<CreatePostForm />} />
         <Route path="*" element={<p>Nothing on this page, 404</p>} />
       </Routes>
     </div>

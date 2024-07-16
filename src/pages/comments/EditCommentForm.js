@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Form, FormGroup, FormLabel } from "react-bootstrap";
 import formCSS from "../../styles/css/Forms.module.css";
 
-const EditComment = ({ commentData, setCommentData, handleEdit }) => {
+const EditCommentForm = ({ commentData, setCommentData, handleEdit }) => {
   const target = useRef(null);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const EditComment = ({ commentData, setCommentData, handleEdit }) => {
   );
 };
 
-export default EditComment;
+export default EditCommentForm;

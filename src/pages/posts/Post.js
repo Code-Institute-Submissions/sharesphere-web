@@ -11,7 +11,7 @@ import Comment from "../comments/Comment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchNext } from "../../utils/FetchNext";
 import Loader from "../../components/Loader";
-import CreateComment from "../comments/CreateComment";
+import CreateCommentForm from "../comments/CreateCommentForm";
 import { EditDropdown } from "../../components/EditDropdown";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import EditPostForm from "./EditPostForm";
@@ -329,7 +329,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
             </div>
           }
         >
-          <CreateComment
+          <CreateCommentForm
             post={id}
             setComments={setComments}
             setCommentCount={setCommentCount}

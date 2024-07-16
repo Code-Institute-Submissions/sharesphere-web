@@ -7,7 +7,7 @@ import css from "../../styles/css/Comments.module.css";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
-const CreateComment = ({ post, setComments, setCommentCount }) => {
+const CreateCommentForm = ({ post, setComments, setCommentCount }) => {
   const [commentData, setCommentData] = useState({
     post: post,
     content: "",
@@ -99,4 +99,4 @@ const CreateComment = ({ post, setComments, setCommentCount }) => {
   );
 };
 
-export default CreateComment;
+export default CreateCommentForm;

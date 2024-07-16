@@ -6,7 +6,7 @@ import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
-import EditComment from "./EditComment";
+import EditCommentForm from "./EditCommentForm";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import ConfirmationModal from "../../components/ConfirmationModal";
 
@@ -123,7 +123,7 @@ const Comment = (props) => {
         {!editToggled ? (
           <Card.Text>{commentData.content}</Card.Text>
         ) : (
-          <EditComment
+          <EditCommentForm
             handleEdit={handleEdit}
             commentData={commentData}
             setCommentData={setCommentData}

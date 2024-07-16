@@ -17,7 +17,7 @@ import Loader from "../../components/Loader";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const EditProfile = () => {
+const EditProfileForm = () => {
   const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
@@ -193,4 +193,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditProfileForm;

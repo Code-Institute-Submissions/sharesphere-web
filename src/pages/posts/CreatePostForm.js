@@ -14,7 +14,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Upload from "../../assets/upload-image-icon.png";
 
-const CreatePost = () => {
+const CreatePostForm = () => {
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -141,4 +141,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default CreatePostForm;

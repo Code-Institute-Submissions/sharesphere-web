@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import css from "../../styles/css/SignUp.module.css";
+import css from "../../styles/css/SignUpForm.module.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-const SignIn = () => {
+const SignInForm = () => {
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -112,4 +112,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInForm;
