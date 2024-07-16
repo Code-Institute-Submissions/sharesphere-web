@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { axiosInstance } from "../../axios/axiosDefaults";
 import CreateReplyForm from "../replies/CreateReplyForm";
 import { Card, Container } from "react-bootstrap";
@@ -9,14 +9,18 @@ import Avatar from "../../components/Avatar";
 import Reply from "../replies/Reply";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchNext } from "../../utils/FetchNext";
+import { EditDropdown } from "../../components/EditDropdown";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 const ConversationPage = () => {
   const [hasLoaded, setHadLoaded] = useState(false);
   const [conversation, setConversation] = useState({});
   const [replies, setReplies] = useState({});
   const [repliesCount, setRepliesCount] = useState();
+  const [modalShow, setModalShow] = useState(false);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchConversation = async () => {
@@ -39,13 +43,35 @@ const ConversationPage = () => {
     fetchConversation();
   }, [id]);
 
+  const handleDelete = async () => {
+    try {
+      await axiosInstance.delete(`/messages/${id}`);
+      setModalShow(false);
+      navigate("/conversations", {
+        state: { success: "Conversation successfully deleted!" },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container className="d-flex flex-column">
       {hasLoaded ? (
-        <Card className={`${css.ConvCard}`}>
-        {console.log(replies)}
-
+        <Card className={`${css.ConvCard} mt-3`}>
+          {console.log(replies)}
           <Card className={`${css.ConvCard}`}>
+            {/* Dropdown and modal for deleting conversation */}
+            <div className="d-flex justify-content-end">
+              <EditDropdown confirmDelete={() => setModalShow(true)} />
+            </div>
+            <ConfirmationModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              object={"conversation"}
+              handleDelete={handleDelete}
+            />
+            {/* Conversation content */}
             <Card.Body className={css.ConvBody}>
               <div className="d-flex">
                 <Link

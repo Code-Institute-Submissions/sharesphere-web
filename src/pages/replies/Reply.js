@@ -34,6 +34,12 @@ const Reply = ({ reply, setReplies, setRepliesCount }) => {
       <div className="d-flex justify-content-end">
         <EditDropdown confirmDelete={() => setModalShow(true)} />
       </div>
+      <ConfirmationModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        object={"reply"}
+        handleDelete={handleDelete}
+      />
       <div className="d-flex align-items-center">
         <div>
           <Link
@@ -62,12 +68,6 @@ const Reply = ({ reply, setReplies, setRepliesCount }) => {
       <div className="mb-1">
         <Card.Text>{reply.content}</Card.Text>
       </div>
-      <ConfirmationModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        object={"reply"}
-        handleDelete={handleDelete}
-      />
     </Card>
   );
 };
