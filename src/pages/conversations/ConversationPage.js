@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosRes } from "../../axios/axiosDefaults";
 import CreateReplyForm from "../replies/CreateReplyForm";
 import { Card, Container } from "react-bootstrap";
 import css from "../../styles/css/Conversation.module.css";
@@ -27,8 +27,8 @@ const ConversationPage = () => {
       setHadLoaded(false);
       try {
         const [{ data: conversation }, { data: replies }] = await Promise.all([
-          axiosInstance.get(`/messages/${id}`),
-          axiosInstance.get(`/replies/?message=${id}`),
+          axiosRes.get(`/messages/${id}`),
+          axiosRes.get(`/replies/?message=${id}`),
         ]);
         setConversation(conversation);
         setReplies(replies);
@@ -45,7 +45,7 @@ const ConversationPage = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/messages/${id}`);
+      await axiosRes.delete(`/messages/${id}`);
       setModalShow(false);
       navigate("/conversations", {
         state: { success: "Conversation successfully deleted!" },

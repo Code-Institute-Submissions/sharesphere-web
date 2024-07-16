@@ -7,7 +7,7 @@ import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
 import EditCommentForm from "./EditCommentForm";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosRes } from "../../axios/axiosDefaults";
 import ConfirmationModal from "../../components/ConfirmationModal";
 
 const Comment = (props) => {
@@ -49,7 +49,7 @@ const Comment = (props) => {
   const handleEdit = async (e) => {
     e.preventDefault();
     try {
-      await axiosInstance.put(`/comments/${id}`, commentData);
+      await axiosRes.put(`/comments/${id}`, commentData);
       setCommentData({
         ...commentData,
         updated_at: "now",
@@ -62,7 +62,7 @@ const Comment = (props) => {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/comments/${id}`);
+      await axiosRes.delete(`/comments/${id}`);
       setModalShow(false);
       setComments((prevComments) => ({
         ...prevComments,

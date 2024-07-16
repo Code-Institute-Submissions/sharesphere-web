@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import css from "../../styles/css/SignUpForm.module.css";
+import css from "../../styles/css/Auth.module.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 

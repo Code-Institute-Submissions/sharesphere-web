@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { EditDropdown } from "../../components/EditDropdown";
 import ConfirmationModal from "../../components/ConfirmationModal";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosRes } from "../../axios/axiosDefaults";
 
 const Reply = ({ reply, setReplies, setRepliesCount }) => {
   const [modalShow, setModalShow] = useState(false);
@@ -17,7 +17,7 @@ const Reply = ({ reply, setReplies, setRepliesCount }) => {
      * Updates the reply count and replies array on deletion.
      */
     try {
-      await axiosInstance.delete(`/replies/${reply.id}`);
+      await axiosRes.delete(`/replies/${reply.id}`);
       setRepliesCount((prevCount) => prevCount - 1);
       setReplies((prevReplies) => ({
         ...prevReplies,

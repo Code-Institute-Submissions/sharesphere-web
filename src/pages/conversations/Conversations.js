@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosRes } from "../../axios/axiosDefaults";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import Loader from "../../components/Loader";
 import css from "../../styles/css/Conversations.module.css";
@@ -16,7 +16,7 @@ const Conversations = () => {
     const fetchConversations = async () => {
       setHadLoaded(false);
       try {
-        const { data } = await axiosInstance.get(`/messages/`);
+        const { data } = await axiosRes.get(`/messages/`);
         setConversations(data);
         setHadLoaded(true);
       } catch (error) {

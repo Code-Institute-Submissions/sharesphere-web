@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosReq } from "../../axios/axiosDefaults";
 import { Container } from "react-bootstrap";
 import Loader from "../../components/Loader";
 import css from "../../styles/css/Posts.module.css";
@@ -17,8 +17,8 @@ const PostPage = () => {
     const fetchPost = async () => {
       try {
         const [{data: post}, {data: comments}] = await Promise.all([
-          axiosInstance.get(`/posts/${id}`),
-          axiosInstance.get(`/comments/?post=${id}`)
+          axiosReq.get(`/posts/${id}`),
+          axiosReq.get(`/comments/?post=${id}`)
         ]);
         setPost(post);
         setComments(comments)

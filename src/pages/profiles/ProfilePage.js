@@ -8,6 +8,7 @@ import btnCSS from "../../styles/css/Buttons.module.css";
 import Loader from "../../components/Loader";
 import { followHelper, unfollowHelper } from "../../utils/FollowHelper";
 import CreateConversationForm from "../conversations/CreateConversationForm";
+import { useAuth } from "../../context/AuthContext";
 
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState({});

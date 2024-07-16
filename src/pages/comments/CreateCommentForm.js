@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Form, FormGroup, FormLabel, Overlay, Tooltip } from "react-bootstrap";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosRes } from "../../axios/axiosDefaults";
 import formCSS from "../../styles/css/Forms.module.css";
 import appCSS from "../../styles/css/App.module.css";
 import css from "../../styles/css/Comments.module.css";
@@ -29,7 +29,7 @@ const CreateCommentForm = ({ post, setComments, setCommentCount }) => {
        */
       try {
         setPosting(true)
-        const { data } = await axiosInstance.post("/comments/", commentData);
+        const { data } = await axiosRes.post("/comments/", commentData);
         setComments((prevComments) => ({
           ...prevComments,
           results: [data, ...prevComments.results],

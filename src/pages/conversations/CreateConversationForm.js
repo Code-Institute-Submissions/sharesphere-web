@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import css from "../../styles/css/Modals.module.css";
 import formCSS from "../../styles/css/Forms.module.css";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosRes } from "../../axios/axiosDefaults";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
@@ -44,7 +44,7 @@ const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
      */
     e.preventDefault();
     try {
-      await axiosInstance.post(`/messages/`, formData);
+      await axiosRes.post(`/messages/`, formData);
       setFormData({
         receiver: id,
         topic: "",

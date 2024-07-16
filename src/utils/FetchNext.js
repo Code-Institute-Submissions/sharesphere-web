@@ -1,8 +1,8 @@
-import { axiosInstance } from "../axios/axiosDefaults";
+import { axiosReq } from "../axios/axiosDefaults";
 
 export const FetchNext = async (state, setState) => {
   try {
-    const { data } = await axiosInstance.get(state.next);
+    const { data } = await axiosReq.get(state.next);
     setState((prevState) => ({
       ...prevState,
       results: [...prevState.results, ...data.results],

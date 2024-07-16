@@ -1,4 +1,4 @@
-import { axiosInstance } from "../axios/axiosDefaults";
+import { axiosRes } from "../axios/axiosDefaults";
 
 export const followHelper = async (id) => {
   /**
@@ -8,7 +8,7 @@ export const followHelper = async (id) => {
    * the request fails. Like when spamming the follow button.
    */
   try {
-    const { data } = await axiosInstance.post(`followers/`, { followed: id });
+    const { data } = await axiosRes.post(`followers/`, { followed: id });
     return data;
   } catch (error) {
     console.log("error when following user", error);
@@ -24,7 +24,7 @@ export const unfollowHelper = async (id) => {
    * the request fails. Like when spamming the unfollow button.
    */
   try {
-    await axiosInstance.delete(`followers/${id}`);
+    await axiosRes.delete(`followers/${id}`);
   } catch (error) {
     console.log("error when unfollowing user", error);
     throw error;

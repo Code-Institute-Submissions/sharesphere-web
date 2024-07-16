@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useMemo,
 } from "react";
-import { axiosInstance } from "../axios/axiosDefaults";
+import { axiosReq, axiosRes } from "../axios/axiosDefaults";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkLoginStatus = async () => {
     try {
-      const { data } = await axiosInstance.get("/dj-rest-auth/user/");
+      const { data } = await axiosReq.get("/dj-rest-auth/user/");
       return data;
     } catch (error) {
       console.error("Error checking login status:", error);
@@ -76,13 +76,18 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useMemo(() => {
-    axiosInstance.interceptors.request.use(
+    axiosReq.interceptors.request.use(
+      /**
+       * Interceptor suitable for requests and actions that don't
+       * require the user to be authenticated. Like simply loading
+       * the post feed.
+       */
       async (config) => {
         try {
           await axios.post("/dj-rest-auth/token/refresh/");
         } catch (error) {
           console.log("axios interceptor", error);
-          return Promise.reject(error);
+          return config;
         }
         return config;
       },
@@ -92,7 +97,15 @@ export const AuthProvider = ({ children }) => {
       }
     );
 
-    axiosInstance.interceptors.response.use(
+    axiosRes.interceptors.response.use(
+      /**
+       * Interceptor suitable for requests and actions that do
+       * require the user to be authenticated. Like making a post
+       * request to create a post.
+       * This will ensure that if the user was logged in when their
+       * refersh token expired they are redirected to sign in again
+       * before performing the action.
+       */
       (response) => response,
       async (err) => {
         if (err.response.status === 401) {

@@ -5,7 +5,7 @@ import appCSS from "../../styles/css/App.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosRes } from "../../axios/axiosDefaults";
 import { useAuth } from "../../context/AuthContext";
 import Comment from "../comments/Comment";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -54,7 +54,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
     if (loading) return;
     setLoading(true);
     try {
-      const { data } = await axiosInstance.post("/likes/", { post: id });
+      const { data } = await axiosRes.post("/likes/", { post: id });
       setLikeCount(likeCount + 1);
       setLike(data.id);
     } catch (error) {
@@ -68,7 +68,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
     if (loading) return;
     setLoading(true);
     try {
-      await axiosInstance.delete(`likes/${like}`);
+      await axiosRes.delete(`likes/${like}`);
       setLikeCount(likeCount - 1);
       setLike(null);
     } catch (error) {
@@ -112,7 +112,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
       formData.append("image", newPostData.image);
     }
     try {
-      const { data } = await axiosInstance.put(`/posts/${id}/`, formData);
+      const { data } = await axiosRes.put(`/posts/${id}/`, formData);
       setPostData({
         ...postData,
         title: data.title,
@@ -136,7 +136,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
      * Handles deleting a post and removing it from the posts state
      */
     try {
-      await axiosInstance.delete(`/posts/${id}`);
+      await axiosRes.delete(`/posts/${id}`);
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: [...prevPosts.results.filter((post) => post.id !== id)],

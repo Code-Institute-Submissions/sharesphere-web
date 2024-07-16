@@ -56,7 +56,7 @@
         * if (loading) return; *
         * setLoading(true); *
         try {
-          const { data } = await axiosInstance.post("/likes/", { post: id });
+          const { data } = await axiosRes.post("/likes/", { post: id });
           setLikeCount(likeCount + 1);
           setLike(data.id);
         } catch (error) {
@@ -70,7 +70,7 @@
         * if (loading) return; *
         * setLoading(true); *
         try {
-          await axiosInstance.delete(`likes/${like}`);
+          await axiosRes.delete(`likes/${like}`);
           setLikeCount(likeCount - 1);
           setLike(null);
         } catch (error) {

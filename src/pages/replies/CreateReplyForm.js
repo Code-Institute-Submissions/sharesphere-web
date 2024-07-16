@@ -8,7 +8,7 @@ import {
   FormLabel,
 } from "react-bootstrap";
 import formCSS from "../../styles/css/Forms.module.css";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosRes } from "../../axios/axiosDefaults";
 
 const CreateReplyForm = ({ id, setReplies, setRepliesCount }) => {
   const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ const CreateReplyForm = ({ id, setReplies, setRepliesCount }) => {
      */
     e.preventDefault();
     try {
-      const { data } = await axiosInstance.post(`/replies/`, formData);
+      const { data } = await axiosRes.post(`/replies/`, formData);
       setReplies((prevReplies) => ({
         ...prevReplies,
         results: [data, ...prevReplies.results],

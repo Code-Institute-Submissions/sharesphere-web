@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosReq } from "../../axios/axiosDefaults";
 import { Col, Container, Row } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchNext } from "../../utils/FetchNext";
@@ -20,7 +20,7 @@ const RenderPosts = (props) => {
 
   const fetchPosts = async () => {
     try {
-      const { data } = await axiosInstance.get(`${filter}`);
+      const { data } = await axiosReq.get(`${filter}`);
       setPosts({
         results: data.results,
         next: data.next,

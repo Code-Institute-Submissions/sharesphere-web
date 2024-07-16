@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosInstance } from "../../axios/axiosDefaults";
+import { axiosRes } from "../../axios/axiosDefaults";
 import {
   Alert,
   Col,
@@ -80,7 +80,7 @@ const EditProfileForm = () => {
     }
 
     try {
-      const { data } = await axiosInstance.put(
+      const { data } = await axiosRes.put(
         `/profiles/${loggedInUser?.pk}/`,
         formData
       );
@@ -99,7 +99,7 @@ const EditProfileForm = () => {
     if (loggedInUser) {
       const fetchProfile = async () => {
         try {
-          const profile = await axiosInstance.get(
+          const profile = await axiosRes.get(
             `/profiles/${loggedInUser.pk}`
           );
           setProfileData(profile.data);
