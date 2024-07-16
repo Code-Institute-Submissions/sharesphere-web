@@ -28,7 +28,7 @@ const ConversationPage = () => {
           axiosInstance.get(`/replies/?message=${id}`),
         ]);
         setConversation(conversation);
-        setReplies(replies)
+        setReplies(replies);
         console.log("conversation", conversation);
         console.log("replies", replies);
         setHadLoaded(true);
@@ -91,7 +91,7 @@ const ConversationPage = () => {
             </div>
           </Card.Body>
           <hr className={css.ConvSeparator} />
-          <div className="d-flex">
+          <div className="d-flex flex-column">
             {replies.results.map((reply) => (
               <div key={reply.id}>
                 <Reply reply={reply} />
