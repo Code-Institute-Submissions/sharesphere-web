@@ -38,6 +38,7 @@ const CreateReplyForm = ({ id, setReplies, setRepliesCount }) => {
     try {
       const { data } = await axiosInstance.post(`/replies/`, formData);
       setReplies((prevReplies) => ({
+        ...prevReplies,
         results: [data, ...prevReplies.results],
       }));
       setRepliesCount((prevCount) => prevCount + 1);

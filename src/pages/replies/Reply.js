@@ -20,6 +20,7 @@ const Reply = ({ reply, setReplies, setRepliesCount }) => {
       await axiosInstance.delete(`/replies/${reply.id}`)
       setRepliesCount((prevCount) => prevCount - 1)
       setReplies((prevReplies) => ({
+        ...prevReplies,
         results: [...prevReplies.results.filter((rep) => rep.id !== reply.id)]
       }))
       setModalShow(false)
