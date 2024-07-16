@@ -11,6 +11,7 @@ import RenderPosts from "./pages/posts/RenderPosts.js";
 import { useAuth } from "./context/AuthContext.js";
 import PostPage from "./pages/posts/PostPage.js";
 import Conversations from "./pages/conversations/Conversations.js";
+import ConversationPage from "./pages/conversations/ConversationPage.js";
 
 function App() {
   const { loggedInUser } = useAuth();
@@ -41,6 +42,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/conversations" element={<Conversations />} />
+        <Route path="/conversation/:id" element={<ConversationPage />} />
         <Route path="/profile/edit" element={<EditProfile />} />
         <Route path="/post/create" element={<CreatePost />} />
         <Route path="*" element={<p>Nothing on this page, 404</p>} />

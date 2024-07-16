@@ -4,6 +4,7 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import Loader from "../../components/Loader";
 import css from "../../styles/css/Conversations.module.css";
 import Avatar from "../../components/Avatar";
+import { Link } from "react-router-dom";
 
 const Conversations = () => {
   const [conversationsList, setConversationsList] = useState({});
@@ -32,19 +33,56 @@ const Conversations = () => {
         {hasLoaded ? (
           <>
             {conversationsList.results.map((conv) => (
-              <Col md={6} xl={4}>
+              <Col md={6} xl={4} key={conv.id}>
                 <Card className={`${css.ConvCard}`}>
-                  <Card.Body>
+                  <Card.Body className={css.ConvBody}>
                     <div className="d-flex">
-                      <Avatar
-                        src={conv.is_owner ? conv.owner_image : conv.receiver_image}
-                        size={40}
-                        alt={`${conv.owner}'s avatar`}
-                      />
-                      <Card.Title className="ms-2">{conv.topic}</Card.Title>
+                      <Link
+                        to={`/profile/${
+                          !conv.is_owner ? conv.owner.id : conv.receiver
+                        }`}
+                        aria-label={`${
+                          !conv.is_owner ? conv.owner : conv.receiver_name
+                        }'s profile`}
+                      >
+                        <Avatar
+                          src={
+                            !conv.is_owner
+                              ? conv.owner_image
+                              : conv.receiver_image
+                          }
+                          size={40}
+                          alt={`${
+                            !conv.is_owner ? conv.owner : conv.receiver_name
+                          }'s avatar`}
+                        />
+                      </Link>
+
+                      <h2 className="ms-2 card-title h5">{conv.topic}</h2>
                     </div>
-                    <hr />
-                    <Card.Text>{conv.content}</Card.Text>
+                    <div className={css.ConvInfo}>
+                      <span>
+                        @{!conv.is_owner ? conv.owner : conv.receiver_name}
+                      </span>
+                      <span className="ms-1 opacity-75">{conv.created_at}</span>
+                    </div>
+                    <hr className={css.ConvSeparator} />
+                    <Link
+                      className={css.ConvLink}
+                      to={`/conversation/${conv.id}`}
+                      aria-label={`go to ${conv.topic} conversation`}
+                    >
+                      <Card.Text className={css.ConvContent}>
+                        {conv.content}
+                      </Card.Text>
+                      <div className={css.ConvReplies}>
+                        <i className="fa-solid fa-comments me-1"></i>
+                        <span>
+                          {conv.replies_count}
+                          <span className="sr-only">replies</span>
+                        </span>
+                      </div>
+                    </Link>
                   </Card.Body>
                 </Card>
               </Col>

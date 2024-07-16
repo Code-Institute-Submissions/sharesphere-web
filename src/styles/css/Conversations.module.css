@@ -1,43 +1,54 @@
 .ConvCard {
-  /* width: 85vw; */
   margin: 1rem;
   background-color: rgb(13 15 16);
   color: #eeebe8;
   border: 1px solid #ffffff1a;
   padding: 0.25rem;
-  transition-duration: .4s;
+  transition-duration: 0.4s;
 }
 
 .ConvCard:hover {
   transform: scale(1.035);
 }
 
-/* @media (min-width: 576px) {
-  .ConvCard {
-    width: 65vw;
-  }
+.ConvSeparator {
+  margin: 0.125rem 0 0.5rem;
 }
 
-@media (min-width: 768px) {
-  .ConvCard {
-    width: 60vw;
-  }
+.ConvInfo {
+  font-style: oblique;
+  font-weight: 300;
 }
 
-@media (min-width: 992px) {
-  .ConvCard {
-    width: 45vw;
-  }
+.ConvBody {
+  height: 210px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
 }
 
-@media (min-width: 1018px) {
-  .ConvCard {
-    width: 38vw;
-  }
+.ConvContent {
+  /* Creates 3 ellipses for overflowing content */
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-@media (min-width: 1200px) {
-  .ConvCard {
-    width: 33vw;
-  }
-} */
+.ConvReplies {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.ConvLink {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+}
