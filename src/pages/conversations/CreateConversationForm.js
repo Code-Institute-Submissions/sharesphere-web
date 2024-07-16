@@ -7,7 +7,7 @@ import {
   FormLabel,
   Modal,
 } from "react-bootstrap";
-import css from "../../styles/css/ConfirmationModal.module.css";
+import css from "../../styles/css/Modals.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";
 import formCSS from "../../styles/css/Forms.module.css";
 import { axiosInstance } from "../../axios/axiosDefaults";
@@ -51,7 +51,11 @@ const CreateConversationForm = ({ owner, id, ...props }) => {
       centered
     >
       <div className={css.Body}>
-        <Modal.Header closeButton closeVariant="white">
+        <Modal.Header
+          className={css.ModalHeader}
+          closeButton
+          closeVariant="white"
+        >
           <Modal.Title id="contained-modal-title-vcenter">
             Start conversation with <b>{owner}</b>
           </Modal.Title>
@@ -72,7 +76,7 @@ const CreateConversationForm = ({ owner, id, ...props }) => {
               ></FormControl>
             </FormGroup>
             <FormGroup className="mt-3 mb-3" controlId="conversationContent">
-              <FormLabel className="sr-only">Conversation topic</FormLabel>
+              <FormLabel className="sr-only">Conversation content</FormLabel>
               <FormControl
                 className={formCSS.FormInput}
                 as="textarea"
@@ -84,7 +88,7 @@ const CreateConversationForm = ({ owner, id, ...props }) => {
               ></FormControl>
             </FormGroup>
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className={css.ModalFooter}>
             <Button type="submit" variant="success" onClick={props.onHide}>
               Send message
             </Button>

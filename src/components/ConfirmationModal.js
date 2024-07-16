@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
-import css from "../styles/css/ConfirmationModal.module.css";
+import css from "../styles/css/Modals.module.css";
 
 const ConfirmationModal = ({ object, handleDelete, ...props }) => {
   return (
@@ -11,7 +11,7 @@ const ConfirmationModal = ({ object, handleDelete, ...props }) => {
       centered
     >
       <div className={css.Body}>
-        <Modal.Header closeButton closeVariant="white">
+        <Modal.Header className={css.ModalHeader} closeButton closeVariant="white">
           <Modal.Title id="contained-modal-title-vcenter">
             Delete {object}
           </Modal.Title>
@@ -20,7 +20,7 @@ const ConfirmationModal = ({ object, handleDelete, ...props }) => {
           <h4>Do you want to delete this {object}?</h4>
           <p>This action cannot be undone.</p>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className={css.ModalFooter}>
           <Button className="btn-danger" onClick={handleDelete}>
             Delete
           </Button>
