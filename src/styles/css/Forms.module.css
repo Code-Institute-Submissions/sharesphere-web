@@ -16,6 +16,10 @@
   box-shadow: 0px 0px 5px 3px #747177;
 }
 
+.FullInput {
+  width: 100%;
+}
+
 .SubmitWrapper {
   display: flex;
   flex-direction: column;

@@ -41,15 +41,6 @@ const ConversationPage = () => {
 
   return (
     <Container className="d-flex flex-column">
-      <button onClick={() => setModalShow(true)} type="button">
-        Reply
-      </button>
-      <CreateReplyForm
-        id={id}
-        topic={conversation.topic}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
       {hasLoaded ? (
         <Card className={`${css.ConvCard}`}>
           <Card.Body className={css.ConvBody}>
@@ -91,6 +82,7 @@ const ConversationPage = () => {
             </div>
           </Card.Body>
           <hr className={css.ConvSeparator} />
+          <CreateReplyForm id={id} topic={conversation.topic} />
           <div className="d-flex flex-column">
             {replies.results.map((reply) => (
               <div key={reply.id}>
