@@ -1,26 +1,26 @@
 import React, { useRef, useState } from "react";
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import FormGroup from 'react-bootstrap/FormGroup';
-import FormLabel from 'react-bootstrap/FormLabel';
-import Image from 'react-bootstrap/Image';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
+import FormGroup from "react-bootstrap/FormGroup";
+import FormLabel from "react-bootstrap/FormLabel";
+import Image from "react-bootstrap/Image";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import postCSS from "../../styles/css/Posts.module.css";
 import formCSS from "../../styles/css/Forms.module.css";
 import dropdownCSS from "../../styles/css/EditDropdown.module.css";
 import Avatar from "../../components/Avatar";
+import { axiosRes } from "../../axios/axiosDefaults";
 
-const EditPostForm = ({
-  postData,
-  handleEdit,
-  toggleEdit,
-  newPostData,
-  setNewPostData,
-}) => {
+const EditPostForm = ({ setPostData, postData, toggleEdit, id }) => {
+  const [newPostData, setNewPostData] = useState({
+    title: postData.title,
+    content: postData.content,
+    image: null,
+  });
   const [originalImage] = useState(postData.image);
   const [previewImage, setPreviewImage] = useState(null);
   const { title, content } = newPostData;
@@ -55,6 +55,43 @@ const EditPostForm = ({
     });
   };
 
+  const handleEdit = async (e) => {
+    /**
+     * Handles edit submission.
+     * Image is only added if one has been submitted,
+     * otherwise it's omitted in the payload.
+     *
+     * Updates the newPostData state to set image to null again,
+     * so that it isn't uploaded again without actually changing.
+     */
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", newPostData.title);
+    formData.append("content", newPostData.content);
+    if (newPostData.image) {
+      formData.append("image", newPostData.image);
+    }
+    try {
+      const { data } = await axiosRes.put(`/posts/${id}/`, formData);
+      setPostData({
+        ...postData,
+        title: data.title,
+        content: data.content,
+        image: data.image,
+      });
+
+      setNewPostData({
+        ...newPostData,
+        image: null,
+      });
+
+      toggleEdit();
+    } catch (error) {
+      setErrors(error.response.data);
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Form className="text-center" onSubmit={handleEdit}>
@@ -78,14 +115,13 @@ const EditPostForm = ({
               onChange={handleImageChange}
               ref={imageUpload}
             ></FormControl>
-            {errors?.image?.map((err) => (
-              <Alert key={err} variant="warning">
-                {err}
-              </Alert>
-            ))}
           </FormGroup>
         </div>
-
+        {errors?.image?.map((err) => (
+          <Alert key={err} variant="warning">
+            {err}
+          </Alert>
+        ))}
         <div className={postCSS.CardHeader}>
           <div className={postCSS.OwnerLink}>
             <Avatar src={profile_image} size={30} alt="Post owner" />
@@ -129,14 +165,13 @@ const EditPostForm = ({
                 onChange={handleChange}
                 maxLength={50}
               />
-              {errors?.title?.map((err) => (
-                <Alert key={err} variant="warning" className="mt-2">
-                  {err}
-                </Alert>
-              ))}
             </Form.Group>
           </Card.Title>
-
+          {errors?.title?.map((err) => (
+            <Alert key={err} variant="warning" className="mt-2">
+              {err}
+            </Alert>
+          ))}
           <Card.Text as={"div"}>
             <Form.Group className="mb-3" controlId="postContent">
               <Form.Label className="sr-only">Post content</Form.Label>

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import Card from 'react-bootstrap/Card';
-import Overlay from 'react-bootstrap/Overlay';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import Card from "react-bootstrap/Card";
+import Overlay from "react-bootstrap/Overlay";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import css from "../../styles/css/Posts.module.css";
 import appCSS from "../../styles/css/App.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";
@@ -21,11 +21,6 @@ import EditPostForm from "./EditPostForm";
 
 const Post = ({ post, setPosts, comments, setComments }) => {
   const [postData, setPostData] = useState(post);
-  const [newPostData, setNewPostData] = useState({
-    title: post.title,
-    content: post.content,
-    image: null,
-  });
   const {
     title,
     content,
@@ -46,7 +41,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
   const [likeCount, setLikeCount] = useState(likes_count);
   const [commentCount, setCommentCount] = useState(comments_count);
   const [loading, setLoading] = useState(false);
-  const [show, setShow] = useState(false);
+  const [showLikeOverlay, setShowLikeOverlay] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editToggled, setEditToggled] = useState(false);
 
@@ -83,55 +78,9 @@ const Post = ({ post, setPosts, comments, setComments }) => {
 
   const toggleEdit = () => {
     /**
-     * Reverts the post back to it's original state
-     * if user chooses to stop editing.
+     * Handles toggling the post editing form.
      */
-    if (!editToggled) {
-      setEditToggled(true);
-    } else {
-      setNewPostData({
-        title: post.title,
-        content: post.content,
-        image: null,
-      });
-      setEditToggled(false);
-    }
-  };
-
-  const handleEdit = async (e) => {
-    /**
-     * Handles edit submission.
-     * Image is only added if one has been submitted,
-     * otherwise it's omitted in the payload.
-     *
-     * Updates the newPostData state to set image to null again,
-     * so that it isn't uploaded again without actually changing.
-     */
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("title", newPostData.title);
-    formData.append("content", newPostData.content);
-    if (newPostData.image) {
-      formData.append("image", newPostData.image);
-    }
-    try {
-      const { data } = await axiosRes.put(`/posts/${id}/`, formData);
-      setPostData({
-        ...postData,
-        title: data.title,
-        content: data.content,
-        image: data.image,
-      });
-
-      setNewPostData({
-        ...newPostData,
-        image: null,
-      });
-
-      setEditToggled(false);
-    } catch (error) {
-      console.log(error);
-    }
+    !editToggled ? setEditToggled(true) : setEditToggled(false);
   };
 
   const handleDelete = async () => {
@@ -164,8 +113,9 @@ const Post = ({ post, setPosts, comments, setComments }) => {
            * For other users handles liking and unliking.
            */
           if (is_owner || !loggedInUser) {
-            setShow(!show);
-            !show && setTimeout(() => setShow(false), 3000);
+            setShowLikeOverlay(!showLikeOverlay);
+            !showLikeOverlay &&
+              setTimeout(() => setShowLikeOverlay(false), 3000);
           } else {
             !like ? handleLike() : handleUnlike();
           }
@@ -179,7 +129,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
         ></i>
       </button>
 
-      <Overlay target={target.current} show={show} placement="top">
+      <Overlay target={target.current} show={showLikeOverlay} placement="top">
         {(props) => (
           <Tooltip {...props}>
             {is_owner ? (
@@ -252,11 +202,10 @@ const Post = ({ post, setPosts, comments, setComments }) => {
       or the post normal post card */}
       {editToggled ? (
         <EditPostForm
-          handleEdit={handleEdit}
           postData={postData}
+          setPostData={setPostData}
           toggleEdit={toggleEdit}
-          newPostData={newPostData}
-          setNewPostData={setNewPostData}
+          id={id}
         />
       ) : (
         <>
