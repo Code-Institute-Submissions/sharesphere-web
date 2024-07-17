@@ -16,6 +16,7 @@ const CreateReplyForm = ({ id, setReplies, setRepliesCount }) => {
     content: "",
   });
   const [errors, setErrors] = useState();
+  const [posting, setPosting] = useState(false);
 
   const { content } = formData;
 
@@ -35,22 +36,27 @@ const CreateReplyForm = ({ id, setReplies, setRepliesCount }) => {
      * setErros to display alerts if form is bad.
      */
     e.preventDefault();
-    try {
-      const { data } = await axiosRes.post(`/replies/`, formData);
-      setReplies((prevReplies) => ({
-        ...prevReplies,
-        results: [data, ...prevReplies.results],
-      }));
-      setRepliesCount((prevCount) => prevCount + 1);
-      setErrors(null);
-      setFormData({
-        message: id,
-        content: "",
-      });
-      console.log("reply sent", data);
-    } catch (error) {
-      setErrors(error.response.data);
-      console.log(error);
+    if (!posting) {
+      try {
+        setPosting(true);
+        const { data } = await axiosRes.post(`/replies/`, formData);
+        setReplies((prevReplies) => ({
+          ...prevReplies,
+          results: [data, ...prevReplies.results],
+        }));
+        setRepliesCount((prevCount) => prevCount + 1);
+        setErrors(null);
+        setFormData({
+          message: id,
+          content: "",
+        });
+        setPosting(false);
+        console.log("reply sent", data);
+      } catch (error) {
+        setErrors(error.response.data);
+        setPosting(false);
+        console.log(error);
+      }
     }
   };
 
