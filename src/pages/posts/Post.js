@@ -232,6 +232,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
             variant="top"
             src={image}
             alt={title}
+            width={"100%"}
           />
         </Link>
       ) : (

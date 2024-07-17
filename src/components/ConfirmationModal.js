@@ -1,7 +1,7 @@
 import React from "react";
+import css from "../styles/css/Modals.module.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import css from "../styles/css/Modals.module.css";
 
 const ConfirmationModal = ({ object, handleDelete, ...props }) => {
   return (
