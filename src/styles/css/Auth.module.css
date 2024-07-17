@@ -10,6 +10,7 @@
 .FormWrapper {
   display: flex;
   height: 90vh;
+  text-align: center;
 }
 
 .FieldAlert {

@@ -32,6 +32,9 @@ const CreateReplyForm = ({ id, setReplies, setRepliesCount }) => {
      * Posts a new reply given content input is provided.
      * Updates reply count, removes any error fields and
      * empties the form on sumbission.
+     * 
+     * Prevent post requests being attempted a request is
+     * already being made.
      *
      * setErros to display alerts if form is bad.
      */
