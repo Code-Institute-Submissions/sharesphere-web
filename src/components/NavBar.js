@@ -7,6 +7,7 @@ import css from "../styles/css/NavBar.module.css";
 import "../styles/css/NavBar.css";
 import { useAuth } from "../context/AuthContext";
 import Avatar from "./Avatar";
+import SignOut from "../pages/authentication/SignOut";
 
 const NavBar = () => {
   const { loggedInUser } = useAuth();
@@ -60,7 +61,7 @@ const NavBar = () => {
               </NavLink>
               {loggedInUser ? loggedInNav : loggedOutNav}
             </Nav>
-            {loggedInUser ? (
+            {loggedInUser && (
               <div className="d-lg-flex d-none">
                 <Link to={`/profile/${loggedInUser.pk}`}>
                   <Avatar
@@ -69,8 +70,9 @@ const NavBar = () => {
                     alt="Your avatar"
                   />
                 </Link>
+                <SignOut />
               </div>
-            ) : null}
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>

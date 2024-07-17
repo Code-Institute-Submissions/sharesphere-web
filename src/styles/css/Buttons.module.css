@@ -30,3 +30,13 @@
   padding: 0px;
   color: inherit;
 }
+
+.SignOutBtn {
+  font-size: 160%;
+  transition-duration: .3s;
+  color: #e1e4e8;
+}
+
+.SignOutBtn:hover {
+  color: #b0b0b0;
+}
