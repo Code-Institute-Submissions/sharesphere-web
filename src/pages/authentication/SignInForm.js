@@ -9,6 +9,7 @@ import css from "../../styles/css/Auth.module.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { setTokenTimestamp } from "../../utils/Utils";
 
 const SignInForm = () => {
   const [signInData, setSignInData] = useState({
@@ -18,7 +19,7 @@ const SignInForm = () => {
   const [fieldErrors, setFieldErrors] = useState([]);
   const { username, password } = signInData;
   const navigate = useNavigate();
-  const { setLoggedInUser } = useAuth()
+  const { setLoggedInUser } = useAuth();
 
   const handleChange = (e) => {
     setSignInData({
@@ -30,8 +31,10 @@ const SignInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post("/dj-rest-auth/login/", signInData);
-      setLoggedInUser(data.data.user)
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setLoggedInUser(data.user);
+      localStorage.setItem("loggedInUser", JSON.stringify(data.user))
+      setTokenTimestamp(data)
       navigate("/");
     } catch (error) {
       setFieldErrors(error.response?.data);

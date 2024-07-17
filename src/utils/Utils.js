@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import { axiosRes } from "../axios/axiosDefaults";
 import { axiosReq } from "../axios/axiosDefaults";
 import { useEffect } from "react";
@@ -64,4 +65,37 @@ export const SignInRequired = () => {
       state: { warning: "You must be logged in to access that page" },
     });
   }, [navigate]);
+};
+
+export const AlreadySignedIn = () => {
+  /**
+   * Component that can be conditionally used if userLoggedIn context is
+   * false when the user attempts to access a page a logged out user can't
+   * use.
+   * The user will just be redirected with a warning message letting them
+   * know that they need to sign in to access that page.
+   */
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/", {
+      state: { success: "You are already signed in" },
+    });
+  }, [navigate]);
+};
+
+// Source:
+// https://github.com/mr-fibonacci/moments/blob/bb6657e265fb18360b841e10d9d633dad06f4e5c/src/utils/utils.js#L55C1-L66C3
+export const setTokenTimestamp = (data) => {
+  const refreshTokenTimestamp = jwtDecode(data?.refresh).exp;
+  console.log("token refresh:", refreshTokenTimestamp)
+  localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+};
+
+export const shouldRefreshToken = () => {
+  return !!localStorage.getItem("refreshTokenTimestamp");
+};
+
+export const removeTokenTimestamp = () => {
+  localStorage.removeItem("refreshTokenTimestamp");
 };

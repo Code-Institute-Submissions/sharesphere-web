@@ -14,7 +14,7 @@ import RenderPosts from "./pages/posts/RenderPosts.js";
 import PostPage from "./pages/posts/PostPage.js";
 import Conversations from "./pages/conversations/Conversations.js";
 import ConversationPage from "./pages/conversations/ConversationPage.js";
-import { SignInRequired } from "./utils/Utils.js";
+import { AlreadySignedIn, SignInRequired } from "./utils/Utils.js";
 import NotFound from "./pages/notfound/NotFound.js";
 
 function App() {
@@ -127,8 +127,14 @@ function App() {
           }
         />
         <Route path="/post/:id" element={<PostPage />} />
-        <Route path="/signin" element={<SignInForm />} />
-        <Route path="/signup" element={<SignUpForm />} />
+        <Route
+          path="/signin"
+          element={!loggedInUser ? <SignInForm /> : <AlreadySignedIn />}
+        />
+        <Route
+          path="/signup"
+          element={!loggedInUser ? <SignUpForm /> : <AlreadySignedIn />}
+        />
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route
           path="/conversations"

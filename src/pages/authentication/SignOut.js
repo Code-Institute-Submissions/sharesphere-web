@@ -6,12 +6,13 @@ import btnCSS from "../../styles/css/Buttons.module.css";
 import { axiosReq } from "../../axios/axiosDefaults";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { removeTokenTimestamp } from "../../utils/Utils";
 
 const SignOut = () => {
   const [modalShow, setModalShow] = useState(false);
 
   const { setLoggedInUser } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     /**
@@ -24,8 +25,9 @@ const SignOut = () => {
       await axiosReq.post("/dj-rest-auth/logout/");
       setLoggedInUser(null);
       localStorage.removeItem("loggedInUser");
+      removeTokenTimestamp();
       setModalShow(false);
-      navigate("/", {state: { success: "Successfully signed out!" }})
+      navigate("/", { state: { success: "Successfully signed out!" } });
     } catch (error) {
       console.log(error);
     }

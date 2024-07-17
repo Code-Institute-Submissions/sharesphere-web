@@ -1,5 +1,7 @@
 ### Bugs
 
+refresh_token value was not available with httponly set to true on the backend
+
 #### Fixed bugs
 
 - Refreshing the page gives a brief flash of a view as though the user isn't authenticated.

@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { axiosReq, axiosRes } from "../axios/axiosDefaults";
 import { useNavigate } from "react-router-dom";
+import { removeTokenTimestamp, shouldRefreshToken } from "../utils/Utils";
 
 const AuthContext = createContext();
 
@@ -58,18 +59,20 @@ export const AuthProvider = ({ children }) => {
        * the server and the data in the localStorage object then the state and
        * the localStorage object will be updated to match the server data.
        */
-      const data = await checkLoginStatus();
-      const savedLogin = localStorage.getItem("loggedInUser");
+      if (shouldRefreshToken()) {
+        const data = await checkLoginStatus();
+        const savedLogin = localStorage.getItem("loggedInUser");
 
-      if (!savedLogin && data) {
-        setLoggedInUser(data);
-        localStorage.setItem("loggedInUser", JSON.stringify(data));
-      } else if (savedLogin && !data) {
-        setLoggedInUser(null);
-        localStorage.removeItem("loggedInUser");
-      } else if (savedLogin && data && savedLogin !== data) {
-        setLoggedInUser(data);
-        localStorage.setItem("loggedInUser", JSON.stringify(data));
+        if (!savedLogin && data) {
+          setLoggedInUser(data);
+          localStorage.setItem("loggedInUser", JSON.stringify(data));
+        } else if (savedLogin && !data) {
+          setLoggedInUser(null);
+          localStorage.removeItem("loggedInUser");
+        } else if (savedLogin && data && savedLogin !== data) {
+          setLoggedInUser(data);
+          localStorage.setItem("loggedInUser", JSON.stringify(data));
+        }
       }
     };
     verifyLogin();
@@ -83,11 +86,14 @@ export const AuthProvider = ({ children }) => {
        * the post feed.
        */
       async (config) => {
-        try {
-          await axios.post("/dj-rest-auth/token/refresh/");
-        } catch (error) {
-          console.log("axios interceptor", error);
-          return config;
+        if (shouldRefreshToken()) {
+          try {
+            await axios.post("/dj-rest-auth/token/refresh/");
+          } catch (error) {
+            console.log("axios interceptor", error);
+            removeTokenTimestamp();
+            return config;
+          }
         }
         return config;
       },
@@ -117,6 +123,7 @@ export const AuthProvider = ({ children }) => {
             // Redirect user to sign in if session expired while using the site
             setLoggedInUser((prevLoggedInUser) => {
               if (prevLoggedInUser) {
+                removeTokenTimestamp();
                 navigate("/signin");
               }
               return null;
