@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../axios/axiosDefaults";
 import Loader from "../../components/Loader";
-import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Card from 'react-bootstrap/Card';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import Avatar from "../../components/Avatar";
 import css from "../../styles/css/PopularProfiles.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";

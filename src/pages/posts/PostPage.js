@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../axios/axiosDefaults";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import Loader from "../../components/Loader";
 import css from "../../styles/css/Posts.module.css";
 import Post from "./Post";

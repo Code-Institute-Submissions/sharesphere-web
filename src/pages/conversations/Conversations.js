@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { axiosRes } from "../../axios/axiosDefaults";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Loader from "../../components/Loader";
 import css from "../../styles/css/Conversations.module.css";
 import Avatar from "../../components/Avatar";

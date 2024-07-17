@@ -1,5 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Card, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Card from 'react-bootstrap/Card';
+import Overlay from 'react-bootstrap/Overlay';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import css from "../../styles/css/Posts.module.css";
 import appCSS from "../../styles/css/App.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";

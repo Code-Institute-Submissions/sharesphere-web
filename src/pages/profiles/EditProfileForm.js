@@ -1,15 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosRes } from "../../axios/axiosDefaults";
-import {
-  Alert,
-  Col,
-  Container,
-  FormControl,
-  FormGroup,
-  FormLabel,
-  Row,
-} from "react-bootstrap";
+import Alert from 'react-bootstrap/Alert';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import FormControl from 'react-bootstrap/FormControl';
+import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
+import Row from 'react-bootstrap/Row';
 import Avatar from "../../components/Avatar";
 import formCSS from "../../styles/css/Forms.module.css";
 import { useAuth } from "../../context/AuthContext";

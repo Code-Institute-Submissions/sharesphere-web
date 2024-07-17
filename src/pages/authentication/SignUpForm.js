@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Alert, Col, Container, Row } from "react-bootstrap";
+import Alert from 'react-bootstrap/Alert';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import css from "../../styles/css/Auth.module.css";

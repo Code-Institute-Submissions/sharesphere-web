@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { Form, FormGroup, FormLabel } from "react-bootstrap";
+import Form from 'react-bootstrap/Form';
+import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import formCSS from "../../styles/css/Forms.module.css";
 
 const EditCommentForm = ({ commentData, setCommentData, handleEdit }) => {

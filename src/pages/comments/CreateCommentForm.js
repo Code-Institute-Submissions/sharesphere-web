@@ -1,5 +1,9 @@
 import React, { useRef, useState } from "react";
-import { Form, FormGroup, FormLabel, Overlay, Tooltip } from "react-bootstrap";
+import Form from 'react-bootstrap/Form';
+import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
+import Overlay from 'react-bootstrap/Overlay';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { axiosRes } from "../../axios/axiosDefaults";
 import formCSS from "../../styles/css/Forms.module.css";
 import appCSS from "../../styles/css/App.module.css";

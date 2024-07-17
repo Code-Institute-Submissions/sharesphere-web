@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import css from "../../styles/css/Conversation.module.css";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { axiosReq } from "../../axios/axiosDefaults";
-import { Col, Container, Row } from "react-bootstrap";
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Avatar from "../../components/Avatar";
 import css from "../../styles/css/ProfilePage.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";

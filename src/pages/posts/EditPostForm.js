@@ -1,16 +1,14 @@
 import React, { useRef, useState } from "react";
-import {
-  Alert,
-  Button,
-  Card,
-  Form,
-  FormControl,
-  FormGroup,
-  FormLabel,
-  Image,
-  OverlayTrigger,
-  Tooltip,
-} from "react-bootstrap";
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
+import Image from 'react-bootstrap/Image';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import postCSS from "../../styles/css/Posts.module.css";
 import formCSS from "../../styles/css/Forms.module.css";
 import dropdownCSS from "../../styles/css/EditDropdown.module.css";
