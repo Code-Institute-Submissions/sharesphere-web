@@ -8,9 +8,13 @@ import "../styles/css/NavBar.css";
 import { useAuth } from "../context/AuthContext";
 import Avatar from "./Avatar";
 import SignOut from "../pages/authentication/SignOut";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
   const { loggedInUser } = useAuth();
+  // Use of the following credited to:
+  // https://github.com/mr-fibonacci/moments/blob/bb6657e265fb18360b841e10d9d633dad06f4e5c/src/components/NavBar.js
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const loggedInNav = (
     <>
@@ -51,12 +55,21 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar expand="lg" className={css.NavBar} variant="dark">
+      <Navbar
+        expanded={expanded}
+        expand="lg"
+        className={css.NavBar}
+        variant="dark"
+      >
         <Container>
           <Link to="/" className={css.NavBarBrand}>
             ShareSphere
           </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle
+            ref={ref}
+            onClick={() => setExpanded(!expanded)}
+            aria-controls="basic-navbar-nav"
+          />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto NavLinks">
               <NavLink to="/" className={css.NavLink}>
