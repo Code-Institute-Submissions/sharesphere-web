@@ -14,6 +14,7 @@
 .Info {
   display: flex;
   opacity: 0.6;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .Action {

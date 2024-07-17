@@ -8,31 +8,30 @@ import css from "../../styles/css/Posts.module.css";
 import Post from "./Post";
 import PopularProfiles from "../profiles/PopularProfiles";
 
-const RenderPosts = (props) => {
+const RenderPosts = ({filter, heading}) => {
   const [posts, setPosts] = useState({
     results: [],
     next: true,
   });
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  const { filter } = props;
   const { results, next } = posts;
 
-  const fetchPosts = async () => {
-    try {
-      const { data } = await axiosReq.get(`${filter}`);
-      setPosts({
-        results: data.results,
-        next: data.next,
-      });
-      setHasLoaded(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    setHasLoaded(false);
+    const fetchPosts = async () => {
+      try {
+        setHasLoaded(false);
+        const { data } = await axiosReq.get(`${filter}`);
+        setPosts({
+          results: data.results,
+          next: data.next,
+        });
+        setHasLoaded(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     fetchPosts();
   }, [filter]);
 
@@ -41,7 +40,8 @@ const RenderPosts = (props) => {
       <Row>
         <Col lg={3}></Col>
         <Col lg={6} className="mx-auto">
-          {hasLoaded ? (
+      <h1>{heading}</h1>
+      {hasLoaded ? (
             <InfiniteScroll
               className={css.PostsWrapper}
               style={{ overflow: "hidden" }}

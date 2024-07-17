@@ -72,7 +72,7 @@ const PopularProfiles = () => {
   return (
     <div>
       <Card className={css.ProfilesContainer}>
-        <h1 className={css.PopularHeading}>Most active posters!</h1>
+        <h2 className={css.PopularHeading}>Most active posters!</h2>
         {hasLoaded ? (
           <>
             {popularProfiles.map((profile) => (

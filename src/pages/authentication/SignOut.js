@@ -37,7 +37,7 @@ const SignOut = () => {
       </span>
       <button
         className={`${btnCSS.Btn} ${btnCSS.SignOutBtn} ms-3 d-none d-lg-block`}
-        title="sign out"
+        title="Sign out"
         onClick={() => setModalShow(true)}
       >
         <i className="fa-solid fa-right-from-bracket"></i>

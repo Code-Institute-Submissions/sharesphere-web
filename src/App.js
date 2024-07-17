@@ -28,7 +28,7 @@ function App() {
      * If it has then update the successMessage state to contain
      * that state so that an alert is displayed notifying the user
      * of, an otherwise unclear, successful CRUD action.
-     * 
+     *
      * Clears the success message from the location state after
      * the successMessage state has been set to avoid it repeating
      * after refreshing the page.
@@ -43,7 +43,7 @@ function App() {
     /**
      * useEffect hook to handle auto closing a success alert
      * if the successMessage gets set.
-     * 
+     *
      * Cleanup function to remove the timer if the component
      * unmounts before the timer is done.
      * This would happen if the user navigates to a different page
@@ -71,12 +71,21 @@ function App() {
         {/* Rest of your conversations page content */}
       </div>
       <Routes>
-        <Route path="/" element={<RenderPosts filter={"/posts"} />} />
+        <Route
+          path="/"
+          element={
+            <RenderPosts
+              filter={"/posts"}
+              heading={"ShareSphere Feed"}
+            />
+          }
+        />
         <Route
           path="/following"
           element={
             <RenderPosts
               filter={`/posts/?owner__followed__owner__profile=${loggedInUser?.pk}`}
+              heading={"Personal Feed"}
             />
           }
         />
@@ -85,6 +94,7 @@ function App() {
           element={
             <RenderPosts
               filter={`/posts/?likes__owner__profile=${loggedInUser?.pk}`}
+              heading={"Your Likes"}
             />
           }
         />
