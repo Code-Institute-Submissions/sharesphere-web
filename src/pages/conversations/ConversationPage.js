@@ -9,7 +9,7 @@ import Loader from "../../components/Loader";
 import Avatar from "../../components/Avatar";
 import Reply from "../replies/Reply";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FetchNext } from "../../utils/FetchNext";
+import { FetchNext } from "../../utils/Utils";
 import { EditDropdown } from "../../components/EditDropdown";
 import ConfirmationModal from "../../components/ConfirmationModal";
 

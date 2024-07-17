@@ -9,7 +9,7 @@ import css from "../../styles/css/Conversations.module.css";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FetchNext } from "../../utils/FetchNext";
+import { FetchNext } from "../../utils/Utils";
 
 const Conversations = () => {
   const [conversations, setConversations] = useState({});

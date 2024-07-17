@@ -12,7 +12,7 @@ import { axiosRes } from "../../axios/axiosDefaults";
 import { useAuth } from "../../context/AuthContext";
 import Comment from "../comments/Comment";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FetchNext } from "../../utils/FetchNext";
+import { FetchNext } from "../../utils/Utils";
 import Loader from "../../components/Loader";
 import CreateCommentForm from "../comments/CreateCommentForm";
 import { EditDropdown } from "../../components/EditDropdown";

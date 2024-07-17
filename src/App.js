@@ -14,7 +14,7 @@ import RenderPosts from "./pages/posts/RenderPosts.js";
 import PostPage from "./pages/posts/PostPage.js";
 import Conversations from "./pages/conversations/Conversations.js";
 import ConversationPage from "./pages/conversations/ConversationPage.js";
-import { SignInRequired } from "./utils/SignInRequired.js";
+import { SignInRequired } from "./utils/Utils.js";
 import NotFound from "./pages/notfound/NotFound.js";
 
 function App() {

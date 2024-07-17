@@ -8,7 +8,7 @@ import Avatar from "../../components/Avatar";
 import css from "../../styles/css/PopularProfiles.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";
 import { Link } from "react-router-dom";
-import { followHelper, unfollowHelper } from "../../utils/FollowHelper";
+import { followHelper, unfollowHelper } from "../../utils/Utils";
 import { useAuth } from "../../context/AuthContext";
 
 const PopularProfiles = () => {

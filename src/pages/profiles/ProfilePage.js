@@ -8,7 +8,7 @@ import Avatar from "../../components/Avatar";
 import css from "../../styles/css/ProfilePage.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";
 import Loader from "../../components/Loader";
-import { followHelper, unfollowHelper } from "../../utils/FollowHelper";
+import { followHelper, unfollowHelper } from "../../utils/Utils";
 import CreateConversationForm from "../conversations/CreateConversationForm";
 import { useAuth } from "../../context/AuthContext";
 

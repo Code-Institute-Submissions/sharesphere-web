@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FetchNext } from "../../utils/FetchNext";
+import { FetchNext } from "../../utils/Utils";
 import Loader from "../../components/Loader";
 import css from "../../styles/css/Posts.module.css";
 import Post from "./Post";
