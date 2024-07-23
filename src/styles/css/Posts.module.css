@@ -103,3 +103,9 @@
     width: 33vw;
   }
 }
+
+@media (min-width: 1920px) {
+  .PostCard {
+    width: 100%;
+  }
+}
