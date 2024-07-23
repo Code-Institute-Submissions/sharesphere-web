@@ -46,15 +46,18 @@ const SignInForm = () => {
       <Row className="flex-grow-1">
         <Col xs="12" className={css.PageHeader}>
           <h1>Sign in to your account</h1>
-          <p>
+
+        </Col>
+        <Col md="6">
+        <div className={css.FieldsContainer}>
+
+        <p>
             If you don't already have an account, please{" "}
             <Link to={"/signup"} className="text-decoration-none">
               sign up
             </Link>
             .
           </p>
-        </Col>
-        <Col md="6">
           <Form className={css.Form} onSubmit={handleSubmit}>
             <Form.Group className="mb-4" controlId="username">
               <Form.Label className="sr-only">Username</Form.Label>
@@ -105,10 +108,12 @@ const SignInForm = () => {
               </Alert>
             ))}
 
-            <Button variant="primary" type="submit" className="mt-3">
+            <Button variant="primary" type="submit" className={css.SubmitBtn}>
               Sign in!
             </Button>
           </Form>
+        </div>
+
         </Col>
         <Col className="d-none d-md-flex">
           <p>Image placeholder</p>

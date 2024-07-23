@@ -1,10 +1,5 @@
 .PageHeader {
-  margin-top: 0.5rem;
-}
-
-.Form {
-  max-width: 80%;
-  margin: auto;
+  margin-top: 1.5rem;
 }
 
 .FormWrapper {
@@ -19,14 +14,12 @@
   margin-bottom: 0;
 }
 
-@media (min-width: 768px) {
-  .Form {
-    max-width: 65%;
-  }
+.FieldsContainer {
+  border: 1px solid #ffffff4f;
+  border-radius: 0.5rem;
+  padding: 1rem;
 }
 
-@media (min-width: 992px) {
-  .Form {
-    max-width: 55%;
-  }
+.SubmitBtn {
+  width: 100%;
 }

@@ -41,9 +41,11 @@ const SignUpForm = () => {
       <Row className="flex-grow-1">
         <Col xs="12" className={css.PageHeader}>
           <h1>Create an account</h1>
-          <p>If you already have an account, please <Link to={"/signin"} className="text-decoration-none">sign in</Link> instead.</p>
         </Col>
         <Col md="6">
+        <div className={css.FieldsContainer}>
+        <p>If you already have an account, please <Link to={"/signin"} className="text-decoration-none">sign in</Link> instead.</p>
+
           <Form className={css.Form} onSubmit={handleSubmit}>
             <Form.Group className="mb-4" controlId="username">
               <Form.Label className="sr-only">Username</Form.Label>
@@ -114,10 +116,11 @@ const SignUpForm = () => {
               </Alert>
             ))}
 
-            <Button variant="success" type="submit" className="mt-3">
+            <Button variant="success" type="submit" className={css.SubmitBtn}>
               Sign up!
             </Button>
           </Form>
+          </div>
         </Col>
         <Col className="d-none d-md-flex">
           <p>Image placeholder</p>
