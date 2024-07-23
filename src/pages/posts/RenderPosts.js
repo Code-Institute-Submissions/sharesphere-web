@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../axios/axiosDefaults";
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchNext } from "../../utils/Utils";
 import Loader from "../../components/Loader";
@@ -10,7 +10,7 @@ import css from "../../styles/css/Posts.module.css";
 import Post from "./Post";
 import PopularProfiles from "../profiles/PopularProfiles";
 
-const RenderPosts = ({filter, heading}) => {
+const RenderPosts = ({ filter, heading }) => {
   const [posts, setPosts] = useState({
     results: [],
     next: true,
@@ -40,10 +40,12 @@ const RenderPosts = ({filter, heading}) => {
   return (
     <Container className="text-center">
       <Row>
-        <Col lg={3}></Col>
-        <Col lg={6} className="mx-auto">
-      <h1>{heading}</h1>
-      {hasLoaded ? (
+        <Col lg={{ span: 3, order: "last" }}>
+          <PopularProfiles />
+        </Col>
+        <Col lg={{ span: 6, offset: 3 }}>
+          <h1>{heading}</h1>
+          {hasLoaded ? (
             <InfiniteScroll
               className={css.PostsWrapper}
               style={{ overflow: "hidden" }}
@@ -70,9 +72,6 @@ const RenderPosts = ({filter, heading}) => {
           ) : (
             <Loader center />
           )}
-        </Col>
-        <Col lg={3}>
-          <PopularProfiles />
         </Col>
       </Row>
     </Container>
