@@ -97,7 +97,7 @@ function App() {
         <Route
           path="/"
           element={
-            <RenderPosts filter={"/posts"} heading={"ShareSphere Feed"} />
+            <RenderPosts filter={"/posts/"} heading={"ShareSphere Feed"} />
           }
         />
         <Route
