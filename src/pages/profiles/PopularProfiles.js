@@ -73,8 +73,10 @@ const PopularProfiles = () => {
 
   return (
     <div>
-      <Card className={css.ProfilesContainer}>
+      <Card className={css.PopularContainer}>
         <h2 className={css.PopularHeading}>Most active posters!</h2>
+        <div className={css.ProfilesContainer}>
+
         {hasLoaded ? (
           <>
             {popularProfiles.map((profile) => (
@@ -121,6 +123,8 @@ const PopularProfiles = () => {
             <Loader />
           </div>
         )}
+        </div>
+
       </Card>
     </div>
   );
