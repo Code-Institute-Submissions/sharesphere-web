@@ -94,6 +94,8 @@ refresh_token value was not available with httponly set to true on the backend
 
       - A possible fix would be to fetch the first object on the next page before performing the deletion.
 
+- Similar to the bug above when adding a comment or reply, the older objects on the current page will get pushed to the next page, and when the next page is fetched they will be added again as duplicates.
+
 ## Credits
 
 ### Media
