@@ -1,15 +1,39 @@
+import react from "eslint-plugin-react";
+import hooks from "eslint-plugin-react-hooks";
+import js from "@eslint/js";
+import prettier from "eslint-plugin-prettier";
 import globals from "globals";
-import pluginJs from "@eslint/js";
-import pluginReact from "eslint-plugin-react";
 
 export default [
   {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
-    languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    files: ["src/**/*.{js,jsx,mjs,cjs,ts,tsx}"],
+    plugins: {
+      react,
+      "react-hooks": hooks,
+      prettier,
+    },
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        ...globals.browser,
+      },
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     rules: {
-      "react/prop-types": [enabled]
+      ...js.configs.recommended.rules,
+      ...react.configs.recommended.rules,
+      "prettier/prettier": "error",
+      "react/prop-types": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
     },
   },
-  pluginJs.configs.recommended,
-  pluginReact.configs.flat.recommended,
 ];
