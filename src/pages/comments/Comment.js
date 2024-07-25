@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import css from "../../styles/css/Comments.module.css";
 import postCSS from "../../styles/css/Posts.module.css";
 import dropdownCSS from "../../styles/css/EditDropdown.module.css";
-import Card from 'react-bootstrap/Card';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import Card from "react-bootstrap/Card";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
@@ -64,8 +64,8 @@ const Comment = (props) => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/comments/${id}`);
       setModalShow(false);
+      await axiosRes.delete(`/comments/${id}`);
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),

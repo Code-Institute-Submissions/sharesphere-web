@@ -43,11 +43,12 @@ const CreateCommentForm = ({ post, setComments, setCommentCount }) => {
           ...commentData,
           content: "",
         });
+        setPosting(false)
       } catch (error) {
         setPosting(false)
         console.log(error);
       }
-    } else if (!show) {
+    } else if (content === "") {
       setShow(true);
       setTimeout(() => setShow(false), 3000);
     }
