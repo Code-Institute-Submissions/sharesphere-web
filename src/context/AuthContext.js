@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
        * the user logs in again.
        *
        * If a login is saved and the session is valid but the user has been updated
-       * through the profile updating rendering a mismatch in the data sotred on
+       * through the profile updating rendering a mismatch in the data stored on
        * the server and the data in the localStorage object then the state and
        * the localStorage object will be updated to match the server data.
        */
