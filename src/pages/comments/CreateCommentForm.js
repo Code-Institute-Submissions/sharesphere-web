@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import Form from 'react-bootstrap/Form';
-import FormGroup from 'react-bootstrap/FormGroup';
-import FormLabel from 'react-bootstrap/FormLabel';
-import Overlay from 'react-bootstrap/Overlay';
-import Tooltip from 'react-bootstrap/Tooltip';
+import Form from "react-bootstrap/Form";
+import FormGroup from "react-bootstrap/FormGroup";
+import FormLabel from "react-bootstrap/FormLabel";
+import Overlay from "react-bootstrap/Overlay";
+import Tooltip from "react-bootstrap/Tooltip";
 import { axiosRes } from "../../axios/axiosDefaults";
 import formCSS from "../../styles/css/Forms.module.css";
 import appCSS from "../../styles/css/App.module.css";
@@ -16,7 +16,7 @@ const CreateCommentForm = ({ post, setComments, setCommentCount }) => {
     post: post,
     content: "",
   });
-  const [posting, setPosting] = useState(false)
+  const [posting, setPosting] = useState(false);
 
   const [show, setShow] = useState(false);
   const target = useRef(null);
@@ -32,7 +32,7 @@ const CreateCommentForm = ({ post, setComments, setCommentCount }) => {
        * and instead shows a tooltip overlay.
        */
       try {
-        setPosting(true)
+        setPosting(true);
         const { data } = await axiosRes.post("/comments/", commentData);
         setComments((prevComments) => ({
           ...prevComments,
@@ -43,9 +43,9 @@ const CreateCommentForm = ({ post, setComments, setCommentCount }) => {
           ...commentData,
           content: "",
         });
-        setPosting(false)
+        setPosting(false);
       } catch (error) {
-        setPosting(false)
+        setPosting(false);
         console.log(error);
       }
     } else if (content === "") {
@@ -58,9 +58,7 @@ const CreateCommentForm = ({ post, setComments, setCommentCount }) => {
     <Form onSubmit={handleSubmit}>
       <FormGroup controlId="comment">
         <div className="d-flex mb-0 mt-2 ms-1">
-          <FormLabel className="sr-only" >
-            Leave a comment
-          </FormLabel>
+          <FormLabel className="sr-only">Leave a comment</FormLabel>
           <Form.Control
             className={formCSS.FormInput}
             type="text"

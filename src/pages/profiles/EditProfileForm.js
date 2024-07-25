@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosRes } from "../../axios/axiosDefaults";
-import Alert from 'react-bootstrap/Alert';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import FormControl from 'react-bootstrap/FormControl';
-import FormGroup from 'react-bootstrap/FormGroup';
-import FormLabel from 'react-bootstrap/FormLabel';
-import Row from 'react-bootstrap/Row';
+import Alert from "react-bootstrap/Alert";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import FormControl from "react-bootstrap/FormControl";
+import FormGroup from "react-bootstrap/FormGroup";
+import FormLabel from "react-bootstrap/FormLabel";
+import Row from "react-bootstrap/Row";
 import Avatar from "../../components/Avatar";
 import formCSS from "../../styles/css/Forms.module.css";
 import { useAuth } from "../../context/AuthContext";
@@ -37,15 +37,15 @@ const EditProfileForm = () => {
 
   /**
    * Handles updating the preview image in case of choosing a new one.
-   * 
+   *
    * Saves the chosen file in previewImage instead since if a user
    * decides they don't want to change the picture, simply pressing
    * cancel in the file explorer window will reset it to null and instead
    * display the users current profile image in the preview again.
-   * 
+   *
    * On submission we can also use previewImage to check if the file input
    * has a file stored in it by checking whether or not previewImage is true.
-   */ 
+   */
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -59,7 +59,7 @@ const EditProfileForm = () => {
     /**
      * Creates a FormData object with the data of the fields for the put request
      * An image is only added to the payload if a file is actually chosen
-     * 
+     *
      * Only if previewImage is true will formData have the image field appended to it.
      *
      * On successful put request updates the loggedInUser context to contain the
@@ -80,7 +80,7 @@ const EditProfileForm = () => {
     try {
       const { data } = await axiosRes.put(
         `/profiles/${loggedInUser?.pk}/`,
-        formData
+        formData,
       );
       setLoggedInUser({
         ...loggedInUser,
@@ -97,9 +97,7 @@ const EditProfileForm = () => {
     if (loggedInUser) {
       const fetchProfile = async () => {
         try {
-          const profile = await axiosRes.get(
-            `/profiles/${loggedInUser.pk}`
-          );
+          const profile = await axiosRes.get(`/profiles/${loggedInUser.pk}`);
           setProfileData(profile.data);
           setHasLoaded(true);
         } catch (error) {

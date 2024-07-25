@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { axiosRes } from "../../axios/axiosDefaults";
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Loader from "../../components/Loader";
 import css from "../../styles/css/Conversations.module.css";
 import Avatar from "../../components/Avatar";
@@ -14,7 +14,7 @@ import { FetchNext } from "../../utils/Utils";
 const Conversations = () => {
   const [conversations, setConversations] = useState({});
   const [hasLoaded, setHadLoaded] = useState(false);
-  
+
   useEffect(() => {
     const fetchConversations = async () => {
       setHadLoaded(false);

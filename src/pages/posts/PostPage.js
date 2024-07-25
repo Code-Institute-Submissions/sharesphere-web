@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 
 const PostPage = () => {
   const [post, setPost] = useState({});
-  const [comments, setComments] = useState()
+  const [comments, setComments] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
   const { id } = useParams();
 
@@ -16,12 +16,12 @@ const PostPage = () => {
     setHasLoaded(false);
     const fetchPost = async () => {
       try {
-        const [{data: post}, {data: comments}] = await Promise.all([
+        const [{ data: post }, { data: comments }] = await Promise.all([
           axiosReq.get(`/posts/${id}`),
-          axiosReq.get(`/comments/?post=${id}`)
+          axiosReq.get(`/comments/?post=${id}`),
         ]);
         setPost(post);
-        setComments(comments)
+        setComments(comments);
         setHasLoaded(true);
       } catch (error) {
         console.log(error);
@@ -32,7 +32,15 @@ const PostPage = () => {
 
   return (
     <Container className={css.PostsWrapper}>
-      {hasLoaded ? <Post post={{...post}} comments={comments} setComments={setComments} /> : <Loader center />}
+      {hasLoaded ? (
+        <Post
+          post={{ ...post }}
+          comments={comments}
+          setComments={setComments}
+        />
+      ) : (
+        <Loader center />
+      )}
     </Container>
   );
 };

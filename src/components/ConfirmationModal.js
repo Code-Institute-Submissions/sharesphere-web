@@ -12,7 +12,11 @@ const ConfirmationModal = ({ object, handleDelete, ...props }) => {
       centered
     >
       <div className={css.Body}>
-        <Modal.Header className={css.ModalHeader} closeButton closeVariant="white">
+        <Modal.Header
+          className={css.ModalHeader}
+          closeButton
+          closeVariant="white"
+        >
           <Modal.Title id="contained-modal-title-vcenter">
             Delete {object}
           </Modal.Title>

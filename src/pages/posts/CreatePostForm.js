@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosRes } from "../../axios/axiosDefaults";
-import Alert from 'react-bootstrap/Alert';
-import Container from 'react-bootstrap/Container';
-import FormControl from 'react-bootstrap/FormControl';
-import FormGroup from 'react-bootstrap/FormGroup';
-import FormLabel from 'react-bootstrap/FormLabel';
-import Image from 'react-bootstrap/Image';
+import Alert from "react-bootstrap/Alert";
+import Container from "react-bootstrap/Container";
+import FormControl from "react-bootstrap/FormControl";
+import FormGroup from "react-bootstrap/FormGroup";
+import FormLabel from "react-bootstrap/FormLabel";
+import Image from "react-bootstrap/Image";
 import css from "../../styles/css/Forms.module.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -58,10 +58,10 @@ const CreatePostForm = () => {
               <FormGroup controlId="postImage" className="text-center">
                 <FormLabel className={css.FormImage}>
                   {imageUpload.current?.files[0] ? (
-                   /**
-                   * Updates preview image based on if an image file
-                   * has been chosen or not.
-                   */
+                    /**
+                     * Updates preview image based on if an image file
+                     * has been chosen or not.
+                     */
                     <>
                       <Image
                         className={css.UploadPreview}

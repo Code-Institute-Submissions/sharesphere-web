@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { axiosReq } from "../../axios/axiosDefaults";
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Avatar from "../../components/Avatar";
 import css from "../../styles/css/ProfilePage.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";
@@ -16,7 +16,7 @@ const ProfilePage = () => {
   const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
   const [modalShow, setModalShow] = useState(false);
-  const { loggedInUser } = useAuth()
+  const { loggedInUser } = useAuth();
   const { id } = useParams();
   const {
     owner,

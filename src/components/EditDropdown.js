@@ -14,6 +14,8 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
+ThreeDots.displayName = "ThreeDots";
+
 export const EditDropdown = ({ confirmDelete, toggleEdit }) => {
   return (
     <Dropdown>

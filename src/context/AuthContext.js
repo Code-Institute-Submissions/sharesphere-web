@@ -100,7 +100,7 @@ export const AuthProvider = ({ children }) => {
       (error) => {
         console.log("interceptor error");
         return Promise.reject(error);
-      }
+      },
     );
 
     axiosRes.interceptors.response.use(
@@ -134,7 +134,7 @@ export const AuthProvider = ({ children }) => {
           console.log(err.response);
           return Promise.reject(err);
         }
-      }
+      },
     );
   }, [navigate]);
 

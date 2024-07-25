@@ -1,17 +1,19 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/function-component-definition */
 import React, { useRef, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Overlay from "react-bootstrap/Overlay";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { Link } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
 import css from "../../styles/css/Posts.module.css";
 import appCSS from "../../styles/css/App.module.css";
 import btnCSS from "../../styles/css/Buttons.module.css";
-import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../axios/axiosDefaults";
 import { useAuth } from "../../context/AuthContext";
 import Comment from "../comments/Comment";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchNext } from "../../utils/Utils";
 import Loader from "../../components/Loader";
 import CreateCommentForm from "../comments/CreateCommentForm";
@@ -133,7 +135,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
         {(props) => (
           <Tooltip {...props}>
             {is_owner ? (
-              <div>You can't like your own post</div>
+              <div>You can&#39;t like your own post</div>
             ) : (
               <div>You must be logged in to like a post</div>
             )}

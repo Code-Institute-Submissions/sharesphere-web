@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import FormGroup from 'react-bootstrap/FormGroup';
-import FormLabel from 'react-bootstrap/FormLabel';
-import Modal from 'react-bootstrap/Modal';
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
+import FormGroup from "react-bootstrap/FormGroup";
+import FormLabel from "react-bootstrap/FormLabel";
+import Modal from "react-bootstrap/Modal";
 import css from "../../styles/css/Modals.module.css";
 import formCSS from "../../styles/css/Forms.module.css";
 import { axiosRes } from "../../axios/axiosDefaults";

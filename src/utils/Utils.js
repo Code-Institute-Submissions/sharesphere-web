@@ -88,7 +88,7 @@ export const AlreadySignedIn = () => {
 // https://github.com/mr-fibonacci/moments/blob/bb6657e265fb18360b841e10d9d633dad06f4e5c/src/utils/utils.js#L55C1-L66C3
 export const setTokenTimestamp = (data) => {
   const refreshTokenTimestamp = jwtDecode(data?.refresh).exp;
-  console.log("token refresh:", refreshTokenTimestamp)
+  console.log("token refresh:", refreshTokenTimestamp);
   localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
 };
 

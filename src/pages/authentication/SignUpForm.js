@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Alert from 'react-bootstrap/Alert';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import Alert from "react-bootstrap/Alert";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import css from "../../styles/css/Auth.module.css";
@@ -43,20 +43,76 @@ const SignUpForm = () => {
           <h1>Create an account</h1>
         </Col>
         <Col md="6">
-        <div className={css.FieldsContainer}>
-        <p>If you already have an account, please <Link to={"/signin"} className="text-decoration-none">sign in</Link> instead.</p>
+          <div className={css.FieldsContainer}>
+            <p>
+              If you already have an account, please{" "}
+              <Link to={"/signin"} className="text-decoration-none">
+                sign in
+              </Link>{" "}
+              instead.
+            </p>
 
-          <Form className={css.Form} onSubmit={handleSubmit}>
-            <Form.Group className="mb-4" controlId="username">
-              <Form.Label className="sr-only">Username</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={handleChange}
-                name="username"
-              />
-              {fieldErrors.username?.map((e, index) => (
+            <Form className={css.Form} onSubmit={handleSubmit}>
+              <Form.Group className="mb-4" controlId="username">
+                <Form.Label className="sr-only">Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={handleChange}
+                  name="username"
+                />
+                {fieldErrors.username?.map((e, index) => (
+                  <Alert
+                    key={`${e}-${index}`}
+                    variant="warning"
+                    className={css.FieldAlert}
+                  >
+                    {e}
+                  </Alert>
+                ))}
+              </Form.Group>
+
+              <Form.Group className="mb-4" controlId="password1">
+                <Form.Label className="sr-only">Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password1}
+                  onChange={handleChange}
+                  name="password1"
+                />
+                {fieldErrors.password1?.map((e, index) => (
+                  <Alert
+                    key={`${e}-${index}`}
+                    variant="warning"
+                    className={css.FieldAlert}
+                  >
+                    {e}
+                  </Alert>
+                ))}
+              </Form.Group>
+
+              <Form.Group className="mb-4" controlId="password2">
+                <Form.Label className="sr-only">Confirm password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm password"
+                  value={password2}
+                  onChange={handleChange}
+                  name="password2"
+                />
+                {fieldErrors.password2?.map((e, index) => (
+                  <Alert
+                    key={`${e}-${index}`}
+                    variant="warning"
+                    className={css.FieldAlert}
+                  >
+                    {e}
+                  </Alert>
+                ))}
+              </Form.Group>
+              {fieldErrors.non_field_errors?.map((e, index) => (
                 <Alert
                   key={`${e}-${index}`}
                   variant="warning"
@@ -65,61 +121,11 @@ const SignUpForm = () => {
                   {e}
                 </Alert>
               ))}
-            </Form.Group>
 
-            <Form.Group className="mb-4" controlId="password1">
-              <Form.Label className="sr-only">Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password1}
-                onChange={handleChange}
-                name="password1"
-              />
-              {fieldErrors.password1?.map((e, index) => (
-                <Alert
-                  key={`${e}-${index}`}
-                  variant="warning"
-                  className={css.FieldAlert}
-                >
-                  {e}
-                </Alert>
-              ))}
-            </Form.Group>
-
-            <Form.Group className="mb-4" controlId="password2">
-              <Form.Label className="sr-only">Confirm password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm password"
-                value={password2}
-                onChange={handleChange}
-                name="password2"
-              />
-              {fieldErrors.password2?.map((e, index) => (
-                <Alert
-                  key={`${e}-${index}`}
-                  variant="warning"
-                  className={css.FieldAlert}
-                >
-                  {e}
-                </Alert>
-              ))}
-            </Form.Group>
-            {fieldErrors.non_field_errors?.map((e, index) => (
-              <Alert
-                key={`${e}-${index}`}
-                variant="warning"
-                className={css.FieldAlert}
-              >
-                {e}
-              </Alert>
-            ))}
-
-            <Button variant="success" type="submit" className={css.SubmitBtn}>
-              Sign up!
-            </Button>
-          </Form>
+              <Button variant="success" type="submit" className={css.SubmitBtn}>
+                Sign up!
+              </Button>
+            </Form>
           </div>
         </Col>
         <Col className="d-none d-md-flex">

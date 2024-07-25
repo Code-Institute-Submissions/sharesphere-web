@@ -33,8 +33,8 @@ const SignInForm = () => {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setLoggedInUser(data.user);
-      localStorage.setItem("loggedInUser", JSON.stringify(data.user))
-      setTokenTimestamp(data)
+      localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+      setTokenTimestamp(data);
       navigate("/");
     } catch (error) {
       setFieldErrors(error.response?.data);
@@ -46,29 +46,57 @@ const SignInForm = () => {
       <Row className="flex-grow-1">
         <Col xs="12" className={css.PageHeader}>
           <h1>Sign in to your account</h1>
-
         </Col>
         <Col md="6">
-        <div className={css.FieldsContainer}>
+          <div className={css.FieldsContainer}>
+            <p>
+              If you don&#39;t already have an account, please{" "}
+              <Link to={"/signup"} className="text-decoration-none">
+                sign up
+              </Link>
+              .
+            </p>
+            <Form className={css.Form} onSubmit={handleSubmit}>
+              <Form.Group className="mb-4" controlId="username">
+                <Form.Label className="sr-only">Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={handleChange}
+                  name="username"
+                />
+                {fieldErrors.username?.map((e, index) => (
+                  <Alert
+                    key={`${e}-${index}`}
+                    variant="warning"
+                    className={css.FieldAlert}
+                  >
+                    {e}
+                  </Alert>
+                ))}
+              </Form.Group>
 
-        <p>
-            If you don't already have an account, please{" "}
-            <Link to={"/signup"} className="text-decoration-none">
-              sign up
-            </Link>
-            .
-          </p>
-          <Form className={css.Form} onSubmit={handleSubmit}>
-            <Form.Group className="mb-4" controlId="username">
-              <Form.Label className="sr-only">Username</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={handleChange}
-                name="username"
-              />
-              {fieldErrors.username?.map((e, index) => (
+              <Form.Group className="mb-4" controlId="password">
+                <Form.Label className="sr-only">Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={handleChange}
+                  name="password"
+                />
+                {fieldErrors.password1?.map((e, index) => (
+                  <Alert
+                    key={`${e}-${index}`}
+                    variant="warning"
+                    className={css.FieldAlert}
+                  >
+                    {e}
+                  </Alert>
+                ))}
+              </Form.Group>
+              {fieldErrors.non_field_errors?.map((e, index) => (
                 <Alert
                   key={`${e}-${index}`}
                   variant="warning"
@@ -77,43 +105,12 @@ const SignInForm = () => {
                   {e}
                 </Alert>
               ))}
-            </Form.Group>
 
-            <Form.Group className="mb-4" controlId="password">
-              <Form.Label className="sr-only">Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={handleChange}
-                name="password"
-              />
-              {fieldErrors.password1?.map((e, index) => (
-                <Alert
-                  key={`${e}-${index}`}
-                  variant="warning"
-                  className={css.FieldAlert}
-                >
-                  {e}
-                </Alert>
-              ))}
-            </Form.Group>
-            {fieldErrors.non_field_errors?.map((e, index) => (
-              <Alert
-                key={`${e}-${index}`}
-                variant="warning"
-                className={css.FieldAlert}
-              >
-                {e}
-              </Alert>
-            ))}
-
-            <Button variant="primary" type="submit" className={css.SubmitBtn}>
-              Sign in!
-            </Button>
-          </Form>
-        </div>
-
+              <Button variant="primary" type="submit" className={css.SubmitBtn}>
+                Sign in!
+              </Button>
+            </Form>
+          </div>
         </Col>
         <Col className="d-none d-md-flex">
           <p>Image placeholder</p>
