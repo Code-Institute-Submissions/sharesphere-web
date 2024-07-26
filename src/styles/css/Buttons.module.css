@@ -3,13 +3,13 @@
   border: 1px solid #2d3238;
   border-radius: .4rem;
   padding: 0 .5rem;
-  background-color: #5b7487;
+  background-color: #414D62;
   transition-duration: .3s;
   color: inherit;
 }
 
 .FollowBtn:hover {
-  background-color: #728797;
+  background-color: #414d62c9;
 }
 
 .UnfollowBtn {

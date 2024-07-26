@@ -90,7 +90,7 @@ const ProfilePage = () => {
               <h1 className="mt-2">{owner}</h1>
               <div className={css.ActionWrapper}>
                 {is_owner && (
-                  <Link to="/profile/edit" aria-labelledby="Edit profile">
+                  <Link to="/profile/edit" aria-label="Edit profile">
                     <i
                       className={`fa-regular fa-pen-to-square ${css.Action}`}
                     ></i>

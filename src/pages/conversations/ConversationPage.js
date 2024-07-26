@@ -90,7 +90,7 @@ const ConversationPage = () => {
                   />
                 </Link>
 
-                <h2 className="ms-2 card-title h5">{conversation.topic}</h2>
+                <h1 className="ms-2 card-title h5">{conversation.topic}</h1>
               </div>
               <div className={css.ConvInfo}>
                 <span>

@@ -75,7 +75,7 @@ const CreatePostForm = () => {
                       <Image
                         className={css.UploadIcon}
                         src={Upload}
-                        alt="Upload"
+                        alt="Choose file"
                       />
                       <div>Tap to upload an image</div>
                     </>
