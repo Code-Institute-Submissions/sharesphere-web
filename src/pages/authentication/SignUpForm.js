@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
+import FeatureImage from "../../assets/sign-up-feature-image.png";
 import css from "../../styles/css/Auth.module.css";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
@@ -38,11 +40,11 @@ const SignUpForm = () => {
 
   return (
     <Container className={css.FormWrapper}>
-      <Row className="flex-grow-1">
-        <Col xs="12" className={css.PageHeader}>
-          <h1>Create an account</h1>
-        </Col>
-        <Col md="6">
+      <div className={css.PageHeader}>
+        <h1>Create an account</h1>
+      </div>
+      <Row className={css.FormImageContainer}>
+        <Col md={6}>
           <div className={css.FieldsContainer}>
             <p>
               If you already have an account, please{" "}
@@ -129,7 +131,11 @@ const SignUpForm = () => {
           </div>
         </Col>
         <Col className="d-none d-md-flex">
-          <p>Image placeholder</p>
+          <Image
+            className={css.FeatureImage}
+            src={FeatureImage}
+            alt="Sphere of lines"
+          />
         </Col>
       </Row>
     </Container>

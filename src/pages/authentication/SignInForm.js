@@ -5,6 +5,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
+import FeatureImage from "../../assets/sign-in-feature-image.jpg";
 import css from "../../styles/css/Auth.module.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -43,11 +45,11 @@ const SignInForm = () => {
 
   return (
     <Container className={css.FormWrapper}>
-      <Row className="flex-grow-1">
-        <Col xs="12" className={css.PageHeader}>
-          <h1>Sign in to your account</h1>
-        </Col>
-        <Col md="6">
+      <div className={css.PageHeader}>
+        <h1>Sign in to your account</h1>
+      </div>
+      <Row className={css.FormImageContainer}>
+        <Col md={6}>
           <div className={css.FieldsContainer}>
             <p>
               If you don&#39;t already have an account, please{" "}
@@ -113,7 +115,11 @@ const SignInForm = () => {
           </div>
         </Col>
         <Col className="d-none d-md-flex">
-          <p>Image placeholder</p>
+          <Image
+            className={css.FeatureImage}
+            src={FeatureImage}
+            alt="Geometry pattern"
+          />
         </Col>
       </Row>
     </Container>
