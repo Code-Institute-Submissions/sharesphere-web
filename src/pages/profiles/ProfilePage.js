@@ -143,22 +143,16 @@ const ProfilePage = () => {
               </button>
             )}
 
-            <p>{bio} </p>
+            <p className="text-center">{bio}</p>
             <div className={css.Info}>
-              <p>
-                {name ? (
-                  <span>
-                    <i className="fa-regular fa-user"></i> {name}
-                  </span>
-                ) : (
-                  ""
-                )}
-                {"  "}
-                <span>
-                  <i className="fa-regular fa-calendar"></i> Joined:{" "}
-                  {created_at}
+              {name && (
+                <span className="px-1">
+                  <i className="fa-regular fa-user"></i> {name}
                 </span>
-              </p>
+              )}
+              <span className="px-1">
+                <i className="fa-regular fa-calendar"></i> Joined: {created_at}
+              </span>
             </div>
           </Col>
           <div className={css.Stats}>

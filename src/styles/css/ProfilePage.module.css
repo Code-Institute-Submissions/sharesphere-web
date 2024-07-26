@@ -13,6 +13,7 @@
 
 .Info {
   display: flex;
+  flex-direction: column;
   opacity: 0.6;
   font-family: 'Montserrat', sans-serif;
 }
@@ -33,6 +34,12 @@
   font-size: calc(1.375rem + 1.5vw);
   line-height: 1.2;
   margin: 0.5rem 0;
+}
+
+@media (min-width: 768px) {
+  .Info {
+    flex-direction: row;
+  }
 }
 
 @media (min-width: 1200px) {
