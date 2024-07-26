@@ -6,6 +6,7 @@ Welcome to ShareSphere, a dynamic and interactive platform designed for seamless
 [Link to live site](https://sharesphere-web-9f70d26dc82a.herokuapp.com/)
 
 
+
 ## UI/UX
 
 - UI
@@ -161,6 +162,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 **Navigation**
 
 - **Top Navigation Bar**: Persistent across all pages with links to Home, Feeds, Post creation, Profile, and Conversations.
+
   - Links to home, sign in, and sign up for a signed out user.
 
 - **Authentication Prompts**: Clear links to sign in and sign up pages with appropriate redirection after authentication.
@@ -224,12 +226,124 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 **Images:**
 
 - Standardized imagery does not see a whole lot of use throughout this project, the focus lies heavily in user-posted imagery.
-  
+
   - 2 simple default images are used for new users, and the other one for posts that have not had a custom image added to them.
 
   - A standard image upload icon is present for the post creation form.
 
   - Lastly there are 2 different illustrations of a sphere used as a feature image for the sign up and sign in pages respectively. They are present on tablet sizes and larger with the purpose of simply filling out some of the space on the pages.
+
+**Icons:**
+
+- Icons are featured and serve great purpose with intents to convey action without the need for long descriptions or buttons with text. The icon usage ranges from everything from a heart icon for liking posts to a right from bracket for logging out for larger screen navbars.
+
+  - Icons can be found, but not limited to, profile pages where they convey message creation and enforce the name and join data info, on conversations where they convey reply count, and on posts where they convey like and comment count. \
+
+    ![Like icon](readme-assets/like-icon.png)
+    ![Sign out icon](readme-assets/logout-icon.png)
+    ![Post comment icon](readme-assets/post-comment-icon.png)
+    ![Edit comment icon](readme-assets/edit-comment-icon.png)
+    ![Edit profile icon](readme-assets/edit-profile-icon.png) \
+    A few examples of icons that may be found on the website.
+
+## Features
+
+### Current Features
+
+- **Navigation**
+
+  - Visible on every page of the application.
+
+  - Navbar with navigation links to the various pages on the site as well as the logo/name.
+
+  - Slightly different navigational links depending on whether the user is authenticated or not.
+
+  - Current page is highlighted with a slightly more mute tone of white.
+
+  - On mobile devices the navbar turns into a collapsible menu through the intuitive and very familiar burger menu toggle.
+
+  - Features the logged in users avatar on larger screens with a logout icon next to it.
+
+    - The profile button is just a nav link that says "Profile" on smaller screens with an expanded navbar.
+
+      <details>
+      <summary>
+          Navigation images
+      </summary>
+      <p><img src="readme-assets/nav-logged-in.png" alt="logged in navbar"></p>
+      <p><img src="readme-assets/nav-logged-out.png" alt="logged out navbar"></p>
+      <p><img src="readme-assets/nav-mobile.png" alt="mobile navbar"></p>
+      </details>
+
+- **Home page**
+
+  - Features a "ShareSphere Feed" heading clearly indicating that the users is presented with a feed of content.
+
+  - Features the most recent posts made by other site users.
+
+  - Features a list of the 10 most active posters, ie users with the most posts.
+
+  - The feed utilizes the very modern infinite scroll approach.
+      <details>
+      <summary>
+          Home page images
+      </summary>
+      <p><img src="readme-assets/home-page.png" alt="home page"></p>
+      <p><img src="readme-assets/home-page-mobile.png" alt="home page on mobile device"></p>
+      </details>
+
+- **Most active posters**
+
+  - Featured on all the different feed pages, home, following, and likes.
+
+  - Shows 10 users with the most posts made on the application.
+
+  - On smaller devices it's featured above the feed with a horizontal scroll.
+
+- **Registration page**
+
+  - Features an ordinary registration form with a feature image and appropriate feedback if fields are left empty or with invalid input.
+
+  - Upon registration the user is automatically signed in to the registered account and taken the home page.
+
+    <details>
+    <summary>
+        Registration images
+    </summary>
+    <p><img src="readme-assets/sign-up-page.png" alt="registration page"></p>
+    <p><img src="readme-assets/sign-up-page-mobile.png" alt="registration page mobile"></p>
+    </details>
+
+- **Sign in page**
+
+  - Features a simple sign in form with a feature image and appropriate feedback if fields are left empty or with invalid input.
+
+  - On successful sign in the user will be redirected to the home page, and now see a different looking navbar for authenticated users.
+
+    <details>
+    <summary>
+        Sign in images
+    </summary>
+    <p><img src="readme-assets/sign-in-page.png" alt="sign in page"></p>
+    <p><img src="readme-assets/sign-in-page-mobile.png" alt="sign in page mobile"></p>
+    </details>
+
+- **Sign out page**
+
+  - Tapping the sign out icon or the sign out navlink opens a sign out modal.
+
+    - Features 2 simple buttons to sign out or to cancel the action.
+
+      - Clicking cancel will close modal.
+
+  - On successful sign out the user will be redirected to the home page with a success message.
+
+    <details>
+    <summary>
+        Sign out image
+    </summary>
+    <p><img src="readme-assets/sign-out-modal.png" alt="sign out mdal"></p>
+    </details>
 
 
 
@@ -327,6 +441,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
 - Similar to the bug above when adding a comment or reply, the older objects on the current page will get pushed to the next page, and when the next page is fetched they will be added again as duplicates.
 
+
 ## Credits
 
 ### Technical
@@ -350,6 +465,3 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 - Site favicon generated with [logoai](https://www.logoai.com/icon-generator).
 
 #################################################################################
-
-
-
