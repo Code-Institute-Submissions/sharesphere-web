@@ -8,10 +8,9 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import FeatureImage from "../../assets/sign-in-feature-image.jpg";
 import css from "../../styles/css/Auth.module.css";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { setTokenTimestamp } from "../../utils/Utils";
+import { signIn } from "../../utils/Utils";
 
 const SignInForm = () => {
   const [signInData, setSignInData] = useState({
@@ -33,10 +32,7 @@ const SignInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      setLoggedInUser(data.user);
-      localStorage.setItem("loggedInUser", JSON.stringify(data.user));
-      setTokenTimestamp(data);
+      await signIn(signInData, setLoggedInUser);
       navigate("/");
     } catch (error) {
       setFieldErrors(error.response?.data);
@@ -68,15 +64,6 @@ const SignInForm = () => {
                   onChange={handleChange}
                   name="username"
                 />
-                {fieldErrors.username?.map((e, index) => (
-                  <Alert
-                    key={`${e}-${index}`}
-                    variant="warning"
-                    className={css.FieldAlert}
-                  >
-                    {e}
-                  </Alert>
-                ))}
               </Form.Group>
 
               <Form.Group className="mb-4" controlId="password">
@@ -88,7 +75,7 @@ const SignInForm = () => {
                   onChange={handleChange}
                   name="password"
                 />
-                {fieldErrors.password1?.map((e, index) => (
+                {fieldErrors.password?.map((e, index) => (
                   <Alert
                     key={`${e}-${index}`}
                     variant="warning"
@@ -102,7 +89,7 @@ const SignInForm = () => {
                 <Alert
                   key={`${e}-${index}`}
                   variant="warning"
-                  className={css.FieldAlert}
+                  className={`${css.FieldAlert} mb-2`}
                 >
                   {e}
                 </Alert>

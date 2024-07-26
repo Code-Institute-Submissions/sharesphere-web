@@ -3,6 +3,7 @@ import { axiosRes } from "../axios/axiosDefaults";
 import { axiosReq } from "../axios/axiosDefaults";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const FetchNext = async (state, setState) => {
   try {
@@ -17,6 +18,13 @@ export const FetchNext = async (state, setState) => {
     console.log("Error when fetching more data:", error);
     return "Something went wrong when loading more data";
   }
+};
+
+export const signIn = async (signInData, setLoggedInUser) => {
+  const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+  setLoggedInUser(data.user);
+  localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+  setTokenTimestamp(data);
 };
 
 export const followHelper = async (id) => {

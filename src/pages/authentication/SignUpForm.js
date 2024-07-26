@@ -10,6 +10,8 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import FeatureImage from "../../assets/sign-up-feature-image.png";
 import css from "../../styles/css/Auth.module.css";
+import { signIn } from "../../utils/Utils";
+import { useAuth } from "../../context/AuthContext";
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
@@ -18,6 +20,8 @@ const SignUpForm = () => {
     password2: "",
   });
   const [fieldErrors, setFieldErrors] = useState([]);
+
+  const { setLoggedInUser } = useAuth();
   const { username, password1, password2 } = signUpData;
   const navigate = useNavigate();
 
@@ -32,7 +36,12 @@ const SignUpForm = () => {
     e.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      navigate("/signin");
+      const signInData = {
+        username: signUpData.username,
+        password: signUpData.password1,
+      };
+      await signIn(signInData, setLoggedInUser);
+      navigate("/");
     } catch (error) {
       setFieldErrors(error.response?.data);
     }
