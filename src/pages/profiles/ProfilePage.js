@@ -80,14 +80,6 @@ const ProfilePage = () => {
 
   return (
     <Container>
-      {/* Modal for creating a conversation */}
-      <CreateConversationForm
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        owner={owner}
-        id={id}
-        setModalShow={setModalShow}
-      />
       {/* Visible content */}
       {console.log(profileData)}
       {hasLoaded ? (
@@ -104,17 +96,31 @@ const ProfilePage = () => {
                     ></i>
                   </Link>
                 )}
+                {/*
+                Show message button and render modal for starting a conversation
+                if user isn't profile owner, profile owner has receive_messages
+                enabled, and user is logged in.
+                */}
                 {!is_owner && receive_messages && loggedInUser && (
-                  <button
-                    className={btnCSS.Btn}
-                    type="button"
-                    aria-label="Message user"
-                    onClick={() => setModalShow(true)}
-                  >
-                    <i
-                      className={`fa-regular fa-envelope-open ${css.Action}`}
-                    ></i>
-                  </button>
+                  <>
+                    <button
+                      className={btnCSS.Btn}
+                      type="button"
+                      aria-label="Message user"
+                      onClick={() => setModalShow(true)}
+                    >
+                      <i
+                        className={`fa-regular fa-envelope-open ${css.Action}`}
+                      ></i>
+                    </button>
+                    <CreateConversationForm
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                      owner={owner}
+                      id={id}
+                      setModalShow={setModalShow}
+                    />
+                  </>
                 )}
               </div>
             </div>
