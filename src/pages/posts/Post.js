@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import Overlay from "react-bootstrap/Overlay";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import css from "../../styles/css/Posts.module.css";
 import appCSS from "../../styles/css/App.module.css";
@@ -49,6 +49,8 @@ const Post = ({ post, setPosts, comments, setComments }) => {
 
   const target = useRef(null);
   const { loggedInUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLike = async () => {
     if (loading) return;
@@ -88,13 +90,23 @@ const Post = ({ post, setPosts, comments, setComments }) => {
   const handleDelete = async () => {
     /**
      * Handles deleting a post and removing it from the posts state
+     * if deleted from a feed.
+     *
+     * If a post is deleted from the post page then navigate to homepage
+     * without updating any state.
      */
     try {
       await axiosRes.delete(`/posts/${id}`);
-      setPosts((prevPosts) => ({
-        ...prevPosts,
-        results: [...prevPosts.results.filter((post) => post.id !== id)],
-      }));
+      if (location.pathname == `/post/${id}`) {
+        navigate("/", {
+          state: { success: "Post successfully deleted!" },
+        });
+      } else {
+        setPosts((prevPosts) => ({
+          ...prevPosts,
+          results: [...prevPosts.results.filter((post) => post.id !== id)],
+        }));
+      }
     } catch (error) {
       console.log(error);
     }

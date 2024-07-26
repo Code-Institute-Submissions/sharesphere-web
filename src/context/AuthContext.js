@@ -59,20 +59,19 @@ export const AuthProvider = ({ children }) => {
        * the server and the data in the localStorage object then the state and
        * the localStorage object will be updated to match the server data.
        */
-      if (shouldRefreshToken()) {
-        const data = await checkLoginStatus();
-        const savedLogin = localStorage.getItem("loggedInUser");
 
-        if (!savedLogin && data) {
-          setLoggedInUser(data);
-          localStorage.setItem("loggedInUser", JSON.stringify(data));
-        } else if (savedLogin && !data) {
-          setLoggedInUser(null);
-          localStorage.removeItem("loggedInUser");
-        } else if (savedLogin && data && savedLogin !== data) {
-          setLoggedInUser(data);
-          localStorage.setItem("loggedInUser", JSON.stringify(data));
-        }
+      const data = await checkLoginStatus();
+      const savedLogin = localStorage.getItem("loggedInUser");
+
+      if (!savedLogin && data) {
+        setLoggedInUser(data);
+        localStorage.setItem("loggedInUser", JSON.stringify(data));
+      } else if (savedLogin && !data) {
+        setLoggedInUser(null);
+        localStorage.removeItem("loggedInUser");
+      } else if (savedLogin && data && savedLogin !== data) {
+        setLoggedInUser(data);
+        localStorage.setItem("loggedInUser", JSON.stringify(data));
       }
     };
     verifyLogin();
@@ -124,12 +123,13 @@ export const AuthProvider = ({ children }) => {
             setLoggedInUser((prevLoggedInUser) => {
               if (prevLoggedInUser) {
                 removeTokenTimestamp();
+                localStorage.removeItem("loggedInUser");
                 navigate("/signin");
               }
               return null;
             });
           }
-          return Promise.reject(err);
+          return axios(err.config);
         } else {
           console.log(err.response);
           return Promise.reject(err);
