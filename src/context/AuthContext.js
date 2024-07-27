@@ -85,12 +85,20 @@ export const AuthProvider = ({ children }) => {
        * the post feed.
        */
       async (config) => {
+        console.log("config", config);
         if (shouldRefreshToken()) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (error) {
             console.log("axios interceptor", error);
+            setLoggedInUser((prevLoggedInUser) => {
+              if (prevLoggedInUser) {
+                navigate("/signin");
+              }
+              return null;
+            });
             removeTokenTimestamp();
+            localStorage.removeItem("loggedInUser");
             return config;
           }
         }
@@ -122,12 +130,12 @@ export const AuthProvider = ({ children }) => {
             // Redirect user to sign in if session expired while using the site
             setLoggedInUser((prevLoggedInUser) => {
               if (prevLoggedInUser) {
-                removeTokenTimestamp();
-                localStorage.removeItem("loggedInUser");
                 navigate("/signin");
               }
               return null;
             });
+            removeTokenTimestamp();
+            localStorage.removeItem("loggedInUser");
           }
           return axios(err.config);
         } else {

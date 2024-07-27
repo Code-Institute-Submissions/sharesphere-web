@@ -104,6 +104,7 @@ const CreatePostForm = () => {
                   placeholder="Post title"
                   value={title}
                   name={"title"}
+                  maxLength={50}
                   onChange={handleChange}
                 />
                 {errors?.title?.map((err) => (
@@ -122,6 +123,7 @@ const CreatePostForm = () => {
                   placeholder="Post content"
                   value={content}
                   name="content"
+                  maxLength={200}
                   onChange={handleChange}
                 />
               </Form.Group>
