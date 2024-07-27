@@ -93,7 +93,12 @@ export const AuthProvider = ({ children }) => {
             console.log("axios interceptor", error);
             setLoggedInUser((prevLoggedInUser) => {
               if (prevLoggedInUser) {
-                navigate("/signin");
+                navigate("/signin", {
+                  state: {
+                    warning:
+                      "Your session has expired, please sign in to perform that action",
+                  },
+                });
               }
               return null;
             });
@@ -130,7 +135,12 @@ export const AuthProvider = ({ children }) => {
             // Redirect user to sign in if session expired while using the site
             setLoggedInUser((prevLoggedInUser) => {
               if (prevLoggedInUser) {
-                navigate("/signin");
+                navigate("/signin", {
+                  state: {
+                    warning:
+                      "Your session has expired, please sign in to perform that action",
+                  },
+                });
               }
               return null;
             });
