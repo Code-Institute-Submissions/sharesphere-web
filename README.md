@@ -6,7 +6,6 @@ Welcome to ShareSphere, a dynamic and interactive platform designed for seamless
 [Link to live site](https://sharesphere-web-9f70d26dc82a.herokuapp.com/)
 
 
-
 ## UI/UX
 
 - UI
@@ -292,6 +291,18 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
       <p><img src="readme-assets/home-page-mobile.png" alt="home page on mobile device"></p>
       </details>
 
+- **Feeds**
+
+  - For signed in users 2 more feeds become available in addition to the home page main feed.
+
+    - The following page/feed.
+
+      - The following feed is a feed of the newest posts by users the logged in user follows.
+
+    - The likes page/feed.
+
+      - The likes feed is a feed of posts the logged in user has liked.
+
 - **Most active posters**
 
   - Featured on all the different feed pages, home, following, and likes.
@@ -344,6 +355,342 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
     </summary>
     <p><img src="readme-assets/sign-out-modal.png" alt="sign out mdal"></p>
     </details>
+
+- **Create post page**
+
+  - Features a 3 field form for creating a post.
+
+  - Only the title field is required. It is limited to 50 characters.
+
+  - The content field is limited to 200 characters.
+
+  - A missing title or an image that is too large will generate and display field errors for the respective fields.
+
+  - Successfully creating a post redirects the user to the newly created post.
+      <details>
+      <summary>
+          Post creation images
+      </summary>
+      <p><img src="readme-assets/post-create-form.png" alt="post create page"></p>
+      <p><img src="readme-assets/post-create-errors.png" alt="post form errors"></p>
+      <p><img src="readme-assets/post-redirection.png" alt="page redirected to after creation"></p>
+      </details>
+
+- **Post editing and deleting**
+
+  - If the logged in user is the owner of a post clicking the 3 dots presents an edit and a delete option.
+
+  - Clicking edit toggles the post to turn into a post form with the fields populated with the post content.
+
+    - The post can be toggled back from editing by clicking the cross where the three dots previously were.
+
+    - The edit form shows field erros the same way the creation form does.
+
+    - Confirming the post update will update the post content in the post page or in the post feed.
+
+  - Clicking delete brings up a post delete confirmation modal.
+
+    - The modal may be closed if the user wishes not to delete the post.
+
+    - If the post is deleted from a feed of posts the modal will close and the post will be removed from the feed.
+
+    - If the post is deleted from its post page the user will be redirected to the home page with an alert letting the user know the deletion was successful.
+
+    <details>
+    <summary>
+        Post edit/delete images
+    </summary>
+    <p><img src="readme-assets/post-edit-form.png" alt="post edit form toggled"></p>
+    <p><img src="readme-assets/post-edit-errors.png" alt="post edit form errors"></p>
+    <p><img src="readme-assets/post-edited.png" alt="updated post after editing"></p>
+    <p><img src="readme-assets/post-delete-modal.png" alt="post delete modal"></p>
+    <p><img src="readme-assets/redirect-after-delete.png" alt="redirected page after deletion"></p>
+    </details>
+
+- **Creating comments**
+
+  - Comments can be created under any post when visitng the post page.
+
+  - Attempting to submit an empty comment shows a tooltip notifying the user to provide a comment first.
+
+  - Successfully submitting a comment will add it to the feed of comments under the post. 
+      <details>
+      <summary>
+          Create comment images
+      </summary>
+      <p><img src="readme-assets/comment-form.png" alt="comment form under post"></p>
+      <p><img src="readme-assets/comment-tooltip.png" alt="empty comment tooltip"></p>
+      <p><img src="readme-assets/comment-added.png" alt="comment added to post"></p>
+      </details>
+
+- **Comment editing and deleting**
+
+  - If the logged in user is the owner of a comment clicking the 3 dots presents an edit and a delete option.
+
+  - Clicking edit toggles the comment to turn into a comment form with the field populated with the comment's content.
+
+    - The comment can be toggled back from editing by clicking the cross where the three dots previously were.
+
+    - The edit form shows the same tooltip if the comment is empty when submitted.
+
+    - Confirming the comment update will update the comment content and toggle away from the editing form.
+
+  - Clicking delete brings up a comment delete confirmation modal.
+
+    - The modal may be closed if the user wishes not to delete the comment.
+
+    - If the comment is deleted the modal will close and the comment will be removed from the feed of comments.
+
+    <details>
+    <summary>
+        Comment edit/delete images
+    </summary>
+    <p><img src="readme-assets/comment-dropdown.png" alt="comment delete/edit dropdown"></p>
+    <p><img src="readme-assets/comment-edit.png" alt="comment edit form"></p>
+    <p><img src="readme-assets/comment-edit-empty.png" alt="empty comment update"></p>
+    <p><img src="readme-assets/edited-comment.png" alt="comment edited"></p>
+    <p><img src="readme-assets/comment-delete-modal.png" alt="comment delete modal"></p>
+    <p><img src="readme-assets/comment-deleted.png" alt="comment deleted"></p>
+    </details>
+
+- **Action response alerts**
+
+  - When certain actions get completed that may otherwise be unclear if they were successful or not response messages are displayed.
+
+  - The alerts close automatically after 4 seconds.
+
+  - An example of this has already been shown when deleting a post from the post page.
+
+  - They may also appear if a logged in user tries to visit the sign in or sign up page. Or when the user signs out.
+
+  - They appear other cases too that will are shown with other features.
+      <details>
+      <summary>
+          Response message images
+      </summary>
+      <p><img src="readme-assets/redirect-after-delete.png" alt="message on successful post deletion"></p>
+      <p><img src="readme-assets/already-signed-in.png" alt="message visitng sign in page"></p>
+      <p><img src="readme-assets/signed-out.png" alt="message after signing out"></p>
+      </details>
+
+- **Unauthorized request handling and alerts**
+
+  - If an unauthorized user tries to visit a page that requries authorization they will be redirected to the sign in page with an alert.
+
+    - Performing such a request would be done through editing the url manually, like visiting /conversations when signed out.
+
+  - If a user's session has expired and they try to perform an action that requires sign in they are redirected with an alert.
+
+      <details>
+      <summary>
+          Warning alerts when signed out
+      </summary>
+      <p><img src="readme-assets/signed-out-redirected.png" alt="redirect when trying to visit a protected page"></p>
+      <p><img src="readme-assets/session-expired.png" alt="redirect when session has expired"></p>
+      </details>
+
+- **Conversations**
+
+  - Logged in users have access to the conversations page.
+
+  - The conversations page features a list of conversations the user is part of.
+
+    - The avatar displayed on the conversations in this list will always be that of the opposite user, since it's safe to assume the logged in user will be the other user of the conversation.
+    
+    - The name of the other user will also be displayed with "to" or "from" added in front of the name to indicate who started the conversation.
+
+  - Clicking on the content of a conversation opens that conversation page where replies can be made and read.
+
+  - If the user isn't part of any conversations a message is displayed describing that.
+
+  - The overflow of the message is replaced by "..." indicating that you should open the conversation to read more.
+
+      <details>
+      <summary>
+          Conversations images
+      </summary>
+      <p><img src="readme-assets/no-convs.png" alt="no conversations"></p>
+      <p><img src="readme-assets/conversations.png" alt="conversations"></p>
+      </details>
+
+- **Creating a conversation**
+
+  - Visiting another users profile as a logged in user will show a message/envelope icon.
+
+  - Clicking that icon toggles a conversation creation modal with a simple form to start a converasation with that user.
+
+  - Both the topic and message fields are required. The topic is limited to 40 characters and the message is unlimited.
+
+  - Failing to populate the fields displays field erros for the respective fields.
+
+  - Successfully creating a conversation closes the modal and displays an alert letting the user know they were successful.
+
+  - Visiting the conversations page will now display the newly created conversation.
+
+      <details>
+      <summary>
+          Conversation creation images
+      </summary>
+      <p><img src="readme-assets/conv-form.png" alt="conversation form"></p>
+      <p><img src="readme-assets/conv-form-errors.png" alt="conversation form errors"></p>
+      <p><img src="readme-assets/conv-started.png" alt="conversation started"></p>
+      <p><img src="readme-assets/updated-convs.png" alt="conversation added in conversations list"></p>
+      </details>
+
+- **Conversation page**
+
+  - Clicking on the content of a conversation opens the conversation page.
+
+  - The conversation page will show the avatar of the conversation creator as well as any overflowed content.
+
+  - The reply creation form and replies made can be found on this page too.
+
+  - On this page the three dots for the dropdown is also visible.
+
+    - Why it's only visible here and not in the conversations overview list is because the intention is for the user to be aware of which post they would be deleting.
+
+    <details>
+    <summary>
+        Conversation page images
+    </summary>
+    <p><img src="readme-assets/conv-page.png" alt="conversation page"></p>
+    </details>
+
+- **Deleting a conversation**
+
+  - The three dots dropdown menu is visible for the owner of a conversation when opening the conversation page, and not in the list of conversations.
+    
+    - This is to ensure that the owner is sure of which conversation they will be deleting.
+  
+  - Conversations can only be deleted and not edited, the same goes for replies
+
+    - This is to avoid any malicious editing to be done to make a conversation look like something it never was.
+  
+  - Clicking the delete option in the dropdown opens a delete confirmation modal.
+
+  - The modal may be closed if the user does not want to delete the conversation.
+
+  - Clicking delete will close the modal, delete the conversation, and redirect the user to the conversations list with a success message.
+
+    <details>
+    <summary>
+        Conversation deletion images
+    </summary>
+    <p><img src="readme-assets/conv-dropdown.png" alt="conversation dropdown"></p>
+    <p><img src="readme-assets/conv-delete-modal.png" alt="conversation delete modal"></p>
+    <p><img src="readme-assets/conv-deleted.png" alt="conversation deleted"></p>
+    </details>
+
+- **Creating replies**
+
+  - The reply form is directly visible when opening a conversation.
+
+  - It's a 1 field form simiar to the comment form.
+
+  - There is not limit to the length of a reply.
+
+  - Submitting an empty reply displays an error for the field.
+
+  - Submitting a reply updates the reply count and adds the reply to the list of replies in the conversation.
+
+    <details>
+    <summary>
+        Replies images
+    </summary>
+    <p><img src="readme-assets/reply-error.png" alt="empty reply field"></p>
+    <p><img src="readme-assets/reply-added.png" alt="reply added"></p>
+    </details>
+
+- **Deleting replies**
+
+  - Replies can only be created and deleted.
+
+  - Clicking the three dots dropdown menu will show the delete option.
+
+    - The dropdown is only available for the reply owner.
+
+  - Clicking the delete option opens a delete confirmation modal.
+
+  - The modal may be closed if the user does not want to delete the reply.
+
+  - Clicking delete will close the modal and delete the reply and update the reply list and count accordingly.
+
+    <details>
+    <summary>
+        Replies deletetion images
+    </summary>
+    <p><img src="readme-assets/reply-dropdown.png" alt="reply dropdown"></p>
+    <p><img src="readme-assets/reply-delete-modal.png" alt="reply delete modal"></p>
+    <p><img src="readme-assets/reply-deleted.png" alt="reply deleted"></p>
+    </details>
+
+- **Profile page**
+
+  - The profile page features the profile owners avatar, username, bio, name and bio (if provided), join data, post count, follower count, and followers count.
+
+  - The owner of a profile will see an edit icon next to their username.
+
+    - This is to access the profile edit page.
+
+  - Visitng another users profile as a logged in user, assuming the user hasn't disabled receive_messages, an envelope/message icon will appear next to the username.
+
+    - This is used to start a conversation with the user.
+
+    <details>
+    <summary>
+        Profile images
+    </summary>
+    <p><img src="readme-assets/own-profile.png" alt="own profile"></p>
+    <p><img src="readme-assets/new-user.png" alt="new user profile"></p>
+    <p><img src="readme-assets/receive-messages-off.png" alt="profile with receive messages off"></p>
+    <p><img src="readme-assets/profile-signed-out.png" alt="profile when signed out"></p>
+    </details>
+
+- **Profile editing**
+
+  - Clicking the edit button on your own profile takes you the profile editing page with a profile edit form.
+
+  - By default the name and bio fields are empty, and they are optional.
+
+  - The image field is populated with the default image for new users.
+
+  - Receive messages is toggeld on by default and may be toggled off if the user wishes to not have conversations started with them.
+
+  - Attempting to upload an avatar that is too large will display an error.
+
+  - Successfully updating the profile will update the avatar in the navbar and redirect the user back to their profile with the updated content.
+
+    <details>
+    <summary>
+        Profile edit images
+    </summary>
+    <p><img src="readme-assets/profile-edit-form.png" alt="profile edit form"></p>
+    <p><img src="readme-assets/profile-image-error.png" alt="profile-image-error"></p>
+    <p><img src="readme-assets/profile-updated.png" alt="profile updated"></p>
+    </details> 
+
+### Future Features
+
+
+
+### CRUD Features
+
+The principles of CRUD are at the essence of this project's features and any future features. The database modal and these CRUD features are also mentioned in the [readme for the API](https://github.com/Felteng/sharesphere-api/tree/main?tab=readme-ov-file#database-design).
+
+**Create:**
+An authenticated user can create posts, like posts, follow other users, create post comments, and send direct messages to other users that have receive messages enabled.
+
+**Read:**
+A user can browse and read any posts made on the website and see their respective amount of comments and likes, posts can also be sorted by ones the user has liked or from users they follow. Comments made under any post can be read by any user. If the user is engaged in any conversation with another user the contents of that conversation may also be read at any time. The amount of followers and or the amount of users a user follows can be seen from each indiviual users profile page.
+
+**Update:**
+An authenticated user can edit and update their profile as well as their individual contributuions to the site, bar conversations and their replies.
+
+- The reason a conversation or reply cannot be edited is to avoid any malicious altering of a private conversation between 2 indivuals to make it seem as though a user had different intents in relation previous messages. They may still be deleted to ensure controlled privacy.
+  - This could be worked around as a future feature where any updates made would save history of the previous versions of an object.
+
+**Delete:**
+An authenticated user can delete any of their contributions made to the site. Unfollowing, unliking, removing a post and all its comments, removing an individual comment, removing a conversation and all its replies, removing an individual reply..
 
 
 
@@ -440,6 +787,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
       - A possible fix would be to fetch the first object on the next page before performing the deletion.
 
 - Similar to the bug above when adding a comment or reply, the older objects on the current page will get pushed to the next page, and when the next page is fetched they will be added again as duplicates.
+
 
 
 ## Credits
