@@ -13,7 +13,7 @@ import postCSS from "../../styles/css/Posts.module.css";
 import formCSS from "../../styles/css/Forms.module.css";
 import dropdownCSS from "../../styles/css/EditDropdown.module.css";
 import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../axios/axiosDefaults";
+import { axiosReq } from "../../axios/axiosDefaults";
 
 const EditPostForm = ({ setPostData, postData, toggleEdit, id }) => {
   const [newPostData, setNewPostData] = useState({
@@ -72,7 +72,7 @@ const EditPostForm = ({ setPostData, postData, toggleEdit, id }) => {
       formData.append("image", newPostData.image);
     }
     try {
-      const { data } = await axiosRes.put(`/posts/${id}/`, formData);
+      const { data } = await axiosReq.put(`/posts/${id}/`, formData);
       setPostData({
         ...postData,
         title: data.title,
@@ -87,7 +87,7 @@ const EditPostForm = ({ setPostData, postData, toggleEdit, id }) => {
 
       toggleEdit();
     } catch (error) {
-      setErrors(error.response.data);
+      setErrors(error.response?.data);
       console.log(error);
     }
   };
@@ -183,6 +183,7 @@ const EditPostForm = ({ setPostData, postData, toggleEdit, id }) => {
                 value={content}
                 name="content"
                 onChange={handleChange}
+                maxLength={200}
               />
             </Form.Group>
           </Card.Text>
