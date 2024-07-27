@@ -5,12 +5,12 @@
 
 .SignInPrompt {
   text-decoration: none;
-  color: #ea9a10;
+  color: #858585;
   transition-duration: 0.2s;
 }
 
 .SignInPrompt:hover {
-  color: #ea9a10b7;
+  color: #b8b8b8;
 }
 
 .Alert {
