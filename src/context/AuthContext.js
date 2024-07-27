@@ -28,11 +28,15 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const checkLoginStatus = async () => {
-    try {
-      const { data } = await axiosReq.get("/dj-rest-auth/user/");
-      return data;
-    } catch (error) {
-      console.error("Error checking login status:", error);
+    if (shouldRefreshToken()) {
+      try {
+        const { data } = await axiosReq.get("/dj-rest-auth/user/");
+        return data;
+      } catch (error) {
+        console.error("Error checking login status:", error);
+      }
+    } else {
+      return null;
     }
   };
 
@@ -85,7 +89,6 @@ export const AuthProvider = ({ children }) => {
        * the post feed.
        */
       async (config) => {
-        console.log("config", config);
         if (shouldRefreshToken()) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
