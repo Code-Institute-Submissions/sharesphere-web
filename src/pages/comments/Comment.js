@@ -48,20 +48,6 @@ const Comment = (props) => {
     }
   };
 
-  const handleEdit = async (e) => {
-    e.preventDefault();
-    try {
-      await axiosRes.put(`/comments/${id}`, commentData);
-      setCommentData({
-        ...commentData,
-        updated_at: "now",
-      });
-      setEditToggled(false);
-    } catch (error) {
-      console.log("Error when updating comment:", error);
-    }
-  };
-
   const handleDelete = async () => {
     try {
       setModalShow(false);
@@ -126,9 +112,10 @@ const Comment = (props) => {
           <Card.Text>{commentData.content}</Card.Text>
         ) : (
           <EditCommentForm
-            handleEdit={handleEdit}
             commentData={commentData}
             setCommentData={setCommentData}
+            id={id}
+            setEditToggled={setEditToggled}
           />
         )}
       </Card.Body>
