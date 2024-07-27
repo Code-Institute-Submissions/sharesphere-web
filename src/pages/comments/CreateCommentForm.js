@@ -46,7 +46,7 @@ const CreateCommentForm = ({ post, setComments, setCommentCount }) => {
         setPosting(false);
       } catch (error) {
         setPosting(false);
-        console.log(error);
+        // console.log(error);
       }
     } else if (content === "") {
       setShow(true);

@@ -34,11 +34,9 @@ const ConversationPage = () => {
         setConversation(conversation);
         setReplies(replies);
         setRepliesCount(conversation.replies_count);
-        console.log("conversation", conversation);
-        console.log("replies", replies);
         setHadLoaded(true);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     fetchConversation();
@@ -52,7 +50,7 @@ const ConversationPage = () => {
         state: { success: "Conversation successfully deleted!" },
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -60,7 +58,6 @@ const ConversationPage = () => {
     <Container className="d-flex flex-column">
       {hasLoaded ? (
         <Card className={`${css.ConvCard} mt-3`}>
-          {console.log(replies)}
           <Card className={`${css.ConvCard}`}>
             {/* Dropdown and modal for deleting conversation, visible to owner */}
             {conversation.is_owner && (

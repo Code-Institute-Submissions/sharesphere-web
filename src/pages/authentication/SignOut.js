@@ -29,7 +29,7 @@ const SignOut = () => {
       setModalShow(false);
       navigate("/", { state: { success: "Successfully signed out!" } });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   return (

@@ -30,7 +30,7 @@ const RenderPosts = ({ filter, heading }) => {
         });
         setHasLoaded(true);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
 

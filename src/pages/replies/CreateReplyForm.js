@@ -52,11 +52,10 @@ const CreateReplyForm = ({ id, setReplies, setRepliesCount }) => {
           content: "",
         });
         setPosting(false);
-        console.log("reply sent", data);
       } catch (error) {
         setErrors(error.response.data);
         setPosting(false);
-        console.log(error);
+        // console.log(error);
       }
     }
   };

@@ -23,7 +23,7 @@ const Conversations = () => {
         setConversations(data);
         setHadLoaded(true);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     fetchConversations();
@@ -122,8 +122,6 @@ const Conversations = () => {
       ) : (
         <Loader center />
       )}
-
-      {console.log(conversations)}
     </Container>
   );
 };

@@ -33,7 +33,7 @@ const EditCommentForm = ({
         });
         setEditToggled(false);
       } catch (error) {
-        console.log("Error when updating comment:", error);
+        // console.log("Error when updating comment:", error);
       }
     } else if (commentData.content === "") {
       setShow(true);
@@ -43,7 +43,6 @@ const EditCommentForm = ({
 
   return (
     <Form onSubmit={handleEdit}>
-      {console.log(commentData)}
       <FormGroup controlId={`comment${commentData.id}`}>
         <div className="d-flex mb-0 mt-2 ms-1">
           <FormLabel className="sr-only">

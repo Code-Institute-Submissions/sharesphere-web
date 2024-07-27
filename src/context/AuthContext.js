@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         const { data } = await axiosReq.get("/dj-rest-auth/user/");
         return data;
       } catch (error) {
-        console.error("Error checking login status:", error);
+        // console.log("Error checking login status:", error);
       }
     } else {
       return null;
@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }) => {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (error) {
-            console.log("axios interceptor", error);
+            // console.log("axios interceptor", error);
             setLoggedInUser((prevLoggedInUser) => {
               if (prevLoggedInUser) {
                 navigate("/signin", {
@@ -113,7 +113,7 @@ export const AuthProvider = ({ children }) => {
         return config;
       },
       (error) => {
-        console.log("interceptor error");
+        // console.log("interceptor error");
         return Promise.reject(error);
       },
     );
@@ -133,7 +133,6 @@ export const AuthProvider = ({ children }) => {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (refreshError) {
-            console.log(refreshError);
             // https://github.com/mr-fibonacci/moments/blob/bb6657e265fb18360b841e10d9d633dad06f4e5c/src/contexts/CurrentUserContext.js#L61-L66
             // Redirect user to sign in if session expired while using the site
             setLoggedInUser((prevLoggedInUser) => {

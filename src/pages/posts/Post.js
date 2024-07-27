@@ -60,7 +60,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
       setLikeCount(likeCount + 1);
       setLike(data.id);
     } catch (error) {
-      console.log("Error when liking", error);
+      // console.log("Error when liking", error);
     } finally {
       setLoading(false);
     }
@@ -74,7 +74,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
       setLikeCount(likeCount - 1);
       setLike(null);
     } catch (error) {
-      console.log("Error when unliking", error);
+      // console.log("Error when unliking", error);
     } finally {
       setLoading(false);
     }
@@ -108,7 +108,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
         }));
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

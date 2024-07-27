@@ -25,7 +25,7 @@ const Reply = ({ reply, setReplies, setRepliesCount }) => {
       }));
       setModalShow(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

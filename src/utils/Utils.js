@@ -15,7 +15,7 @@ export const FetchNext = async (state, setState) => {
     }));
     return state;
   } catch (error) {
-    console.log("Error when fetching more data:", error);
+    // console.log("Error when fetching more data:", error);
     return "Something went wrong when loading more data";
   }
 };
@@ -38,8 +38,7 @@ export const followHelper = async (id) => {
     const { data } = await axiosRes.post(`followers/`, { followed: id });
     return data;
   } catch (error) {
-    console.log("error when following user", error);
-    throw error;
+    // console.log("error when following user", error);
   }
 };
 
@@ -53,8 +52,7 @@ export const unfollowHelper = async (id) => {
   try {
     await axiosRes.delete(`followers/${id}`);
   } catch (error) {
-    console.log("error when unfollowing user", error);
-    throw error;
+    // console.log("error when unfollowing user", error);
   }
 };
 
@@ -96,7 +94,6 @@ export const AlreadySignedIn = () => {
 // https://github.com/mr-fibonacci/moments/blob/bb6657e265fb18360b841e10d9d633dad06f4e5c/src/utils/utils.js#L55C1-L66C3
 export const setTokenTimestamp = (data) => {
   const refreshTokenTimestamp = jwtDecode(data?.refresh).exp;
-  console.log("token refresh:", refreshTokenTimestamp);
   localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
 };
 

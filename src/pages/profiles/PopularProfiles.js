@@ -23,7 +23,7 @@ const PopularProfiles = () => {
         setPopularProfiles(data.results.slice(0, 10));
         setHasLoaded(true);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     fetchProfiles();
@@ -44,7 +44,7 @@ const PopularProfiles = () => {
         ),
       );
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -65,7 +65,7 @@ const PopularProfiles = () => {
         ),
       );
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

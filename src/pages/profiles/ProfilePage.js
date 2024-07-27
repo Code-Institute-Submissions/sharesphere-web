@@ -56,7 +56,7 @@ const ProfilePage = () => {
         followers_count: prevProfile.followers_count + 1,
       }));
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -74,14 +74,13 @@ const ProfilePage = () => {
         followers_count: prevProfile.followers_count - 1,
       }));
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   return (
     <Container>
       {/* Visible content */}
-      {console.log(profileData)}
       {hasLoaded ? (
         <Row>
           <Col xs="12" className={css.Header}>
