@@ -9,7 +9,6 @@ Welcome to ShareSphere, a dynamic and interactive platform designed for seamless
 
 - [UI/UX](#uiux)
   - [Agile](#agile)
-  - [Agile](#javascript-eslint)
   - [Wireframes](#wireframes)
   - [Site Goals](#site-goals)
   - [5 Planes of UX](#5-planes-of-ux)
@@ -28,7 +27,6 @@ Welcome to ShareSphere, a dynamic and interactive platform designed for seamless
   - [Other Libraries and Packages](#other-libraries-and-packages)
 
 - [Testing](#testing)
-
   - [Test Guide](#test-guide)
   - [Validator Testing](#validator-testing)
   - [Browser Testing](#browser-testing)
@@ -1115,7 +1113,7 @@ Refer to [Technologies Used](#technologies-used) for packages and libraries used
 
 - Site favicon generated with [logoai](https://www.logoai.com/icon-generator).
 
-### Honrable Mentions
+### Honorable Mentions
 
 - My mentor Rohit Sharma for his input and experience.
 
