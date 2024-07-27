@@ -1,5 +1,5 @@
 import react from "eslint-plugin-react";
-import hooks from "eslint-plugin-react-hooks";
+import reactHooks from "eslint-plugin-react-hooks";
 import js from "@eslint/js";
 import prettier from "eslint-plugin-prettier";
 import globals from "globals";
@@ -9,7 +9,7 @@ export default [
     files: ["src/**/*.{js,jsx,mjs,cjs,ts,tsx}"],
     plugins: {
       react,
-      "react-hooks": hooks,
+      "react-hooks": reactHooks,
       prettier,
     },
     languageOptions: {
