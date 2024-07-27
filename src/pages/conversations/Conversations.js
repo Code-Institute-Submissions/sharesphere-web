@@ -47,64 +47,76 @@ const Conversations = () => {
           }
         >
           <Row>
-            {/* Maps over every conversation retrieved once the api fetch is complete */}
-            {conversations.results.map((conv) => (
-              <Col md={6} xl={4} key={conv.id}>
-                <Card className={`${css.ConvCard}`}>
-                  <Card.Body className={css.ConvBody}>
-                    <div className="d-flex">
-                      <Link
-                        to={`/profile/${
-                          !conv.is_owner ? conv.owner_id : conv.receiver
-                        }`}
-                        aria-label={`${
-                          !conv.is_owner ? conv.owner : conv.receiver_name
-                        }'s profile`}
-                      >
-                        <Avatar
-                          src={
-                            !conv.is_owner
-                              ? conv.owner_image
-                              : conv.receiver_image
-                          }
-                          size={40}
-                          alt={`${
+            {conversations.results.length > 0 ? (
+              conversations.results.map((conv) => (
+                <Col md={6} xl={4} key={conv.id}>
+                  <Card className={`${css.ConvCard}`}>
+                    <Card.Body className={css.ConvBody}>
+                      <div className="d-flex">
+                        <Link
+                          to={`/profile/${
+                            !conv.is_owner ? conv.owner_id : conv.receiver
+                          }`}
+                          aria-label={`${
                             !conv.is_owner ? conv.owner : conv.receiver_name
-                          }'s avatar`}
-                        />
-                      </Link>
+                          }'s profile`}
+                        >
+                          <Avatar
+                            src={
+                              !conv.is_owner
+                                ? conv.owner_image
+                                : conv.receiver_image
+                            }
+                            size={40}
+                            alt={`${
+                              !conv.is_owner ? conv.owner : conv.receiver_name
+                            }'s avatar`}
+                          />
+                        </Link>
 
-                      <h2 className="ms-2 card-title h5">{conv.topic}</h2>
-                    </div>
-                    <div className={css.ConvInfo}>
-                      <span>
-                        {!conv.is_owner
-                          ? "From @" + conv.owner
-                          : "To @" + conv.receiver_name}
-                      </span>
-                      <span className="ms-1 opacity-75">{conv.created_at}</span>
-                    </div>
-                    <hr className={css.ConvSeparator} />
-                    <Link
-                      className={css.ConvLink}
-                      to={`/conversation/${conv.id}`}
-                      aria-label={`go to ${conv.topic} conversation`}
-                    >
-                      <Card.Text className={css.ConvContent}>
-                        {conv.content}
-                      </Card.Text>
-                      <div className={css.ConvReplies}>
-                        <i className="fa-solid fa-comments me-1"></i>
+                        <h2 className="ms-2 card-title h5">{conv.topic}</h2>
+                      </div>
+                      <div className={css.ConvInfo}>
                         <span>
-                          {conv.replies_count}
-                          <span className="sr-only">replies</span>
+                          {!conv.is_owner
+                            ? "From @" + conv.owner
+                            : "To @" + conv.receiver_name}
+                        </span>
+                        <span className="ms-1 opacity-75">
+                          {conv.created_at}
                         </span>
                       </div>
-                    </Link>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
+                      <hr className={css.ConvSeparator} />
+                      <Link
+                        className={css.ConvLink}
+                        to={`/conversation/${conv.id}`}
+                        aria-label={`go to ${conv.topic} conversation`}
+                      >
+                        <Card.Text className={css.ConvContent}>
+                          {conv.content}
+                        </Card.Text>
+                        <div className={css.ConvReplies}>
+                          <i className="fa-solid fa-comments me-1"></i>
+                          <span>
+                            {conv.replies_count}
+                            <span className="sr-only">replies</span>
+                          </span>
+                        </div>
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))
+            ) : (
+              <div className="mt-4 text-center">
+                <h2>You are not part of any conversations yet</h2>
+                <p>
+                  You can start with another user by visitng their profile and
+                  tapping the message/envelope icon!
+                </p>
+              </div>
+            )}
+            {/* Maps over every conversation retrieved once the api fetch is complete */}
           </Row>
         </InfiniteScroll>
       ) : (
