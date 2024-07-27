@@ -5,6 +5,49 @@ Welcome to ShareSphere, a dynamic and interactive platform designed for seamless
 
 [Link to live site](https://sharesphere-web-9f70d26dc82a.herokuapp.com/)
 
+## Table of Contents
+
+- [UI/UX](#uiux)
+  - [Agile](#agile)
+  - [Agile](#javascript-eslint)
+  - [Wireframes](#wireframes)
+  - [Site Goals](#site-goals)
+  - [5 Planes of UX](#5-planes-of-ux)
+  - [Visual Design Ideology](#visual-design-ideology)
+
+- [Features](#features)
+  - [Current Features](#current-features)
+  - [Future Features](#future-features)
+  - [CRUD Features](#crud-features)
+
+- [Technologies Used](#technologies-used)
+  - [Environments](#environments)
+  - [JavaScript Libraries and Packages](#javascript-libraries-and-packages)
+  - [React Packages and Components](#react-packages-and-components)
+  - [ESlint Configs](#eslint-configs)
+  - [Other Libraries and Packages](#other-libraries-and-packages)
+
+- [Testing](#testing)
+
+  - [Test Guide](#test-guide)
+  - [Validator Testing](#validator-testing)
+  - [Browser Testing](#browser-testing)
+  - [Addressed Bugs](#addressed-bugs)
+  - [Unaddressed Bugs](#unaddressed-bugs)
+
+- [Deployment](#deployment)
+  - [Local Deployment](#local-deployment)
+  - [Live Deployment](#live-deployment)
+
+- [Development](#development)
+  - [Clone](#clone)
+  - [Fork](#fork)
+  - [Download as ZIP](#download-as-zip)
+
+- [Credits](#credits)
+  - [Technical](#technical)
+  - [Media](#media)
+  - [Honorable Mentions](#honorable-mentions)
 
 ## UI/UX
 
@@ -413,7 +456,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
   - Attempting to submit an empty comment shows a tooltip notifying the user to provide a comment first.
 
-  - Successfully submitting a comment will add it to the feed of comments under the post. 
+  - Successfully submitting a comment will add it to the feed of comments under the post.
       <details>
       <summary>
           Create comment images
@@ -496,7 +539,6 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
   - The conversations page features a list of conversations the user is part of.
 
     - The avatar displayed on the conversations in this list will always be that of the opposite user, since it's safe to assume the logged in user will be the other user of the conversation.
-    
     - The name of the other user will also be displayed with "to" or "from" added in front of the name to indicate who started the conversation.
 
   - Clicking on the content of a conversation opens that conversation page where replies can be made and read.
@@ -559,13 +601,13 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 - **Deleting a conversation**
 
   - The three dots dropdown menu is visible for the owner of a conversation when opening the conversation page, and not in the list of conversations.
-    
+
     - This is to ensure that the owner is sure of which conversation they will be deleting.
-  
+
   - Conversations can only be deleted and not edited, the same goes for replies
 
     - This is to avoid any malicious editing to be done to make a conversation look like something it never was.
-  
+
   - Clicking the delete option in the dropdown opens a delete confirmation modal.
 
   - The modal may be closed if the user does not want to delete the conversation.
@@ -667,11 +709,15 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
     <p><img src="readme-assets/profile-edit-form.png" alt="profile edit form"></p>
     <p><img src="readme-assets/profile-image-error.png" alt="profile-image-error"></p>
     <p><img src="readme-assets/profile-updated.png" alt="profile updated"></p>
-    </details> 
+    </details>
 
 ### Future Features
 
+- In regard to protecting the original intents and messages of a conversation a potential future feature would be to allow editing of conversations and their replies.
 
+  - But to ensure that the integrity is protected every time an edit is made the previous versions get stored in a history that can be accessed when viewing the reply or conversation.
+
+- An optimization that should be considered for implementation would be Google's guide for [properly sizing images](https://developer.chrome.com/docs/lighthouse/performance/uses-responsive-images/?utm_source=lighthouse&utm_medium=devtools) to ensure that page loading is efficient and doesn't use more bytes than necessary for loading images that are resized.
 
 ### CRUD Features
 
@@ -687,12 +733,165 @@ A user can browse and read any posts made on the website and see their respectiv
 An authenticated user can edit and update their profile as well as their individual contributuions to the site, bar conversations and their replies.
 
 - The reason a conversation or reply cannot be edited is to avoid any malicious altering of a private conversation between 2 indivuals to make it seem as though a user had different intents in relation previous messages. They may still be deleted to ensure controlled privacy.
+
   - This could be worked around as a future feature where any updates made would save history of the previous versions of an object.
 
 **Delete:**
 An authenticated user can delete any of their contributions made to the site. Unfollowing, unliking, removing a post and all its comments, removing an individual comment, removing a conversation and all its replies, removing an individual reply..
 
+## Technologies Used
 
+### Environments
+
+- [Balsamiq](https://www.balsamiq.com/) (Wireframes)
+- [GitHub](https://github.com/) (Version control / Agile board)
+- [GitPod](https://gitpod.io/) (IDE)
+- [Heroku](https://heroku.com/) (Site hosting)
+
+### JavaScript Libraries and Packages
+
+- [React](https://react.dev/) (Library for web and native user interfaces - This is what the whole app is built on)
+- [Create React App](https://react.dev/) (Creates a react application with just 1 command with no confusing configurations)
+- [Axios](https://axios-http.com/) (Promise based HTTP client for the browser and node.js - Used for making API requests)
+- [serve](https://www.npmjs.com/package/serve) (Static file serving and directory listing)
+- [jwt-decode](https://github.com/auth0/jwt-decode) (JWT token decoding - Used to handle authentication tokens from API)
+- [ESlint](https://eslint.org/) (Linting utility for JavaScript - Used to lint JS, JSX, and React)
+- [Prettier](https://prettier.io/) (Opinionated code formatter used for this project)
+
+### React Packages and Components
+
+- [React Bootstrap](https://react-bootstrap.github.io/) (Bootstrap css framework rebuilt for React)
+- [React Router](https://github.com/remix-run/react-router) (Declarative routing for React - Used to handle routing and internal links)
+- [react-infinite-scroll-component](https://pypi.org/project/daphne/) (A component to add infinite scroll functionality - Used for feeds, comments, conversations, and replies)
+
+### ESlint Configs
+
+- [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) (Turns off rules that might conflict with Prettier for ESLint)
+- [eslint-plugin-prettier](https://github.com/prettier/eslint-config-prettier) (Runs prettier as an ESlint rule)
+- [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) (React-specific linting rules for ESLint)
+- [eslint-plugin-react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks) (ESLint rules for React Hooks)
+
+### Other Libraries and Packages
+
+- [Bootstrap](https://getbootstrap.com/) (CSS Framework for responsive mobile-first websites)
+
+## Testing
+
+### Test Guide
+
+Refer to [TESTING.md](TESTING.md) for the manual and automatic tests that have been carried out.
+
+### Validator Testing
+
+#### JavaScript [ESlint](https://eslint.org/)
+
+- ESlint has been used to validate all the custom written code in the src directory.
+
+  - This includes JavaScript, JSX, and React code.
+
+  - running `npx eslint "src/**/*.{js,jsx,ts,tsx}"` in the terminal does not generate any errors or warnings.
+
+#### Accessibility [WAVE Evaluation Tool](https://chromewebstore.google.com/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh)
+
+- WAVE has been used to evaluate contrast levels on all pages to ensure that the contrast complies with the WCAG standards.
+
+- WAVE has also been used to evaluate and ensure that alt attributes are present on all images and that they descriptions are not redundant.
+
+- I've left the alert for redundant links unattended.
+
+  - This alert is triggered whenever there are multiple links on a page leading to the same page. This will obviously happen instances like post feeds and comment feeds where the owners avatar and username leads to their profile, just to name a few.
+
+- I've also left a Noscript element alert unattended.
+
+  - The element in question is the noscript element in the index.html file that is used to tell users that have JavaScript disabled that they won't be able to use the website.
+    ```html
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    ```
+
+#### Performance, Accessibility, Best Practices, SEO (Lighthouse Chrome DevTools)
+
+- Lighthouse was used alongside WAVE to validate accessibility among the 3 other topics it covers.
+
+- It was performed on all pages but I'll spare the need to look at results for the more plain pages such as 404 and the authentication pages (All of which do score 100 on best practices and accessbility).
+
+  - These tests were performed on an incognito page to emulate a clean, and optimized environment.
+
+  - Since the project uses JWT cookies for authentication, third party cookies will therefore be used on the client, which is considered a bad practice by devtools because of Google's plans to end support for third party cookies in the future.
+
+    - The limited time frame for this project has meant that I have not had the time to evaluate other options to avoid third party cookies.
+
+    - So summarize, the JWT cookies will cause the best practices score to drop from 100 to 78 in the lightouse reports.
+
+      <details>
+      <summary>
+          Difference when not using cookies and using cookies for the same page
+      </summary>
+      <p><img src="readme-assets/home-page-lighthouse.png" alt="home page lighthouse report when signed out"></p>
+      <p><img src="readme-assets/home-page-lighthouse-signed-in.png" alt="home page lighthouse report when signed in"></p>
+      </details>
+
+  - Below are the results for the major pages of the site when signed in:
+    <details>
+    <summary>
+        Lighthouse desktop
+    </summary>
+    <p><img src="readme-assets/home-page-lighthouse-signed-in.png" alt="home page lighthouse report"></p>
+    <p><img src="readme-assets/create-post-lh-report.png" alt="create post page lighthouse report"></p>
+    <p><img src="readme-assets/post-page-lh-report.png" alt="post page lighthouse report"></p>
+    <p><img src="readme-assets/conversations-lh-report.png" alt="conversations page lighthouse report"></p>
+    <p><img src="readme-assets/conversation-page-lh-report.png" alt="conversation page lighthouse report"></p>
+    <p><img src="readme-assets/profile-page-lh-report.png" alt="profile page lighthouse report"></p>
+    </details>
+
+    <details>
+    <summary>
+        Lighthouse mobile
+    </summary>
+    <p><img src="readme-assets/mb-home-page-lighthouse.png" alt="home page lighthouse report"></p>
+    <p><img src="readme-assets/mb-create-post-lh-report.png" alt="create post page lighthouse report"></p>
+    <p><img src="readme-assets/mb-post-page-lh-report.png" alt="post page lighthouse report"></p>
+    <p><img src="readme-assets/mb-conversations-lh-report.png" alt="conversations page lighthouse report"></p>
+    <p><img src="readme-assets/mb-conversation-page-lh-report.png" alt="conversation page lighthouse report"></p>
+    <p><img src="readme-assets/mb-profile-page-lh-report.png" alt="profile page lighthouse report"></p>
+    </details>
+
+### Browser Testing
+
+**Layout:**
+
+- Layout tests have been performed with use of Chrome DevTools across all different breakpoints and various resolutions between each breakpoint.
+
+  - Every page has been reviewed across the different layouts to ensure no overflow occurs and that the site feels intuitive and responsive to use.
+
+**Functionality:**
+
+- Testing complete functionality of the site. This includes:
+
+  - Navigation.
+
+  - Sign up.
+
+  - Sign in.
+
+  - Sign out.
+
+  - Reading all available site content.
+
+  - Creating comments, posts, conversations, and replies.
+
+  - Deleting comments, posts, conversations, and replies.
+
+  - Editing comments, posts, and user profile.
+
+  - Following and unfollowing users.
+
+  - Liking posts and unliking posts.
+
+  - Redirections when a login session expires or for unauthenticated users.
+
+- Functionality and layout has been tested across the 4 different browsers, Chrome, Firefox, MS Edge, and Safari with no alarming issues spotted.
+
+  - Safari is the least tested browser.
 
 ### Addressed bugs
 
@@ -788,11 +987,115 @@ An authenticated user can delete any of their contributions made to the site. Un
 
 - Similar to the bug above when adding a comment or reply, the older objects on the current page will get pushed to the next page, and when the next page is fetched they will be added again as duplicates.
 
+## Deployment
 
+### Local Deployment
+
+- Deploying locally is quick and easy as the packages will run and function without any additional effort.
+
+  1. Assuming a React app is created; Open a terminal in the workspace.
+
+  2. To start the local server for development enter the following in the terminal:
+
+     - ```npm start```
+
+  3. The site should automatically open.
+      - If it doesn't open on it's own, you can CTRL click the "Local:" localhost address.
+
+### Live Deployment
+
+#### Prerequisites
+
+- Ensure all of your packages and dependencies are present in your package.json file.
+
+- Make sure you have serve installed and in your package.json. Or optionally use another web server.
+
+  - If you do not have it installed you can type ```npm install serve``` in a terminal.
+
+- Make sure to create a file called Procfile with NO extension, and inside the Procfile you want: ```web: serve -s build```.
+
+  - This is very important to have because otherwise Heroku will not have a server to run the app on.
+
+
+#### Instructions
+
+Sign in or create an account at [Heroku](https://heroku.com) and once that's done proceed with the following steps:
+
+1. At the start page/dashboard click 'New' in the top right part of the page to open a small dropdown.
+
+2. In the dropdown select 'Create new app'.
+
+3. Give the application a unique name and choose a region for deployment. I went with Europe since that's the closest for this applications purposes.
+
+4. Click 'Create app'.
+
+    - No config vars are needed for this application.
+
+Now to prepare the project itself for deployment on Heroku we need to make sure Heroku knows what dependencies to install to run the project.
+
+5. Ensure all of your packages and dependencies are present in your package.json file.
+
+6. Make sure you have a Procfile with: ```web: serve -s build``` inside it.
+
+    - If you want to use a different webserver than serve then your Procfile content should be different.
+
+Make sure these files are to your repository before deploying.
+
+7. Back on the app page on Heroku select 'Deploy', choose GitHub as deployment method and connect your account.
+
+8. Search up the name of the repository for the app to select it.
+
+9. Deploy manually by choosing a branch to deploy from and click 'Deploy Branch'.
+
+    - I enabled automatic deploys for whenever a push is made to 'main' branch. This is however optional.
+
+## Development
+
+The following options are available to work with this code or run it in a local environment.
+
+### Clone.
+
+Pushed changes made to a local cloned repository will affect the original repository.
+
+- On to the main page of the repository.
+
+- Click on Code to toggle a dropdown menu above the list of files.
+
+- Choose your desired method to copy the URL for the repository.
+
+- In your work environment, open Git Bash and change current directory to target location for cloned repository.
+
+- Type git clone followed by the copied URL and press enter.
+
+### Fork
+
+Any changes made to a forked repository will not affect the original repository.
+
+- On the main repository page locate the fork button found in top right corner of the repository.
+
+- Click the Fork button.
+
+- Select a different owner if needed.
+
+- Click Create Fork.
+
+- The forked repository can now be found in the chosen owner account.
+
+### Download as ZIP.
+
+- On to the main page of the repository.
+
+- Click on Code to toggle a dropdown menu above the list of files.
+
+- Click on Download ZIP to start the download.
+
+- Once downloaded, extract ZIP and use it in your local development environment.
 
 ## Credits
 
 ### Technical
+
+Refer to [Technologies Used](#technologies-used) for packages and libraries used.
 
 ### Media
 
@@ -812,4 +1115,8 @@ An authenticated user can delete any of their contributions made to the site. Un
 
 - Site favicon generated with [logoai](https://www.logoai.com/icon-generator).
 
-#################################################################################
+### Honrable Mentions
+
+- My mentor Rohit Sharma for his input and experience.
+
+- The CodeInstitute slack community and all its members for their collaborative spirits and experiences.
