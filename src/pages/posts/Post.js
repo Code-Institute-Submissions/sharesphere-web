@@ -97,7 +97,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
      */
     try {
       await axiosRes.delete(`/posts/${id}`);
-      if (location.pathname == `/post/${id}`) {
+      if (location.pathname === `/post/${id}`) {
         navigate("/", {
           state: { success: "Post successfully deleted!" },
         });
