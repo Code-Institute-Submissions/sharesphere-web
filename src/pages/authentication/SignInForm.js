@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import FeatureImage from "../../assets/sign-in-feature-image.jpg";
 import css from "../../styles/css/Auth.module.css";
+import appCSS from "../../styles/css/App.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { signIn } from "../../utils/Utils";
@@ -49,7 +50,7 @@ const SignInForm = () => {
           <div className={css.FieldsContainer}>
             <p>
               If you don&#39;t already have an account, please{" "}
-              <Link to={"/signup"} className="text-decoration-none">
+              <Link to={"/signup"} className={appCSS.SignInPrompt}>
                 sign up
               </Link>
               .

@@ -10,6 +10,7 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import FeatureImage from "../../assets/sign-up-feature-image.png";
 import css from "../../styles/css/Auth.module.css";
+import appCSS from "../../styles/css/App.module.css";
 import { signIn } from "../../utils/Utils";
 import { useAuth } from "../../context/AuthContext";
 
@@ -57,7 +58,7 @@ const SignUpForm = () => {
           <div className={css.FieldsContainer}>
             <p>
               If you already have an account, please{" "}
-              <Link to={"/signin"} className="text-decoration-none">
+              <Link to={"/signin"} className={appCSS.SignInPrompt}>
                 sign in
               </Link>{" "}
               instead.
