@@ -17,13 +17,13 @@ const Reply = ({ reply, setReplies, setRepliesCount }) => {
      * Updates the reply count and replies array on deletion.
      */
     try {
+      setModalShow(false);
       await axiosRes.delete(`/replies/${reply.id}`);
       setRepliesCount((prevCount) => prevCount - 1);
       setReplies((prevReplies) => ({
         ...prevReplies,
         results: [...prevReplies.results.filter((rep) => rep.id !== reply.id)],
       }));
-      setModalShow(false);
     } catch (error) {
       // console.log(error);
     }
