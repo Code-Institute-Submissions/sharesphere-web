@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosRes } from "../../axios/axiosDefaults";
+import { axiosReq } from "../../axios/axiosDefaults";
 import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
 import FormControl from "react-bootstrap/FormControl";
@@ -41,7 +41,7 @@ const CreatePostForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axiosRes.post("/posts/", postData);
+      const { data } = await axiosReq.post("/posts/", postData);
       navigate(`/post/${data.id}`);
     } catch (error) {
       setErrors(error.response?.data);

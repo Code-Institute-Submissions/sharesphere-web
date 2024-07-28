@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosRes } from "../../axios/axiosDefaults";
+import { axiosReq, axiosRes } from "../../axios/axiosDefaults";
 import Alert from "react-bootstrap/Alert";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -25,6 +25,8 @@ const EditProfileForm = () => {
   const imageUpload = useRef();
   const receiveMessagesCheckBox = useRef();
   const navigate = useNavigate();
+
+  const id = loggedInUser?.pk;
 
   // Handles updating the state of the profile data when fields are modified.
   const handleChange = (e) => {
@@ -78,7 +80,7 @@ const EditProfileForm = () => {
     }
 
     try {
-      const { data } = await axiosRes.put(
+      const { data } = await axiosReq.put(
         `/profiles/${loggedInUser?.pk}/`,
         formData,
       );
@@ -88,25 +90,24 @@ const EditProfileForm = () => {
       });
       navigate(`/profile/${loggedInUser.pk}`);
     } catch (error) {
-      setErrors(error.response.data);
+      console.log(error);
+      setErrors(error.response?.data);
     }
   };
 
   useEffect(() => {
     setHasLoaded(false);
-    if (loggedInUser) {
-      const fetchProfile = async () => {
-        try {
-          const profile = await axiosRes.get(`/profiles/${loggedInUser.pk}`);
-          setProfileData(profile.data);
-          setHasLoaded(true);
-        } catch (error) {
-          // console.log(error);
-        }
-      };
-      fetchProfile();
-    }
-  }, [loggedInUser]);
+    const fetchProfile = async () => {
+      try {
+        const profile = await axiosRes.get(`/profiles/${id}`);
+        setProfileData(profile.data);
+        setHasLoaded(true);
+      } catch (error) {
+        // console.log(error);
+      }
+    };
+    fetchProfile();
+  }, [id]);
 
   return (
     <Container>
