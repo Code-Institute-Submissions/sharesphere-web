@@ -90,7 +90,6 @@ const EditProfileForm = () => {
       });
       navigate(`/profile/${loggedInUser.pk}`);
     } catch (error) {
-      console.log(error);
       setErrors(error.response?.data);
     }
   };
