@@ -14,6 +14,7 @@ const EditCommentForm = ({
   id,
 }) => {
   const [show, setShow] = useState(false);
+  const [posting, setPosting] = useState(false);
 
   const target = useRef(null);
 
@@ -24,15 +25,18 @@ const EditCommentForm = ({
 
   const handleEdit = async (e) => {
     e.preventDefault();
-    if (commentData.content !== "") {
+    if (commentData.content !== "" && !posting) {
       try {
+        setPosting(true);
         await axiosRes.put(`/comments/${id}`, commentData);
         setCommentData({
           ...commentData,
           updated_at: "now",
         });
         setEditToggled(false);
+        setPosting(false);
       } catch (error) {
+        setPosting(false);
         // console.log("Error when updating comment:", error);
       }
     } else if (commentData.content === "") {
