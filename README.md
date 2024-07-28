@@ -711,11 +711,33 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
 ### Future Features
 
+The very limited time frame that this project had to abide by obviously leaves room for lots of potential improvements and additional features.
+
 - In regard to protecting the original intents and messages of a conversation a potential future feature would be to allow editing of conversations and their replies.
 
   - But to ensure that the integrity is protected every time an edit is made the previous versions get stored in a history that can be accessed when viewing the reply or conversation.
 
 - An optimization that should be considered for implementation would be Google's guide for [properly sizing images](https://developer.chrome.com/docs/lighthouse/performance/uses-responsive-images/?utm_source=lighthouse&utm_medium=devtools) to ensure that page loading is efficient and doesn't use more bytes than necessary for loading images that are resized.
+
+- Add the option to recover/change password.
+
+- Look at the aesthetic improvement of incorporating more icons in the navbar.
+
+  - I did not feel that just adding matching icons is the best way to go about it.
+
+    - More time should be spent on considering whether or not they actually fit, their size, and the responsiveness.
+
+- Add expanded post, follower, and following information for profile pages.
+
+  - Clicking on the follower count could open a list of all the users that follow the user.
+
+  - Clicking on the following count could open a list of all the users followed by the user.
+
+  - Clicking on the posts count could open a feed of all the posts made by the user.
+
+- Add a search bar for searching posts in the feeds.
+
+  - The functionality for this is already implemented on the backend so this would only concern an input field and some state updates on the frontend.
 
 ### CRUD Features
 
