@@ -7,7 +7,7 @@ const NotFound = () => {
   return (
     <div className={css.Wrapper}>
       <h1>This page does not exist</h1>
-      <Link className={`${appCSS.Link} btn btn-dark`} to={".."}>
+      <Link className={`${appCSS.Link} btn btn-dark`} to={-1}>
         <i className="fa-solid fa-caret-left"></i> Go back
       </Link>
     </div>
