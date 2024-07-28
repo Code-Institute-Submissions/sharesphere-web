@@ -709,6 +709,19 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
     <p><img src="readme-assets/profile-updated.png" alt="profile updated"></p>
     </details>
 
+- **Custom 404 page**
+
+  - Entering an invalid URL that renders 404 page will display a custom site integrated page
+
+    - Features a go back button that takes the user back to the previous URL.
+
+    <details>
+    <summary>
+        Profile edit images
+    </summary>
+    <p><img src="readme-assets/404.png" alt="custom 404 page"></p>
+    </details>
+
 ### Future Features
 
 The very limited time frame that this project had to abide by obviously leaves room for lots of potential improvements and additional features.
