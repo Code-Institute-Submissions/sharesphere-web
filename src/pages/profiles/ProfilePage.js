@@ -15,6 +15,7 @@ import { useAuth } from "../../context/AuthContext";
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [handling, setHandling] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const { loggedInUser } = useAuth();
   const { id } = useParams();
@@ -48,15 +49,20 @@ const ProfilePage = () => {
      * followHelper function and updates the profile
      * state's following id and count if successful.
      */
-    try {
-      const data = await followHelper(id);
-      setProfileData((prevProfile) => ({
-        ...prevProfile,
-        following_id: data.id,
-        followers_count: prevProfile.followers_count + 1,
-      }));
-    } catch (error) {
-      // console.log(error);
+    if (!handling) {
+      try {
+        setHandling(true);
+        const data = await followHelper(id);
+        setProfileData((prevProfile) => ({
+          ...prevProfile,
+          following_id: data.id,
+          followers_count: prevProfile.followers_count + 1,
+        }));
+        setHandling(false);
+      } catch (error) {
+        setHandling(false);
+        // console.log(error);
+      }
     }
   };
 
@@ -66,15 +72,20 @@ const ProfilePage = () => {
      * unfollowHelper function and updates the profile
      * state's following id and count if successful.
      */
-    try {
-      await unfollowHelper(following_id);
-      setProfileData((prevProfile) => ({
-        ...prevProfile,
-        following_id: null,
-        followers_count: prevProfile.followers_count - 1,
-      }));
-    } catch (error) {
-      // console.log(error);
+    if (!handling) {
+      try {
+        setHandling(true);
+        await unfollowHelper(following_id);
+        setProfileData((prevProfile) => ({
+          ...prevProfile,
+          following_id: null,
+          followers_count: prevProfile.followers_count - 1,
+        }));
+        setHandling(false);
+      } catch (error) {
+        // console.log(error);
+        setHandling(false);
+      }
     }
   };
 
