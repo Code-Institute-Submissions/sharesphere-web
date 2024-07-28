@@ -44,8 +44,8 @@ const ConversationPage = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/messages/${id}`);
       setModalShow(false);
+      await axiosRes.delete(`/messages/${id}`);
       navigate("/conversations", {
         state: { success: "Conversation successfully deleted!" },
       });

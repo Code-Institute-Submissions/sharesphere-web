@@ -18,6 +18,7 @@ const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
     content: "",
   });
   const [errors, setErrors] = useState();
+  const [posting, setPosting] = useState(false);
 
   const { topic, content } = formData;
   const navigate = useNavigate();
@@ -41,22 +42,27 @@ const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
      * in alert fields for each field.
      */
     e.preventDefault();
-    try {
-      await axiosRes.post(`/messages/`, formData);
-      setFormData({
-        receiver: id,
-        topic: "",
-        content: "",
-      });
-      setErrors(null);
-      setModalShow(false);
-      navigate(location.pathname, {
-        replace: true,
-        state: { success: "Conversation successfully started!" },
-      });
-    } catch (error) {
-      // console.log(error);
-      setErrors(error.response.data);
+    if (!posting) {
+      try {
+        setPosting(true);
+        await axiosRes.post(`/messages/`, formData);
+        setFormData({
+          receiver: id,
+          topic: "",
+          content: "",
+        });
+        setErrors(null);
+        setModalShow(false);
+        navigate(location.pathname, {
+          replace: true,
+          state: { success: "Conversation successfully started!" },
+        });
+        setPosting(false);
+      } catch (error) {
+        // console.log(error);
+        setPosting(false);
+        setErrors(error.response.data);
+      }
     }
   };
 
