@@ -42,7 +42,8 @@ const Post = ({ post, setPosts, comments, setComments }) => {
   const [like, setLike] = useState(like_id);
   const [likeCount, setLikeCount] = useState(likes_count);
   const [commentCount, setCommentCount] = useState(comments_count);
-  const [loading, setLoading] = useState(false);
+  const [handling, setHandling] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [showLikeOverlay, setShowLikeOverlay] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editToggled, setEditToggled] = useState(false);
@@ -53,8 +54,8 @@ const Post = ({ post, setPosts, comments, setComments }) => {
   const navigate = useNavigate();
 
   const handleLike = async () => {
-    if (loading) return;
-    setLoading(true);
+    if (handling) return;
+    setHandling(true);
     try {
       const { data } = await axiosRes.post("/likes/", { post: id });
       setLikeCount(likeCount + 1);
@@ -62,13 +63,13 @@ const Post = ({ post, setPosts, comments, setComments }) => {
     } catch (error) {
       // console.log("Error when liking", error);
     } finally {
-      setLoading(false);
+      setHandling(false);
     }
   };
 
   const handleUnlike = async () => {
-    if (loading) return;
-    setLoading(true);
+    if (handling) return;
+    setHandling(true);
     try {
       await axiosRes.delete(`likes/${like}`);
       setLikeCount(likeCount - 1);
@@ -76,7 +77,7 @@ const Post = ({ post, setPosts, comments, setComments }) => {
     } catch (error) {
       // console.log("Error when unliking", error);
     } finally {
-      setLoading(false);
+      setHandling(false);
     }
   };
 
@@ -95,20 +96,24 @@ const Post = ({ post, setPosts, comments, setComments }) => {
      * If a post is deleted from the post page then navigate to homepage
      * without updating any state.
      */
-    try {
-      await axiosRes.delete(`/posts/${id}`);
-      if (location.pathname === `/post/${id}`) {
-        navigate("/", {
-          state: { success: "Post successfully deleted!" },
-        });
-      } else {
-        setPosts((prevPosts) => ({
-          ...prevPosts,
-          results: [...prevPosts.results.filter((post) => post.id !== id)],
-        }));
+    if (!deleting) {
+      try {
+        setDeleting(true);
+        await axiosRes.delete(`/posts/${id}`);
+        if (location.pathname === `/post/${id}`) {
+          navigate("/", {
+            state: { success: "Post successfully deleted!" },
+          });
+        } else {
+          setPosts((prevPosts) => ({
+            ...prevPosts,
+            results: [...prevPosts.results.filter((post) => post.id !== id)],
+          }));
+        }
+      } catch (error) {
+        setDeleting(false);
+        // console.log(error);
       }
-    } catch (error) {
-      // console.log(error);
     }
   };
 
