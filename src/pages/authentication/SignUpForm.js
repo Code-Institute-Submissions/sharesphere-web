@@ -128,7 +128,7 @@ const SignUpForm = () => {
                 <Alert
                   key={`${e}-${index}`}
                   variant="warning"
-                  className={css.FieldAlert}
+                  className={`${css.FieldAlert} mb-2`}
                 >
                   {e}
                 </Alert>
