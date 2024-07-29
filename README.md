@@ -119,7 +119,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
 - **Engagement Features**: Ability to like, comment on posts, and follow other users.
 
-- **User Profiles**: Detailed user profile pages displaying post count, followers, following information, biography, name if povided, and the ability to start a conversation.
+- **User Profiles**: Detailed user profile pages displaying post count, followers, following information, biography, name if provided, and the ability to start a conversation.
 
 - **Private Messaging**: Private conversation feature to facilitate direct communication between 2 users.
 
@@ -155,7 +155,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
 - **Conversations Page**: A straightforward interface for users to view and manage their private conversations and replies.
 
-- **Starting Conversations**: A simple interface modal accessed by clicking the envelope/message icon when visitng another users profile.
+- **Starting Conversations**: A simple interface modal accessed by clicking the envelope/message icon when visiting another users profile.
 
 **Information Architecture**
 
@@ -193,7 +193,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
 **Interface Elements**
 
-- **Buttons**: Clear call-to-action buttons for navigation, post creation, liking, commenting, replying, following, unfollowing, and CRUD actions where avaialable.
+- **Buttons**: Clear call-to-action buttons for navigation, post creation, liking, commenting, replying, following, unfollowing, and CRUD actions where available.
 
 - **Forms**: Simple forms for user authentication, post creation, comment submission, and reply submission.
 
@@ -235,7 +235,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
 **Color Scheme:**
 
-- The base scheme of the site is built with "dark theme" in mind as it's a theme becoming increasingly popular and tends to be a lot easier on the eyes for the user. There is not sacrifice in contrast or user experience to achieve the darker aestetic. The goal is to provide a friendly looking interface that won't appall the user from using the site for any extended periods of time.
+- The base scheme of the site is built with "dark theme" in mind as it's a theme becoming increasingly popular and tends to be a lot easier on the eyes for the user. There is not sacrifice in contrast or user experience to achieve the darker aesthetic. The goal is to provide a friendly looking interface that won't appall the user from using the site for any extended periods of time.
 
 - To achieve the darker theme every page features shade of woodsmoke as the background. \
   ![Background color](readme-assets/background-hex.png)
@@ -261,11 +261,11 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
   - The Open Sans font is used across most other elements and user-created content, with different font weights to convey the difference, for example, in a title. This font is chosen for its versatility and readability, making it ideal for body text and longer passages. Its clean and friendly appearance ensures that user-generated content is easy to read and engage with, while the variety of font weights allows for clear distinctions, enhancing the overall visual structure and user experience of the application.
 
 - sans-serif
-  - sans-serif is utlized as the fallback font in the event that the google fonts import would seize to function.
+  - sans-serif is utilized as the fallback font in the event that the google fonts import would seize to function.
 
 **Images:**
 
-- Standardized imagery does not see a whole lot of use throughout this project, the focus lies heavily in user-posted imagery.
+- Standardized imagery does not see a lot of use throughout this project, the focus lies heavily in user-posted imagery.
 
   - 2 simple default images are used for new users, and the other one for posts that have not had a custom image added to them.
 
@@ -450,7 +450,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
 - **Creating comments**
 
-  - Comments can be created under any post when visitng the post page.
+  - Comments can be created under any post when visiting the post page.
 
   - Attempting to submit an empty comment shows a tooltip notifying the user to provide a comment first.
 
@@ -504,13 +504,13 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
   - They may also appear if a logged in user tries to visit the sign in or sign up page. Or when the user signs out.
 
-  - They appear other cases too that will are shown with other features.
+  - They appear in other cases as well, most of which will be shown with other features.
       <details>
       <summary>
           Response message images
       </summary>
       <p><img src="readme-assets/redirect-after-delete.png" alt="message on successful post deletion"></p>
-      <p><img src="readme-assets/already-signed-in.png" alt="message visitng sign in page"></p>
+      <p><img src="readme-assets/already-signed-in.png" alt="message visiting sign in page"></p>
       <p><img src="readme-assets/signed-out.png" alt="message after signing out"></p>
       </details>
 
@@ -520,7 +520,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
     - Performing such a request would be done through editing the url manually, like visiting /conversations when signed out.
 
-  - If a user's session has expired and they try to perform an action that requires sign in they are redirected with an alert.
+  - If a user's session has expired, and they try to perform an action that requires sign in they are redirected with an alert.
 
       <details>
       <summary>
@@ -557,7 +557,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
   - Visiting another users profile as a logged in user will show a message/envelope icon.
 
-  - Clicking that icon toggles a conversation creation modal with a simple form to start a converasation with that user.
+  - Clicking that icon toggles a conversation creation modal with a simple form to start a conversation with that user.
 
   - Both the topic and message fields are required. The topic is limited to 40 characters and the message is unlimited.
 
@@ -672,7 +672,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
     - This is to access the profile edit page.
 
-  - Visitng another users profile as a logged in user, assuming the user hasn't disabled receive_messages, an envelope/message icon will appear next to the username.
+  - visiting another users profile as a logged in user, assuming the user hasn't disabled receive_messages, an envelope/message icon will appear next to the username.
 
     - This is used to start a conversation with the user.
 
@@ -711,7 +711,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
 - **Custom 404 page**
 
-  - Entering an invalid URL that renders 404 page will display a custom site integrated page
+  - Entering an invalid URL that rendersa  404 page will display a custom, site integrated page.
 
     - Features a go back button that takes the user back to the previous URL.
 
@@ -760,12 +760,12 @@ The principles of CRUD are at the essence of this project's features and any fut
 An authenticated user can create posts, like posts, follow other users, create post comments, and send direct messages to other users that have receive messages enabled.
 
 **Read:**
-A user can browse and read any posts made on the website and see their respective amount of comments and likes, posts can also be sorted by ones the user has liked or from users they follow. Comments made under any post can be read by any user. If the user is engaged in any conversation with another user the contents of that conversation may also be read at any time. The amount of followers and or the amount of users a user follows can be seen from each indiviual users profile page.
+A user can browse and read any posts made on the website and see their respective amount of comments and likes, posts can also be sorted by ones the user has liked or from users they follow. Comments made under any post can be read by any user. If the user is engaged in any conversation with another user the contents of that conversation may also be read at any time. The amount of followers and or the amount of users a user follows can be seen from each individual users profile page.
 
 **Update:**
-An authenticated user can edit and update their profile as well as their individual contributuions to the site, bar conversations and their replies.
+An authenticated user can edit and update their profile as well as their individual contributions to the site, bar conversations and their replies.
 
-- The reason a conversation or reply cannot be edited is to avoid any malicious altering of a private conversation between 2 indivuals to make it seem as though a user had different intents in relation previous messages. They may still be deleted to ensure controlled privacy.
+- The reason a conversation or reply cannot be edited is to avoid any malicious altering of a private conversation between 2 individuals to make it seem as though a user had different intents in relation previous messages. They may still be deleted to ensure controlled privacy.
 
   - This could be worked around as a future feature where any updates made would save history of the previous versions of an object.
 
@@ -845,7 +845,7 @@ Refer to [TESTING.md](TESTING.md) for the manual and automatic tests that have b
 
 - Lighthouse was used alongside WAVE to validate accessibility among the 3 other topics it covers.
 
-- It was performed on all pages but I'll spare the need to look at results for the more plain pages such as 404 and the authentication pages (All of which do score 100 on best practices and accessbility).
+- It was performed on all pages but I'll spare the need to look at results for the more plain pages such as 404 and the authentication pages (All of which do score 100 on best practices and accessibility).
 
   - These tests were performed on an incognito page to emulate a clean, and optimized environment.
 
@@ -853,7 +853,7 @@ Refer to [TESTING.md](TESTING.md) for the manual and automatic tests that have b
 
     - The limited time frame for this project has meant that I have not had the time to evaluate other options to avoid third party cookies.
 
-    - So summarize, the JWT cookies will cause the best practices score to drop from 100 to 78 in the lightouse reports.
+    - So summarize, the JWT cookies will cause the best practices score to drop from 100 to 78 in the lighthouse reports.
 
       <details>
       <summary>
@@ -974,7 +974,7 @@ Refer to [TESTING.md](TESTING.md) for the manual and automatic tests that have b
 
   - The solution to the problem is simply to disable the functions from trying API requests if one is in progress.
 
-    - This was done by adding a new useState hook and and using it's condition for the like and unlike functions:
+    - This was done by adding a new useState hook and and using its condition for the like and unlike functions:
 
     ```js
       * const [loading, setLoading] = useState(false); *
@@ -1014,7 +1014,7 @@ Refer to [TESTING.md](TESTING.md) for the manual and automatic tests that have b
 
   - For example a post with 17 comments would have 2 comments on the next page for infinite scroll to fetch when needed, but if I delete 2 of my comments from the first page of 15 comments those 2 comments on the next page will have moved to the first page on the backend, but when infiniteScroll tries to fetch the next page they will not be there and will therefore not be rendered.
 
-    - I haven't landed on a specfic solution for it that would keep the neat responsive flow of react rendering.
+    - I haven't landed on a specific solution for it that would keep the neat responsive flow of react rendering.
 
       - A possible fix would be to fetch the first object on the next page before performing the deletion.
 
@@ -1033,7 +1033,7 @@ Refer to [TESTING.md](TESTING.md) for the manual and automatic tests that have b
      - ```npm start```
 
   3. The site should automatically open.
-      - If it doesn't open on it's own, you can CTRL click the "Local:" localhost address.
+      - If it doesn't open on its own, you can CTRL click the "Local:" localhost address.
 
 ### Live Deployment
 
@@ -1130,7 +1130,7 @@ Any changes made to a forked repository will not affect the original repository.
 
 - [Code Institute](https://codeinstitute.net/) for introduction and walkthrough of React and its potential.
 
-- Adam Lapinski from Code Institute for his [Moment React app walkthrough](https://github.com/mr-fibonacci/moments) which was referred to on various occassions in this React application.
+- Adam Lapinski from Code Institute for his [Moment React app walkthrough](https://github.com/mr-fibonacci/moments) which was referred to on various occasions in this React application.
 
 Refer to [Technologies Used](#technologies-used) for packages and libraries used.
 
