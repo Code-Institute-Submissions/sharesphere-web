@@ -1128,6 +1128,10 @@ Any changes made to a forked repository will not affect the original repository.
 
 ### Technical
 
+- [Code Institute](https://codeinstitute.net/) for introduction and walkthrough of React and its potential.
+
+- Adam Lapinski from Code Institute for his [Moment React app walkthrough](https://github.com/mr-fibonacci/moments) which was referred to on various occassions in this React application.
+
 Refer to [Technologies Used](#technologies-used) for packages and libraries used.
 
 ### Media
