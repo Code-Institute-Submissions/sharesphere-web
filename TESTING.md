@@ -1,12 +1,25 @@
 # ShareSphere Testing
 
-The code for the automated backend test can be found [here](https://github.com/Felteng/sharesphere-api/blob/main/direct_messages/test_views.py).
+## Automated tests
+
+### Backend tests
+
+- The code for the automated backend test can be found [here](https://github.com/Felteng/sharesphere-api/blob/main/direct_messages/test_views.py). 
+
+  - The tests cover the largest custom model and ensuring its privacy.
+
+    - Similar tests could be made for the replies model as well but it uses the same permission class as the direct_messages model so I did not deem it necessary given the limited time frame.
+    
 <p><details>
   <summary>
     Coverage report from automated backend tests:
   </summary>
   <p><img src="readme-assets/cov-report.png" alt="backend coverage report"></p>
 </details></p>
+
+### Frontend tests
+
+## Manual Tests
 
 <p>Below is a summary of all the manual test cases that have been carried out for ShareSphere on the frontend, naturally these cover validation, handling, restrictions, etc. from the backend too, hence both repos share this testing file.</p>
 
