@@ -1,21 +1,21 @@
 import { React, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "./context/AuthContext.js";
-import "./axios/axiosDefaults";
+import { useAuth } from "./context/AuthContext";
+import "./axios/axiosDefaults.js";
 import Alert from "react-bootstrap/Alert";
 import css from "./styles/css/App.module.css";
-import NavBar from "./components/NavBar";
-import SignUpForm from "./pages/authentication/SignUpForm.js";
-import SignInForm from "./pages/authentication/SignInForm.js";
-import ProfilePage from "./pages/profiles/ProfilePage.js";
-import EditProfileForm from "./pages/profiles/EditProfileForm.js";
-import CreatePostForm from "./pages/posts/CreatePostForm.js";
-import RenderPosts from "./pages/posts/RenderPosts.js";
-import PostPage from "./pages/posts/PostPage.js";
-import Conversations from "./pages/conversations/Conversations.js";
-import ConversationPage from "./pages/conversations/ConversationPage.js";
+import NavBar from "./components/NavBar.jsx";
+import SignUpForm from "./pages/authentication/SignUpForm.jsx";
+import SignInForm from "./pages/authentication/SignInForm.jsx";
+import ProfilePage from "./pages/profiles/ProfilePage.jsx";
+import EditProfileForm from "./pages/profiles/EditProfileForm.jsx";
+import CreatePostForm from "./pages/posts/CreatePostForm.jsx";
+import RenderPosts from "./pages/posts/RenderPosts.jsx";
+import PostPage from "./pages/posts/PostPage.jsx";
+import Conversations from "./pages/conversations/Conversations.jsx";
+import ConversationPage from "./pages/conversations/ConversationPage.jsx";
 import { AlreadySignedIn, SignInRequired } from "./utils/Utils.js";
-import NotFound from "./pages/notfound/NotFound.js";
+import NotFound from "./pages/notfound/NotFound.jsx";
 
 function App() {
   const [successMessage, setSuccessMessage] = useState();

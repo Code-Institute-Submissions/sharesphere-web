@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
-import css from "../styles/css/Avatar.module.css"; // Import the CSS file
+import css from "../styles/css/Avatar.module.css";
 
 const Avatar = ({ src, size, alt }) => {
   return (
