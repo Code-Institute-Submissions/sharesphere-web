@@ -4,12 +4,12 @@
 
 ### Backend tests
 
-- The code for the automated backend test can be found [here](https://github.com/Felteng/sharesphere-api/blob/main/direct_messages/test_views.py). 
+- The code for the automated backend tests can be found [here](https://github.com/Felteng/sharesphere-api/blob/main/direct_messages/test_views.py). 
 
   - The tests cover the largest custom model and ensuring its privacy.
 
     - Similar tests could be made for the replies model as well but it uses the same permission class as the direct_messages model so I did not deem it necessary given the limited time frame.
-    
+
 <p><details>
   <summary>
     Coverage report from automated backend tests:
@@ -18,6 +18,27 @@
 </details></p>
 
 ### Frontend tests
+
+- The code for the automated frontend tests can be found [here](https://github.com/Felteng/sharesphere-web/blob/main/src/components/__tests__/NavBar.test.jsx).
+
+  - The scope of the tests are very low as time for development is coming to an end as of setting up frontend testing.
+
+  - Major issues with the initial Jest framework that comes with CRA rendered me unable to start a test suite because "TextEncoder" was not available globally.
+  
+    - I spent a lot of time troubleshooting and even implementing the fix for that specific issue found in the documentation, but to no luck.
+
+    - In turn I opted to change the test framework from Jest to Vitest. This posed some other challenges as the react project was created with CRA and not Vite.
+
+      - All JSX syntaxed files had to be renamed from .js to .jsx as a result of Vitest requirements.
+
+      - I was not able to get the handlers.js user mock to integrate properly despite many iterations, so a short comment describing it and my mock log in workaround has been left in there and in the NavBar.test.jsx file.
+
+<p><details>
+  <summary>
+    Test report from automated frontend tests:
+  </summary>
+  <p><img src="readme-assets/frontend-test-report.png" alt="frontend test report"></p>
+</details></p>
 
 ## Manual Tests
 
