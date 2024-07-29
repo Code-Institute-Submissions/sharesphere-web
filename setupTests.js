@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom';
-import {server} from './src/mocks/setupServer'
+import "@testing-library/jest-dom";
+import { server } from "./src/mocks/setupServer";
 
 // API mock handling from:
 // https://github.com/mr-fibonacci/moments/blob/be21d73ba17a071bfb941c9587575c0a9e10615b/src/setupTests.js#L11-L13

@@ -41,11 +41,15 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.25.0",
+    "@babel/preset-react": "^7.24.7",
     "@eslint/js": "^9.7.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@vitest/ui": "^2.0.4",
+    "babel": "^6.23.0",
+    "babel-jest": "^29.7.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
