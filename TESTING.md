@@ -1,6 +1,14 @@
 # ShareSphere Testing
 
-Below is a summary of all the manual test cases that have been carried out for ShareSphere on the frontend, naturally these cover validation, handling, restrictions, etc. from the backend too, hence both repos share this testing file.
+The code for the automated backend test can be found [here](https://github.com/Felteng/sharesphere-api/blob/main/direct_messages/test_views.py).
+<p><details>
+  <summary>
+    Coverage report from automated backend tests:
+  </summary>
+  <p><img src="readme-assets/cov-report.png" alt="backend coverage report"></p>
+</details></p>
+
+<p>Below is a summary of all the manual test cases that have been carried out for ShareSphere on the frontend, naturally these cover validation, handling, restrictions, etc. from the backend too, hence both repos share this testing file.</p>
 
 | Feature                           | Action                                               | Expected Output                                                                                                                   | Actual Output                                                                                                                     |
 | --------------------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
