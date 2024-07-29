@@ -352,7 +352,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
   - On smaller devices it's featured above the feed with a horizontal scroll.
 
-- **Registration page**
+- **Sign up page**
 
   - Features an ordinary registration form with a feature image and appropriate feedback if fields are left empty or with invalid input.
 
@@ -360,7 +360,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
     <details>
     <summary>
-        Registration images
+        Sign up images
     </summary>
     <p><img src="readme-assets/sign-up-page.png" alt="registration page"></p>
     <p><img src="readme-assets/sign-up-page-mobile.png" alt="registration page mobile"></p>
@@ -380,7 +380,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
     <p><img src="readme-assets/sign-in-page-mobile.png" alt="sign in page mobile"></p>
     </details>
 
-- **Sign out page**
+- **Sign out modal**
 
   - Tapping the sign out icon or the sign out navlink opens a sign out modal.
 
@@ -717,7 +717,7 @@ ShareSphere aims to create a vibrant and engaging platform for individuals who l
 
     <details>
     <summary>
-        Profile edit images
+        404 page images
     </summary>
     <p><img src="readme-assets/404.png" alt="custom 404 page"></p>
     </details>

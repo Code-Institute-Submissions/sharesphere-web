@@ -1,31 +1,44 @@
-| Feature                           | Action                                        | Expected Output                                                   | Actual Output                                                     |
-| --------------------------------- | --------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| **Header**                            |                                               |                                                                   |                                                                   |
-| Navigation Bar (Logged In)        | Click on Home link                            | User is redirected to the Home page                               | User is redirected to the Home page                               |
-| Navigation Bar (Logged In)        | Click on Following link                       | User is redirected to the Following page                          | User is redirected to the Following page                          |
-| Navigation Bar (Logged In)        | Click on Likes link                           | User is redirected to the Likes page                              | User is redirected to the Likes page                              |
-| Navigation Bar (Logged In)        | Click on Create Post link                     | User is redirected to the Create Post page                        | User is redirected to the Create Post page                        |
-| Navigation Bar (Logged In)        | Click on Conversations link                   | User is redirected to the Conversations page                      | User is redirected to the Conversations page                      |
-| Navigation Bar (Logged In)        | Click on Profile avatar                       | User is redirected to the Profile page                            | User is redirected to the Profile page                            |
-| Navigation Bar (Logged In)        | Click on site logo                            | User is redirected to the Home page                               | User is redirected to the Home page                               |
-| Navigation Bar (Logged In)        | Click on sign out logo next to Profile avatar | Sign out confirmation modal appears in the middle of the screen   | Sign out confirmation modal appears in the middle of the screen   |
-| Navigation Bar (Logged Out)       | Click on Home link                            | User is redirected to the Home page                               | User is redirected to the Home page                               |
-| Navigation Bar (Logged Out)       | Click on Sign In link                         | User is redirected to the Sign In page                            | User is redirected to the Sign In page                            |
-| Navigation Bar (Logged Out)       | Click on Sign Up link                         | User is redirected to the Sign Up page                            | User is redirected to the Sign Up page                            |
-| Navigation Bar (Logged Out)       | Click on site logo                            | User is redirected to the Home page                               | User is redirected to the Home page                               |
-| Navbar Toggling (Smaller Devices) | Click on burger menu icon                     | Navbar expands to show the navigation links                       | Navbar expands to show the navigation links                       |
-| Navbar Toggling (Smaller Devices) | Click on Home link (navbar expanded)          | User is redirected to the Home page and navbar collapses          | User is redirected to the Home page and navbar collapses          |
-| Navbar Toggling (Smaller Devices) | Click on Following link (navbar expanded)     | User is redirected to the Following page and navbar collapses     | User is redirected to the Following page and navbar collapses     |
-| Navbar Toggling (Smaller Devices) | Click on Likes link (navbar expanded)         | User is redirected to the Likes page and navbar collapses         | User is redirected to the Likes page and navbar collapses         |
-| Navbar Toggling (Smaller Devices) | Click on Create Post link (navbar expanded)   | User is redirected to the Create Post page and navbar collapses   | User is redirected to the Create Post page and navbar collapses   |
-| Navbar Toggling (Smaller Devices) | Click on Conversations link (navbar expanded) | User is redirected to the Conversations page and navbar collapses | User is redirected to the Conversations page and navbar collapses |
-| Navbar Toggling (Smaller Devices) | Click on Profile link (navbar expanded)       | User is redirected to the Profile page and navbar collapses       | User is redirected to the Profile page and navbar collapses       |
-| Navbar Toggling (Smaller Devices) | Click on Sign In link (navbar expanded)       | User is redirected to the Sign In page and navbar collapses       | User is redirected to the Sign In page and navbar collapses       |
-| Navbar Toggling (Smaller Devices) | Click on Sign Up link (navbar expanded)       | User is redirected to the Sign Up page and navbar collapses       | User is redirected to the Sign Up page and navbar collapses       |
-| Navbar Toggling (Smaller Devices) | Click on Sign Up link (navbar expanded)       | User is redirected to the Sign Up page and navbar collapses       | User is redirected to the Sign Up page and navbar collapses       |
-| Navbar Toggling (Smaller Devices) | Click on Sign Out link                        | Sign out confirmation modal appears in the middle of the screen   | Sign out confirmation modal appears in the middle of the screen   |
+# ShareSphere Testing
 
-IMAGES HERE
+Below is a summary of all the manual test cases that have been carried out for ShareSphere on the frontend, naturally these cover validation, handling, restrictions, etc. from the backend too, hence both repos share this testing file.
+
+| Feature                           | Action                                               | Expected Output                                                                                                                   | Actual Output                                                                                                                     |
+| --------------------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Header                            |                                                      |                                                                                                                                   |                                                                                                                                   |
+| Navigation Bar (Logged In)        | Click on Home link                                   | User is redirected to the Home page                                                                                               | User is redirected to the Home page                                                                                               |
+| Navigation Bar (Logged In)        | Click on Following link                              | User is redirected to the Following page                                                                                          | User is redirected to the Following page                                                                                          |
+| Navigation Bar (Logged In)        | Click on Likes link                                  | User is redirected to the Likes page                                                                                              | User is redirected to the Likes page                                                                                              |
+| Navigation Bar (Logged In)        | Click on Create Post link                            | User is redirected to the Create Post page                                                                                        | User is redirected to the Create Post page                                                                                        |
+| Navigation Bar (Logged In)        | Click on Conversations link                          | User is redirected to the Conversations page                                                                                      | User is redirected to the Conversations page                                                                                      |
+| Navigation Bar (Logged In)        | Click on Profile avatar                              | User is redirected to the Profile page                                                                                            | User is redirected to the Profile page                                                                                            |
+| Navigation Bar (Logged In)        | Click on site logo                                   | User is redirected to the Home page                                                                                               | User is redirected to the Home page                                                                                               |
+| Navigation Bar (Logged In)        | Click on sign out logo next to Profile avatar        | Sign out confirmation modal appears in the middle of the screen                                                                   | Sign out confirmation modal appears in the middle of the screen                                                                   |
+| Navigation Bar (Logged Out)       | Click on Home link                                   | User is redirected to the Home page                                                                                               | User is redirected to the Home page                                                                                               |
+| Navigation Bar (Logged Out)       | Click on Sign In link                                | User is redirected to the Sign In page                                                                                            | User is redirected to the Sign In page                                                                                            |
+| Navigation Bar (Logged Out)       | Click on Sign Up link                                | User is redirected to the Sign Up page                                                                                            | User is redirected to the Sign Up page                                                                                            |
+| Navigation Bar (Logged Out)       | Click on site logo                                   | User is redirected to the Home page                                                                                               | User is redirected to the Home page                                                                                               |
+| Navigation Bar Current Page       | Visit the create post page, then visit the home page | Create post page nav link is highlighted in a darker shade, then when going back to home the home nav link is instead highlighted | Create post page nav link is highlighted in a darker shade, then when going back to home the home nav link is instead highlighted |
+| Navbar Toggling (Smaller Devices) | Click on burger menu icon                            | Navbar expands to show the navigation links                                                                                       | Navbar expands to show the navigation links                                                                                       |
+| Navbar Toggling (Smaller Devices) | Click on Home link (navbar expanded)                 | User is redirected to the Home page and navbar collapses                                                                          | User is redirected to the Home page and navbar collapses                                                                          |
+| Navbar Toggling (Smaller Devices) | Click on Following link (navbar expanded)            | User is redirected to the Following page and navbar collapses                                                                     | User is redirected to the Following page and navbar collapses                                                                     |
+| Navbar Toggling (Smaller Devices) | Click on Likes link (navbar expanded)                | User is redirected to the Likes page and navbar collapses                                                                         | User is redirected to the Likes page and navbar collapses                                                                         |
+| Navbar Toggling (Smaller Devices) | Click on Create Post link (navbar expanded)          | User is redirected to the Create Post page and navbar collapses                                                                   | User is redirected to the Create Post page and navbar collapses                                                                   |
+| Navbar Toggling (Smaller Devices) | Click on Conversations link (navbar expanded)        | User is redirected to the Conversations page and navbar collapses                                                                 | User is redirected to the Conversations page and navbar collapses                                                                 |
+| Navbar Toggling (Smaller Devices) | Click on Profile link (navbar expanded)              | User is redirected to the Profile page and navbar collapses                                                                       | User is redirected to the Profile page and navbar collapses                                                                       |
+| Navbar Toggling (Smaller Devices) | Click on Sign In link (navbar expanded)              | User is redirected to the Sign In page and navbar collapses                                                                       | User is redirected to the Sign In page and navbar collapses                                                                       |
+| Navbar Toggling (Smaller Devices) | Click on Sign Up link (navbar expanded)              | User is redirected to the Sign Up page and navbar collapses                                                                       | User is redirected to the Sign Up page and navbar collapses                                                                       |
+| Navbar Toggling (Smaller Devices) | Click on Sign Up link (navbar expanded)              | User is redirected to the Sign Up page and navbar collapses                                                                       | User is redirected to the Sign Up page and navbar collapses                                                                       |
+| Navbar Toggling (Smaller Devices) | Click on Sign Out link                               | Sign out confirmation modal appears in the middle of the screen                                                                   | Sign out confirmation modal appears in the middle of the screen                                                                   |
+
+  <details>
+  <summary>
+      Navigation testing images
+  </summary>
+  <p>These images do not cover every test case above as the added time for that would be too immense for the scope and time frame. But they should provide a decent overview of some tests and their results.</p>
+  <p><img src="readme-assets/nav-logged-in.png" alt="logged in navbar"></p>
+  <p><img src="readme-assets/nav-logged-out.png" alt="logged out navbar"></p>
+  <p><img src="readme-assets/nav-mobile.png" alt="mobile navbar"></p>
+  </details>
 
 | Feature                   | Action                                                                | Expected Output                                                                                                                    | Actual Output                                                                                                                      |
 | ------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
@@ -56,7 +69,21 @@ IMAGES HERE
 | Close Delete Modal        | Click the "Cancel" button, the cross, or outside of the modal         | Modal closes and everything looks the same as before                                                                               | Modal closes and everything looks the same as before                                                                               |
 | Confirm Sign Out          | Click the "Sign out" button                                           | User is signed out, modal closes itself, user is redirected to the home page, and a successful sign out message is displayed       | User is signed out, modal closes itself, user is redirected to the home page, and a successful sign out message is displayed       |
 
-IMAGES HERE
+  <details>
+  <summary>
+      Auth pages testing images
+  </summary>
+    <p>These images do not cover every test case above as the added time for that would be too immense for the scope and time frame. But they should provide a decent overview of some tests and their results.</p>
+  <p><img src="readme-assets/sign-up-page.png" alt="registration page"></p>
+  <p><img src="readme-assets/sign-up-blank.png" alt="registration page empty form"></p>
+  <p><img src="readme-assets/sign-up-mismatch.png" alt="registration page not matching passwords"></p>
+  <p><img src="readme-assets/sign-in-page.png" alt="sign in page"></p>
+  <p><img src="readme-assets/sign-in-no-pass.png" alt="sign in no password"></p>
+  <p><img src="readme-assets/sign-in-mismatch.png" alt="sign in wrong password"></p>
+  <p><img src="readme-assets/sign-out-modal.png" alt="sign out modal"></p>
+  <p><img src="readme-assets/sign-out-success.png" alt="signed out"></p>
+
+  </details>
 
 | Feature                      | Action                                                                | Expected Output                                                                                                                                         | Actual Output                                                                                                                                           |
 | ---------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -113,7 +140,22 @@ IMAGES HERE
 | Confirm Deletion (Feed)      | Click the "Delete" button when deleting a post from a feed            | Delete request is made, modal closes itself, and the post is removed from the rendered posts                                                            | Delete request is made, modal closes itself, and the post is removed from the rendered posts                                                            |
 | Confirm Deletion (Post Page) | Click the "Delete" button when deleting a post from its page          | Delete request is made, modal closes itself, and the user is redirected to the home page                                                                | Delete request is made, modal closes itself, and the user is redirected to the home page                                                                |
 
-IMAGES HERE
+  <details>
+  <summary>
+      Post testing images
+  </summary>
+  <p>These images do not cover every test case above as the added time for that would be too immense for the scope and time frame. But they should provide a decent overview of some tests and their results.</p>
+  <p><img src="readme-assets/home-page.png" alt="post feed"></p>
+  <p><img src="readme-assets/own-like.png" alt="like on own post"> <img src="readme-assets/sign-out-like.png" alt="like when logged out"></p>
+  <p><img src="readme-assets/post-create-form.png" alt="post create page"></p>
+  <p><img src="readme-assets/post-create-errors.png" alt="post form errors"></p>
+  <p><img src="readme-assets/post-redirection.png" alt="page redirected to after creation"></p>
+  <p><img src="readme-assets/post-edit-form.png" alt="post edit form toggled"></p>
+  <p><img src="readme-assets/post-edit-errors.png" alt="post edit form errors"></p>
+  <p><img src="readme-assets/post-edited.png" alt="updated post after editing"></p>
+  <p><img src="readme-assets/post-delete-modal.png" alt="post delete modal"></p>
+  <p><img src="readme-assets/redirect-after-delete.png" alt="redirected page after deletion"></p>
+  </details>
 
 | Feature                             | Action                                                                 | Expected Output                                                                                                                                                                                                                                     | Actual Output                                                                                                                                                                                                                                       |
 | ----------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -125,7 +167,17 @@ IMAGES HERE
 | Spam Follow Requests                | Spam the follow/unfollow buttons                                       | No unintended behavior happens as the button will only do something once the post or delete request has finished                                                                                                                                    | No unintended behavior happens as the button will only do something once the post or delete request has finished                                                                                                                                    |
 | Responsive Design (Smaller Devices) | Resize browser window to less than 992px                               | The list turns into a horizontally scrollable list as opposed to a vertical list on smaller resolutions                                                                                                                                             | The list turns into a horizontally scrollable list as opposed to a vertical list on smaller resolutions                                                                                                                                             |
 
-IMAGES HERE
+  <details>
+  <summary>
+      Most active posters testing images
+  </summary>
+  <p>These images do not cover every test case above as the added time for that would be too immense for the scope and time frame. But they should provide a decent overview of some tests and their results.</p>
+  <p><img src="readme-assets/home-page.png" alt="home page"></p>
+  <p><img src="readme-assets/home-page-mobile.png" alt="home page on mobile device"></p>
+  <p><img src="readme-assets/before-follow.png" alt="before following"></p>
+  <p><img src="readme-assets/after-follow.png" alt="after following"></p>
+  </details>
+
 
 | Feature                   | Action                                                        | Expected Output                                                                                                                                                 | Actual Output                                                                                                                                                   |
 | ------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -152,7 +204,21 @@ IMAGES HERE
 | Close Delete Modal        | Click the "Cancel" button, the cross, or outside of the modal | Modal closes and everything looks the same as before                                                                                                            | Modal closes and everything looks the same as before                                                                                                            |
 | Confirm Deletion          | Click the "Delete" button                                     | Delete request is made, modal closes itself, the comment is removed from the rendered comments, and the comment count is decreased by 1                         | Delete request is made, modal closes itself, the comment is removed from the rendered comments, and the comment count is decreased by 1                         |
 
-IMAGES HERE
+  <details>
+  <summary>
+      Comment testing images
+  </summary>
+  <p>These images do not cover every test case above as the added time for that would be too immense for the scope and time frame. But they should provide a decent overview of some tests and their results.</p>
+  <p><img src="readme-assets/comment-form.png" alt="comment form under post"></p>
+  <p><img src="readme-assets/comment-tooltip.png" alt="empty comment tooltip"></p>
+  <p><img src="readme-assets/comment-added.png" alt="comment added to post"></p>
+  <p><img src="readme-assets/comment-dropdown.png" alt="comment delete/edit dropdown"></p>
+  <p><img src="readme-assets/comment-edit.png" alt="comment edit form"></p>
+  <p><img src="readme-assets/comment-edit-empty.png" alt="empty comment update"></p>
+  <p><img src="readme-assets/edited-comment.png" alt="comment edited"></p>
+  <p><img src="readme-assets/comment-delete-modal.png" alt="comment delete modal"></p>
+  <p><img src="readme-assets/comment-deleted.png" alt="comment deleted"></p>
+  </details>
 
 | Feature                  | Action                                                                            | Expected Output                                                                                                                                                                                                                | Actual Output                                                                                                                                                                                                                  |
 | ------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -186,7 +252,19 @@ IMAGES HERE
 | Save Changes             | Click the update profile button                                                   | Changes are saved, and user is redirected to the profile page with updated information, avatar on the navbar is updated too                                                                                                    | Changes are saved, and user is redirected to the profile page with updated information, avatar on the navbar is updated too                                                                                                    |
 | Responsive Design        | Resize browser window                                                             | Edit profile page adjusts layout appropriately for different screen sizes (e.g., mobile, tablet, desktop)                                                                                                                      | Edit profile page adjusts layout appropriately for different screen sizes                                                                                                                                                      |
 
-IMAGES HERE
+<details>
+<summary>
+    Profile testing images
+</summary>
+<p>These images do not cover every test case above as the added time for that would be too immense for the scope and time frame. But they should provide a decent overview of some tests and their results.</p>
+<p><img src="readme-assets/own-profile.png" alt="own profile"></p>
+<p><img src="readme-assets/new-user.png" alt="new user profile"></p>
+<p><img src="readme-assets/receive-messages-off.png" alt="profile with receive messages off"></p>
+<p><img src="readme-assets/profile-signed-out.png" alt="profile when signed out"></p>
+<p><img src="readme-assets/profile-edit-form.png" alt="profile edit form"></p>
+<p><img src="readme-assets/profile-image-error.png" alt="profile-image-error"></p>
+<p><img src="readme-assets/profile-updated.png" alt="profile updated"></p>
+</details>
 
 | Feature                  | Action                                                                     | Expected Output                                                                                                                                                                                                                                                       | Actual Output                                                                                                                                                                                                                                                         |
 | ------------------------ | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -223,7 +301,21 @@ IMAGES HERE
 | Close Delete Modal       | Click the "Cancel" button, the cross, or outside of the modal              | Modal closes and everything looks the same as before                                                                                                                                                                                                                  | Modal closes and everything looks the same as before                                                                                                                                                                                                                  |
 | Confirm Deletion         | Click the "Delete" button                                                  | Modal closes itself, delete request is made, and the user is redirected to the conversations page with a success message displayed                                                                                                                                    | Delete request is made, modal closes itself, and the user is redirected to the conversations page with a success message displayed                                                                                                                                    |
 
-IMAGES HERE
+  <details>
+  <summary>
+      Conversations testing images
+  </summary>
+  <p><img src="readme-assets/no-convs.png" alt="no conversations"></p>
+  <p><img src="readme-assets/conversations.png" alt="conversations"></p>
+  <p><img src="readme-assets/conv-form.png" alt="conversation form"></p>
+  <p><img src="readme-assets/conv-form-errors.png" alt="conversation form errors"></p>
+  <p><img src="readme-assets/conv-started.png" alt="conversation started"></p>
+  <p><img src="readme-assets/updated-convs.png" alt="conversation added in conversations list"></p>
+  <p><img src="readme-assets/conv-page.png" alt="conversation page"></p>
+  <p><img src="readme-assets/conv-dropdown.png" alt="conversation dropdown"></p>
+  <p><img src="readme-assets/conv-delete-modal.png" alt="conversation delete modal"></p>
+  <p><img src="readme-assets/conv-deleted.png" alt="conversation deleted"></p>
+  </details>
 
 | Feature            | Action                                                        | Expected Output                                                                                                                                                                   | Actual Output                                                                                                                           |
 | ------------------ | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -244,7 +336,16 @@ IMAGES HERE
 | Close Delete Modal | Click the "Cancel" button, the cross, or outside of the modal | Modal closes and everything looks the same as before                                                                                                                              | Modal closes and everything looks the same as before                                                                                    |
 | Confirm Deletion   | Click the "Delete" button                                     | Modal closes itself, delete request is made, reply is removed from the rendered replies, and reply count is decreased by 1                                                        | Modal closes itself, delete request is made, reply is removed from the rendered replies, and reply count is decreased by 1              |
 
-IMAGES HERE
+<details>
+<summary>
+    Replies testing images
+</summary>
+<p><img src="readme-assets/reply-error.png" alt="empty reply field"></p>
+<p><img src="readme-assets/reply-added.png" alt="reply added"></p>
+<p><img src="readme-assets/reply-dropdown.png" alt="reply dropdown"></p>
+<p><img src="readme-assets/reply-delete-modal.png" alt="reply delete modal"></p>
+<p><img src="readme-assets/reply-deleted.png" alt="reply deleted"></p>
+</details>
 
 | Feature                         | Action                                                           | Expected Output                                                                                                                         | Actual Output                                                                                                                           |
 | ------------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -262,3 +363,13 @@ IMAGES HERE
 | **404 Page**                        |                                                                  |                                                                                                                                         |                                                                                                                                         |
 | Invalid URL                     | Visit /test404                                                   | A custom 404 page is rendered letting the user know that page does not exist with a go back button                                      | A custom 404 page is rendered letting the user know that page does not exist with a go back button                                      |
 | Go Back                         | Click the go back button                                         | User is redirected to the page they were previously on                                                                                  | User is redirected to the page they were previously on                                                                                  |
+
+<details>
+<summary>
+    Blocked and invalid pages test images
+</summary>
+  <p><img src="readme-assets/already-signed-in.png" alt="message visitng sign in page"></p>
+  <p><img src="readme-assets/signed-out-redirected.png" alt="redirect when trying to visit a protected page"></p>
+  <p><img src="readme-assets/session-expired.png" alt="redirect when session has expired"></p>
+  <p><img src="readme-assets/404.png" alt="custom 404 page"></p>
+</details>
