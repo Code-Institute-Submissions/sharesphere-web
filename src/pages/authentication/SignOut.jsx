@@ -64,7 +64,11 @@ const SignOut = () => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Footer className={`${css.ModalFooter} justify-content-center`}>
-            <Button className="btn btn-danger me-4" onClick={handleSignOut}>
+            <Button
+              className="btn btn-danger me-4"
+              onClick={handleSignOut}
+              title="Confirm sign out"
+            >
               Sign out
             </Button>
             <Button
