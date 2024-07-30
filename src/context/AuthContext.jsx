@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         const { data } = await axiosReq.get("/dj-rest-auth/user/");
         return data;
       } catch (error) {
-        null;
+        return;
       }
     } else {
       return null;
