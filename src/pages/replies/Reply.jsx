@@ -25,7 +25,7 @@ const Reply = ({ reply, setReplies, setRepliesCount }) => {
         results: [...prevReplies.results.filter((rep) => rep.id !== reply.id)],
       }));
     } catch (error) {
-      // console.log(error);
+      return;
     }
   };
 

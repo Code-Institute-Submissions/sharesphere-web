@@ -24,7 +24,7 @@ const PopularProfiles = () => {
         setPopularProfiles(data.results.slice(0, 10));
         setHasLoaded(true);
       } catch (error) {
-        // console.log(error);
+        return;
       }
     };
     fetchProfiles();
@@ -49,7 +49,6 @@ const PopularProfiles = () => {
         setHandling(false);
       } catch (error) {
         setHandling(false);
-        // console.log(error);
       }
     }
   };
@@ -75,7 +74,6 @@ const PopularProfiles = () => {
         setHandling(false);
       } catch (error) {
         setHandling(false);
-        // console.log(error);
       }
     }
   };

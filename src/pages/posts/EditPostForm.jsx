@@ -88,7 +88,6 @@ const EditPostForm = ({ setPostData, postData, toggleEdit, id }) => {
       toggleEdit();
     } catch (error) {
       setErrors(error.response?.data);
-      // console.log(error);
     }
   };
 

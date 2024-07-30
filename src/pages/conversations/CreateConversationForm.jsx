@@ -59,7 +59,6 @@ const CreateConversationForm = ({ owner, id, setModalShow, ...props }) => {
         });
         setPosting(false);
       } catch (error) {
-        // console.log(error);
         setPosting(false);
         setErrors(error.response.data);
       }

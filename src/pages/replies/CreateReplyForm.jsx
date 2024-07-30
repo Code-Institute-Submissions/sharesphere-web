@@ -55,7 +55,6 @@ const CreateReplyForm = ({ id, setReplies, setRepliesCount }) => {
       } catch (error) {
         setErrors(error.response.data);
         setPosting(false);
-        // console.log(error);
       }
     }
   };

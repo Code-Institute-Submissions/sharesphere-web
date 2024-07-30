@@ -15,7 +15,6 @@ export const FetchNext = async (state, setState) => {
     }));
     return state;
   } catch (error) {
-    // console.log("Error when fetching more data:", error);
     return "Something went wrong when loading more data";
   }
 };
@@ -38,7 +37,7 @@ export const followHelper = async (id) => {
     const { data } = await axiosRes.post(`followers/`, { followed: id });
     return data;
   } catch (error) {
-    // console.log("error when following user", error);
+    return;
   }
 };
 
@@ -52,7 +51,7 @@ export const unfollowHelper = async (id) => {
   try {
     await axiosRes.delete(`followers/${id}`);
   } catch (error) {
-    // console.log("error when unfollowing user", error);
+    return;
   }
 };
 

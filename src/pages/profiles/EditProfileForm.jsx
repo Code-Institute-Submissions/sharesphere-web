@@ -102,7 +102,7 @@ const EditProfileForm = () => {
         setProfileData(profile.data);
         setHasLoaded(true);
       } catch (error) {
-        // console.log(error);
+        return;
       }
     };
     fetchProfile();

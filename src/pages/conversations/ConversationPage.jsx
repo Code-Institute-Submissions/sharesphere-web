@@ -41,7 +41,6 @@ const ConversationPage = () => {
           setForbidden(true);
           setHadLoaded(true);
         }
-        // console.log(error);
       }
     };
     fetchConversation();
@@ -55,7 +54,7 @@ const ConversationPage = () => {
         state: { success: "Conversation successfully deleted!" },
       });
     } catch (error) {
-      // console.log(error);
+      return;
     }
   };
 

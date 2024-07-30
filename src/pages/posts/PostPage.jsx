@@ -24,7 +24,7 @@ const PostPage = () => {
         setComments(comments);
         setHasLoaded(true);
       } catch (error) {
-        // console.log(error);
+        return;
       }
     };
     fetchPost();

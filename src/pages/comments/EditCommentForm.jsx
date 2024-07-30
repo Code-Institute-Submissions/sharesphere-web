@@ -37,7 +37,6 @@ const EditCommentForm = ({
         setPosting(false);
       } catch (error) {
         setPosting(false);
-        // console.log("Error when updating comment:", error);
       }
     } else if (commentData.content === "") {
       setShow(true);

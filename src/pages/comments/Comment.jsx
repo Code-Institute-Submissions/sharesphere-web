@@ -58,7 +58,7 @@ const Comment = (props) => {
       }));
       setCommentCount((prevCount) => prevCount - 1);
     } catch (error) {
-      // console.log(error);
+      return;
     }
   };
 

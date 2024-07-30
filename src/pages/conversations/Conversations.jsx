@@ -23,7 +23,7 @@ const Conversations = () => {
         setConversations(data);
         setHadLoaded(true);
       } catch (error) {
-        // console.log(error);
+        return;
       }
     };
     fetchConversations();

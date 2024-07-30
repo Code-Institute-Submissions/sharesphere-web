@@ -61,7 +61,6 @@ const ProfilePage = () => {
         setHandling(false);
       } catch (error) {
         setHandling(false);
-        // console.log(error);
       }
     }
   };
@@ -83,7 +82,6 @@ const ProfilePage = () => {
         }));
         setHandling(false);
       } catch (error) {
-        // console.log(error);
         setHandling(false);
       }
     }
