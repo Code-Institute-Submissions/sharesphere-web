@@ -752,6 +752,10 @@ The very limited time frame that this project had to abide by obviously leaves r
 
   - The functionality for this is already implemented on the backend so this would only concern an input field and some state updates on the frontend.
 
+- Spend more time on getting familiar with with Vitest and utlizing vitest mocking to forego the msw mocking and the no-so-functional handlers.js.
+
+  - Some vi.mock has been used in the NavBar.test.jsx file but the time is too low to get more familiar with all of its potential. Feels very potent so far compared to Jest..
+
 ### CRUD Features
 
 The principles of CRUD are at the essence of this project's features and any future features. The database modal and these CRUD features are also mentioned in the [readme for the API](https://github.com/Felteng/sharesphere-api/tree/main?tab=readme-ov-file#database-design).
