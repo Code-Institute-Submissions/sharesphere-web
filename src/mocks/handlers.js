@@ -9,8 +9,9 @@ export const handlers = [
    * This handler is set but not fully utilized in testing yet.
    * That is because of the how the AuthContext handles the user status
    * through local storage. So the workaround I've adopted to mock the
-   * logged in status is to set the localStorage loggedInUser object
-   * in the test suite.
+   * logged in status is to set the localStorage refreshTokenTimestamp object
+   * in the test suite so that the AuthContext checkLoginStatus returns a
+   * value for the user data.
    */
   http.get(`${baseURL}dj-rest-auth/user/`, () => {
     return HttpsResponse.json({
